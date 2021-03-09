@@ -1,0 +1,174 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "69100aa2be6ecb91e23ce5bc00496069",
+    "entities": [
+      {
+        "tableName": "items",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `shipping_number` INTEGER NOT NULL, `shipping_priority` INTEGER NOT NULL, `weight` REAL NOT NULL, `sender_firstname` TEXT, `sender_lastname` TEXT, `sender_address` TEXT, `sender_npa` TEXT, `sender_city` TEXT, `recipient_firstname` TEXT, `recipient_lastname` TEXT, `recipient_address` TEXT, `recipient_npa` TEXT, `recipient_city` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shippingNumber",
+            "columnName": "shipping_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shippingPriority",
+            "columnName": "shipping_priority",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "senderFirstname",
+            "columnName": "sender_firstname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "senderLastname",
+            "columnName": "sender_lastname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "senderAddress",
+            "columnName": "sender_address",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "senderNpa",
+            "columnName": "sender_npa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "senderCity",
+            "columnName": "sender_city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "recipientFirstname",
+            "columnName": "recipient_firstname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "recipientLastname",
+            "columnName": "recipient_lastname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "recipientAddress",
+            "columnName": "recipient_address",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "recipientNPA",
+            "columnName": "recipient_npa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "recipientCity",
+            "columnName": "recipient_city",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_items_shipping_number",
+            "unique": true,
+            "columnNames": [
+              "shipping_number"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_items_shipping_number` ON `${TABLE_NAME}` (`shipping_number`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Shipment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `shipping_number` INTEGER NOT NULL, `status` TEXT, FOREIGN KEY(`shipping_number`) REFERENCES `items`(`shipping_number`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shippingNumber",
+            "columnName": "shipping_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Shipment_shipping_number",
+            "unique": false,
+            "columnNames": [
+              "shipping_number"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Shipment_shipping_number` ON `${TABLE_NAME}` (`shipping_number`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "items",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "shipping_number"
+            ],
+            "referencedColumns": [
+              "shipping_number"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '69100aa2be6ecb91e23ce5bc00496069')"
+    ]
+  }
+}
