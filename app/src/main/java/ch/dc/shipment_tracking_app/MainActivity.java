@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                redirectActivity(this, MainActivity.class);
+                drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_settings:
                 redirectActivity(this, SettingsActivity.class);

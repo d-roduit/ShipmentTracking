@@ -45,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 MainActivity.redirectActivity(this, MainActivity.class);
                 break;
             case R.id.nav_settings:
-                MainActivity.redirectActivity(this, SettingsActivity.class);
+                drawer.closeDrawer(GravityCompat.START);
                 break;
             case R.id.nav_about_us:
                 MainActivity.redirectActivity(this, AboutUsActivity.class);

@@ -48,7 +48,7 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
                 MainActivity.redirectActivity(this, SettingsActivity.class);
                 break;
             case R.id.nav_about_us:
-                MainActivity.redirectActivity(this, AboutUsActivity.class);
+                drawer.closeDrawer(GravityCompat.START);
                 break;
         }
 
