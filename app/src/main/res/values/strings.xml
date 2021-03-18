@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">Shipment Tracking</string>
-    <string name="tracking_error">Unable to retrieve location</string>
-    <string name="location_not_found">No location found</string>
-    <string name="location_permission_denied">Location permissions denied.</string>
-    <string name="service_not_available">Service not available</string>
     <string name="invalid_lat_long_used">Invalid coordinates used</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -22,6 +18,9 @@
     <string name="client_send_package_contact_information">Your contact information :</string>
     <string name="firstname">Firstname</string>
     <string name="lastname">Lastname</string>
+    <string name="location_error">Unable to retrieve location.\nPlease retry.</string>
+    <string name="location_permission_denied">Access to location service denied.</string>
+    <string name="use_location_button">Use my location</string>
     <string name="address">Address</string>
     <string name="npa">NPA</string>
     <string name="city">City</string>

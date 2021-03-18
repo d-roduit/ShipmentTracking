@@ -101,6 +101,38 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp">
+
+            <ProgressBar
+                android:id="@+id/progressbar_location"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/textview_unable_retrieve_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/location_error"
+                android:textColor="@color/red_error"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/button_use_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/use_location_button" />
+
+        </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_sender_address"
             android:layout_width="match_parent"
