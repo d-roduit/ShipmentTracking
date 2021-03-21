@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preference_language_key" translatable="false">language</string>
+    <string name="preference_language_english" translatable="false">English</string>
+    <string name="preference_language_french" translatable="false">Français</string>
+    <string name="preference_language_english_value" translatable="false">en</string>
+    <string name="preference_language_french_value" translatable="false">fr</string>
+
+    <string-array name="language_entries">
+        <item>@string/preference_language_english</item>
+        <item>@string/preference_language_french</item>
+    </string-array>
+
+    <string-array name="language_entry_values">
+        <item>@string/preference_language_english_value</item>
+        <item>@string/preference_language_french_value</item>
+    </string-array>
+</resources>

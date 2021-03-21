@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class AboutUsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class AboutUsActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawer;
 

@@ -24,7 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import ch.dc.shipment_tracking_app.location.LocationManageable;
 import ch.dc.shipment_tracking_app.location.LocationManager;
 
-public class ClientSendPackageActivity extends AppCompatActivity implements LocationManageable {
+public class ClientSendPackageActivity extends BaseActivity implements LocationManageable {
 
     // Constants
     private static final String REQUESTING_LOCATION_UPDATES_KEY = "REQUESTING_LOCATION_UPDATES_KEY";

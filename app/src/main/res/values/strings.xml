@@ -30,4 +30,6 @@
         <item>A</item>
         <item>B</item>
     </string-array>
+    <string name="preference_language_category_title">Language</string>
+    <string name="preference_language_dropdown_title">Change language</string>
 </resources>

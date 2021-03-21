@@ -21,6 +21,13 @@
             android:layout_gravity="center"
             android:text="@string/settings"
             android:textSize="30sp" />
+
+        <LinearLayout
+            android:id="@+id/preference_fragment_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
     </LinearLayout>
 
     <include
