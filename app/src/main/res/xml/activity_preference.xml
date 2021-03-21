@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="language_category"
+        app:title="@string/preference_language_category_title">
+
+        <ListPreference
+            app:key="@string/preference_language_key"
+            app:title="@string/preference_language_dropdown_title"
+            app:useSimpleSummaryProvider="true"
+            app:entries="@array/language_entries"
+            app:entryValues="@array/language_entry_values"
+            app:defaultValue="@string/preference_language_english_value"
+            app:icon="@drawable/ic_language"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Suivi des expéditions</string>
+    <string name="invalid_lat_long_used">Coordonnées utilisées invalides</string>
+    <string name="navigation_drawer_open">Ouvrir le volet de navigation</string>
+    <string name="navigation_drawer_close">Fermer le volet de navigation</string>
+    <string name="home_client">Je suis un client</string>
+    <string name="home_post_employee">Je suis un employé postal</string>
+    <string name="client_main_send_title">Envoyer votre colis</string>
+    <string name="client_main_send_description">Donnez-nous les informations sur votre colis et nous l\'expédierons pour vous</string>
+    <string name="client_main_track_title">Suivre votre colis</string>
+    <string name="client_main_track_description">Vérifiez les informations et l\'état de votre colis en temps réel</string>
+    <string name="settings">Paramètres</string>
+    <string name="home">Accueil</string>
+    <string name="about_us">À propos de nous</string>
+    <string name="client_send_package_title">Remplissez les informations de votre colis</string>
+    <string name="weight">Poids</string>
+    <string name="shipping_priority">Priorité d\'expédition</string>
+    <string name="client_send_package_contact_information">Vos coordonnées</string>
+    <string name="firstname">Prénom</string>
+    <string name="lastname">Nom</string>
+    <string name="location_error">Impossible de récupérer l\'emplacement.\nVeuillez réessayer.</string>
+    <string name="location_permission_denied">Accès au service de localisation refusé.</string>
+    <string name="use_location_button">Utilise ma location</string>
+    <string name="address">Adresse</string>
+    <string name="npa">NPA</string>
+    <string name="city">Ville</string>
+    <string name="client_send_package_recipient_contact_information">Coordonnées du destinataire</string>
+    <string name="button_next">Suivant</string>
+    <string-array name="shipping_priority_items">
+        <item>A</item>
+        <item>B</item>
+    </string-array>
+    <string name="preference_language_category_title">Langue</string>
+    <string name="preference_language_dropdown_title">Choisir la langue</string>
+    <string name="preference_language_english">English</string>
+    <string name="preference_language_french">Français</string>
+</resources>
