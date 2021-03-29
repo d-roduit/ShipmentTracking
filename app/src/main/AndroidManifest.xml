@@ -15,6 +15,9 @@
             android:name=".ClientSendPackageActivity"
             android:parentActivityName=".ClientMainActivity" />
         <activity
+            android:name=".QuestionsAnswersActivity"
+            android:theme="@style/Theme.Shipmenttrackingapp.NoActionBar" />
+        <activity
             android:name=".AboutUsActivity"
             android:theme="@style/Theme.Shipmenttrackingapp.NoActionBar" />
         <activity

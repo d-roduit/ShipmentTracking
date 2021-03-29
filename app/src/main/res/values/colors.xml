@@ -8,4 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red_error">#B00020</color>
+    <color name="cloud_grey">#ECF0F1</color>
+    <color name="silver_grey">#bdc3c7</color>
+    <color name="concrete_grey">#95a5a6</color>
+    <color name="asbetos_grey">#7f8c8d</color>
+
 </resources>

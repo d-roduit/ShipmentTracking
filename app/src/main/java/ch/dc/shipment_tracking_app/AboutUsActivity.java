@@ -9,6 +9,8 @@ public class AboutUsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
 
+        setTitle(getString(R.string.about_us_nav_title));
+
         attachNavigationMenu();
     }
 }

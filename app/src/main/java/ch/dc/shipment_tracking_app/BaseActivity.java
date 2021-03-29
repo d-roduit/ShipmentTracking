@@ -43,6 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             navigationDrawerRoutes.put(R.id.nav_home, MainActivity.class);
             navigationDrawerRoutes.put(R.id.nav_settings, SettingsActivity.class);
             navigationDrawerRoutes.put(R.id.nav_about_us, AboutUsActivity.class);
+            navigationDrawerRoutes.put(R.id.nav_questions_answers, QuestionsAnswersActivity.class);
         }
     }
 
