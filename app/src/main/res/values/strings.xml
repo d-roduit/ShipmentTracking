@@ -1,17 +1,25 @@
 <resources>
     <string name="app_name">Shipment Tracking</string>
-    <string name="invalid_lat_long_used">Invalid coordinates used</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--  Main  -->
     <string name="home_client">I\'m a client</string>
     <string name="home_post_employee">I\'m a post employee</string>
+
+    <!-- ClientMain -->
     <string name="client_main_send_title">Send your package</string>
     <string name="client_main_send_description">Give us your package information and we will ship it for you</string>
     <string name="client_main_track_title">Track your package</string>
     <string name="client_main_track_description">Check your package information and status in real time</string>
-    <string name="settings">Settings</string>
-    <string name="home">Home</string>
-    <string name="about_us">About us</string>
+
+    <!--  Navigation drawer  -->
+    <string name="home_nav_title">Home</string>
+    <string name="settings_nav_title">Settings</string>
+    <string name="about_us_nav_title">About us</string>
+    <string name="questions_answers_nav_title">Q&amp;A</string>
+
+    <!--  ClientSendPackage -->
     <string name="client_send_package_title">Fill in your package information</string>
     <string name="weight">Weight</string>
     <string name="shipping_priority">Shipping priority</string>
@@ -20,6 +28,7 @@
     <string name="lastname">Lastname</string>
     <string name="location_error">Unable to retrieve location.\nPlease retry.</string>
     <string name="location_permission_denied">Access to location service denied.</string>
+    <string name="invalid_lat_long_used">Invalid coordinates used</string>
     <string name="use_location_button">Use my location</string>
     <string name="address">Address</string>
     <string name="npa">NPA</string>
@@ -30,6 +39,33 @@
         <item>A</item>
         <item>B</item>
     </string-array>
+
+    <!--  AboutUs -->
+    <string name="about_us_description">Shipment-tracking is a mobile application that allows you to send and track the delivery of a package with ease.
+        \nThis service is a product of the DC Shipment company and has been developed to be intuitive and easy to use for as many people as possible.
+        \n\nTake as much pleasure in using the application as we did in developing it!</string>
+    <string name="app_publisher">Published by DC Shipment</string>
+    <string name="app_version">Version 1.0</string>
+
+    <!--  QuestionsAnswers -->
+    <string name="questionsanswers_category_generalities">Generalities</string>
+    <string name="questionsanswers_parcel_shipment_price_question">How much does it cost me to send a package?</string>
+    <string name="questionsanswers_parcel_shipment_price_answer">- Package 0kg - 2kg: 7 CHF (B) / 9 CHF (A)
+        \n- Package 2kg - 10kg: 12 CHF (B) / 14 CHF (A)
+        \n- Parcel 10kg - 30kg: 20 CHF (B) / 25 CHF (A)
+        \n\nThe aforementioned prices are valid for a shipment on the national territory. You will find country-specific delivery prices in the "International Information" service on our website.</string>
+    <string name="questionsanswers_data_safe_question">Is my data safe?</string>
+    <string name="questionsanswers_data_safe_answer">We guarantee the security of your data. The Shipment-tracking application complies with the directives of Swiss law on data protection.</string>
+    <string name="questionsanswers_data_storage_question">Where is my data stored?</string>
+    <string name="questionsanswers_data_storage_answer">All data is saved on servers located in Switzerland.</string>
+    <string name="questionsanswers_category_postal_service">Postal services</string>
+    <string name="questionsanswers_how_shipment_going_question">How is the shipment going?</string>
+    <string name="questionsanswers_how_shipment_going_answer">Packages are sent according to the priority of the shipment. Priority B is the default option and guarantees delivery within the next three business days. Larger packages can be posted as priority A. These will be shipped as quickly as possible and usually arrive the next business day after the package is dropped off. It should be noted that the transit times differ depending on the destination. You can find country-specific transit times in the "International Information" service on our website.</string>
+    <string name="questionsanswers_realtime_package_location_question">Can I know where my package is in real time?</string>
+    <string name="questionsanswers_realtime_package_location_answer">Yes. We have set up a parcel tracking service that allows you to follow your parcel in real time throughout its delivery. You can find this service on the customer home page of the application. All you need to do is enter the shipment number of the package that was sent to you when registering your package to view the routing information. Parcel tracking is only available on the national territory.</string>
+
+    <!--  Settings -->
     <string name="preference_language_category_title">Language</string>
     <string name="preference_language_dropdown_title">Change language</string>
+
 </resources>

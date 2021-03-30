@@ -1,18 +1,26 @@
 <resources>
     <string name="app_name">Suivi des expéditions</string>
-    <string name="invalid_lat_long_used">Coordonnées utilisées invalides</string>
     <string name="navigation_drawer_open">Ouvrir le volet de navigation</string>
     <string name="navigation_drawer_close">Fermer le volet de navigation</string>
+
+    <!--  Main  -->
     <string name="home_client">Je suis un client</string>
     <string name="home_post_employee">Je suis un employé postal</string>
+
+    <!-- ClientMain -->
     <string name="client_main_send_title">Envoyer votre colis</string>
     <string name="client_main_send_description">Donnez-nous les informations sur votre colis et nous l\'expédierons pour vous</string>
     <string name="client_main_track_title">Suivre votre colis</string>
     <string name="client_main_track_description">Vérifiez les informations et l\'état de votre colis en temps réel</string>
-    <string name="settings">Paramètres</string>
-    <string name="home">Accueil</string>
-    <string name="about_us">À propos de nous</string>
-    <string name="client_send_package_title">Remplissez les informations de votre colis</string>
+
+    <!--  Navigation drawer  -->
+    <string name="home_nav_title">Accueil</string>
+    <string name="settings_nav_title">Paramètres</string>
+    <string name="about_us_nav_title">À propos de nous</string>
+    <string name="questions_answers_nav_title">FAQ</string>
+
+    <!--  ClientSendPackage -->
+    <string name="client_send_package_title">Remplissez les informations sur votre colis</string>
     <string name="weight">Poids</string>
     <string name="shipping_priority">Priorité d\'expédition</string>
     <string name="client_send_package_contact_information">Vos coordonnées</string>
@@ -20,18 +28,40 @@
     <string name="lastname">Nom</string>
     <string name="location_error">Impossible de récupérer l\'emplacement.\nVeuillez réessayer.</string>
     <string name="location_permission_denied">Accès au service de localisation refusé.</string>
-    <string name="use_location_button">Utilise ma location</string>
+    <string name="invalid_lat_long_used">Coordonnées utilisées invalides</string>
+    <string name="use_location_button">Utiliser ma location</string>
     <string name="address">Adresse</string>
     <string name="npa">NPA</string>
     <string name="city">Ville</string>
     <string name="client_send_package_recipient_contact_information">Coordonnées du destinataire</string>
     <string name="button_next">Suivant</string>
-    <string-array name="shipping_priority_items">
-        <item>A</item>
-        <item>B</item>
-    </string-array>
+
+    <!--  Settings -->
     <string name="preference_language_category_title">Langue</string>
     <string name="preference_language_dropdown_title">Choisir la langue</string>
-    <string name="preference_language_english">English</string>
-    <string name="preference_language_french">Français</string>
+
+    <!--  QuestionsAnswers -->
+    <string name="questionsanswers_category_generalities">Généralité</string>
+    <string name="questionsanswers_parcel_shipment_price_question">Combien me coûte l\'envoi d\'un colis ?</string>
+    <string name="questionsanswers_parcel_shipment_price_answer">- Colis 0kg - 2kg : 7 CHF (B) / 9 CHF (A)
+        \n- Colis 2kg - 10kg : 12 CHF (B) / 14 CHF (A)
+        \n- Colis 10kg - 30kg : 20 CHF (B) / 25 CHF (A)
+        \n\nLes prix susmentionnés sont valables pour un envoie sur le territoir national. Vous trouverez les prix d\'acheminement spécifiques aux différents pays dans le service "Informations internationales" sur notre site Web.</string>
+    <string name="questionsanswers_data_safe_question">Mes données sont-elles en sécurité ?</string>
+    <string name="questionsanswers_data_safe_answer">Nous garantissons la sécurité de vos données. L\'application Shipment-tracking est conforme aux directives de la loi suisse en matière de protection des données.</string>
+    <string name="questionsanswers_data_storage_question">Où mes données sont-elles enregistrées ?</string>
+    <string name="questionsanswers_data_storage_answer">Toutes les données sont enregistrées sur des serveurs situés en Suisse.</string>
+    <string name="questionsanswers_category_postal_service">Prestations postales</string>
+    <string name="questionsanswers_how_shipment_going_question">Comment se passe l\'expédition ?</string>
+    <string name="questionsanswers_how_shipment_going_answer">Les colis sont envoyés selon la priorité d\'envoi choisie. La priorité B est l\'option par défaut et garantit une distribution dans les trois prochains jours ouvrables. Les colis plus importants peuvent être postés en priorité A. Ceux-ci seront expédiés le plus rapidement possible et arrivent généralement le jour ouvrable suivant le dépôt du colis. Il est à noté que les durées d\'acheminement diffèrent selon la destination. Vous trouverez les durées d\'acheminement spécifiques aux différents pays dans le service "Informations internationales" sur notre site Web.</string>
+    <string name="questionsanswers_realtime_package_location_question">Est-ce que je peux savoir où est mon colis en temps réel ?</string>
+    <string name="questionsanswers_realtime_package_location_answer">Oui. Nous avons mis en place un service de tracking des colis qui vous permet de suivre en temps réel votre colis tout au long de son acheminement. Vous trouvez ce service sur la page d\'accueil cliente de l\'application. Il vous suffit d\'entrer le numéro d\'envoie du colis qui vous a été transmis lors de l\'enregistrement de votre colis pour consulter les informations sur l\'acheminement. Le tracking du colis est uniquement disponible sur le territoir national.</string>
+
+    <!--  AboutUs -->
+    <string name="about_us_description">Shipment-tracking est une application qui vous permet d\'envoyer et suivre l\'acheminement d\'un colis en tout simplicité.
+        \nCe service est un produit de la compagnie DC Shipment et a été développé pour être aussi intuitifs et faciles d\'utilisation que possible pour le plus grand nombre.
+        \n\nPrenez autant de plaisir à utiliser l\'application que ce qu\'on a eu à la développer !</string>
+    <string name="app_publisher">Publiée by DC Shipment</string>
+    <string name="app_version">Version 1.0</string>
+
 </resources>

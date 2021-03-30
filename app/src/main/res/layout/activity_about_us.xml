@@ -15,12 +15,44 @@
         <include
             layout="@layout/toolbar" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/about_us"
-            android:textSize="30sp" />
+            android:orientation="vertical"
+            android:padding="50dp">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/company_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_us_description"
+                android:justificationMode="inter_word"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_marginTop="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_publisher"
+                android:layout_marginTop="40dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_version"
+                android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <include
