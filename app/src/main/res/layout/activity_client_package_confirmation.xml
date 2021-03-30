@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClientPackageConfirmationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_package_confirmation_title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_send_package_information"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weight"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shipping_priority"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_shipping_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_send_package_contact_information"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/firstname"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_sender_firstname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lastname"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_sender_lastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_sender_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/npa"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_sender_npa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/city"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_sender_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_send_package_recipient_contact_information"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/firstname"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_recipient_firstname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lastname"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_recipient_lastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_recipient_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/npa"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_recipient_npa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View style="@style/Divider"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/city"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+
+            style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+        <TextView
+            android:id="@+id/package_confirmation_recipient_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+
+        <Button
+            android:id="@+id/button_send_package"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_send"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            />
+
+
+    </LinearLayout>
+
+</ScrollView>

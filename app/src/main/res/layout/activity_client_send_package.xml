@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
 
 
         <TextView
@@ -22,30 +23,40 @@
             android:layout_gravity="center"
             android:layout_margin="20dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_send_package_information"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            />
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/weightTextField"
+            android:id="@+id/input_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/weight"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             app:suffixText="grams">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/shippingPriorityTextField"
+            android:id="@+id/input_shippingPriority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/shipping_priority"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
@@ -64,9 +75,9 @@
             android:layout_height="wrap_content"
             android:text="@string/client_send_package_contact_information"
             android:textSize="15sp"
+            android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="20dp"
             />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -74,14 +85,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/firstname"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxCornerRadiusTopEnd="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_senderFirstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,14 +102,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/lastname"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxCornerRadiusTopEnd="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_senderLastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,8 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="end"
-            android:layout_marginEnd="20dp">
+            android:layout_gravity="end">
 
             <ProgressBar
                 android:id="@+id/progressbar_location"
@@ -138,14 +150,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/address"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxCornerRadiusTopEnd="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_senderAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -159,15 +172,16 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/npa"
-                android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="5dp"
                 app:boxCornerRadiusTopStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_senderNpa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:singleLine="true"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,14 +190,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/city"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginVertical="5dp"
                 app:boxCornerRadiusTopStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_senderCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,9 +210,9 @@
             android:layout_height="wrap_content"
             android:text="@string/client_send_package_recipient_contact_information"
             android:textSize="15sp"
+            android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="20dp"
             />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -204,14 +220,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/firstname"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxCornerRadiusTopEnd="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_recipientFirstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -220,14 +237,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/lastname"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxCornerRadiusTopEnd="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_recipientLastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -236,14 +254,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/address"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"
             app:boxCornerRadiusTopStart="5dp"
             app:boxCornerRadiusTopEnd="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_recipientAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -257,15 +276,16 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/npa"
-                android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="5dp"
                 app:boxCornerRadiusTopStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_recipientNpa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:singleLine="true"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -274,14 +294,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/city"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginVertical="5dp"
                 app:boxCornerRadiusTopStart="5dp"
                 app:boxCornerRadiusTopEnd="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_recipientCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -1,6 +1,7 @@
 package ch.dc.shipment_tracking_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import ch.dc.shipment_tracking_app.location.LocationManageable;
@@ -29,13 +31,35 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
 
     // Constants
     private static final String REQUESTING_LOCATION_UPDATES_KEY = "REQUESTING_LOCATION_UPDATES_KEY";
+    public static final String SEND_WEIGHT = "SEND_WEIGHT";
+    public static final String SEND_SHIPPING_PRIORITY = "SEND_SHIPPING_PRIORITY";
+    public static final String SEND_SENDER_FIRSTNAME = "SEND_SENDER_FIRSTNAME";
+    public static final String SEND_SENDER_LASTNAME = "SEND_SENDER_LASTNAME";
+    public static final String SEND_SENDER_ADDRESS = "SEND_SENDER_ADDRESS";
+    public static final String SEND_SENDER_NPA = "SEND_SENDER_NPA";
+    public static final String SEND_SENDER_CITY = "SEND_SENDER_CITY";
+    public static final String SEND_RECIPIENT_FIRSTNAME = "SEND_RECIPIENT_FIRSTNAME";
+    public static final String SEND_RECIPIENT_LASTNAME = "SEND_RECIPIENT_LASTNAME";
+    public static final String SEND_RECIPIENT_ADDRESS = "SEND_RECIPIENT_ADDRESS";
+    public static final String SEND_RECIPIENT_NPA = "SEND_RECIPIENT_NPA";
+    public static final String SEND_RECIPIENT_CITY = "SEND_RECIPIENT_CITY";
 
     // Views
     private ProgressBar progressbarLocation;
+    private TextInputLayout inputWeight;
+    private TextInputLayout inputShippingPriority;
+    private TextInputLayout inputSenderFirstname;
+    private TextInputLayout inputSenderLastname;
     private TextInputLayout inputSenderAddress;
     private TextInputLayout inputSenderCity;
     private TextInputLayout inputSenderNpa;
+    private TextInputLayout inputRecipientFirstname;
+    private TextInputLayout inputRecipientLastname;
+    private TextInputLayout inputRecipientAddress;
+    private TextInputLayout inputRecipientCity;
+    private TextInputLayout inputRecipientNpa;
     private Button useLocationButton;
+    private Button nextButton;
     private TextView textviewUnableRetrieveLocation;
     private AutoCompleteTextView dropDownText;
 
@@ -50,12 +74,24 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_send_package);
 
+        setTitle(getString(R.string.client_send_package_activity_title));
+
         // Initialize XML views.
         progressbarLocation = findViewById(R.id.progressbar_location);
+        inputWeight = findViewById(R.id.input_weight);
+        inputShippingPriority = findViewById(R.id.input_shippingPriority);
+        inputSenderFirstname = findViewById(R.id.input_sender_firstname);
+        inputSenderLastname = findViewById(R.id.input_sender_lastname);
         inputSenderAddress = findViewById(R.id.input_sender_address);
         inputSenderCity = findViewById(R.id.input_sender_city);
         inputSenderNpa = findViewById(R.id.input_sender_npa);
+        inputRecipientFirstname = findViewById(R.id.input_recipient_firstname);
+        inputRecipientLastname = findViewById(R.id.input_recipient_lastname);
+        inputRecipientAddress = findViewById(R.id.input_recipient_address);
+        inputRecipientCity = findViewById(R.id.input_recipient_city);
+        inputRecipientNpa = findViewById(R.id.input_recipient_npa);
         useLocationButton = findViewById(R.id.button_use_location);
+        nextButton = findViewById(R.id.button_next);
         textviewUnableRetrieveLocation = findViewById(R.id.textview_unable_retrieve_location);
         dropDownText = findViewById(R.id.shipping_priority_list);
 
@@ -90,16 +126,89 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
 
         // Restore state if app was resumed.
         updateValuesFromBundle(savedInstanceState);
+
+        //Button next listener
+        nextButton.setOnClickListener(v -> confirmInput());
     }
 
-    //Method to close the keyboard when we click outside of an input field.
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (getCurrentFocus() != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+    /**
+     * Makes the validation of input fields. Check if the inputs are empty or not.
+     *
+     * @param input
+     *          The input that has to be validated.
+     * @return
+     *          A boolean. True if there are no error, false otherwise.
+     */
+    private boolean validateField(TextInputLayout input) {
+        String textInput = input.getEditText().getText().toString().trim();
+
+        if(textInput.isEmpty()) {
+            String error = getString(R.string.input_error);
+            input.setErrorEnabled(true);
+            input.setError(error);
+            return false;
+        } else {
+            input.setErrorEnabled(false);
+            input.setError(null);
+            return true;
         }
-        return super.dispatchTouchEvent(ev);
+    }
+
+    /**
+     * Confirms that every input fields are validate.
+     * If it's the case, send the package information.
+     */
+    private void confirmInput() {
+        if (!validateField(inputWeight)
+                | !validateField(inputShippingPriority)
+                | !validateField(inputSenderFirstname)
+                | !validateField(inputSenderLastname)
+                | !validateField(inputSenderAddress)
+                | !validateField(inputSenderNpa)
+                | !validateField(inputSenderCity)
+                | !validateField(inputRecipientFirstname)
+                | !validateField(inputRecipientLastname)
+                | !validateField(inputRecipientAddress)
+                | !validateField(inputRecipientNpa)
+                | !validateField(inputRecipientCity)) {
+            return;
+        }
+        sendPackageInformation();
+    }
+
+    /**
+     * Sends the package information through an Intent.
+     */
+    private void sendPackageInformation() {
+        Intent intent = new Intent(this, ClientPackageConfirmationActivity.class);
+
+        double textWeight = Double.parseDouble(inputWeight.getEditText().getText().toString());
+        char textShippingPriority = dropDownText.getText().toString().charAt(0);
+        String textSenderFirstname = inputSenderFirstname.getEditText().getText().toString();
+        String textSenderLastname = inputSenderLastname.getEditText().getText().toString();
+        String textSenderAddress = inputSenderAddress.getEditText().getText().toString();
+        String textSenderNpa = inputSenderNpa.getEditText().getText().toString();
+        String textSenderCity = inputSenderCity.getEditText().getText().toString();
+        String textRecipientFirstname = inputRecipientFirstname.getEditText().getText().toString();
+        String textRecipientLastname = inputRecipientLastname.getEditText().getText().toString();
+        String textRecipientAddress = inputRecipientAddress.getEditText().getText().toString();
+        String textRecipientNpa = inputRecipientNpa.getEditText().getText().toString();
+        String textRecipientCity = inputRecipientCity.getEditText().getText().toString();
+
+        intent.putExtra(SEND_WEIGHT, textWeight);
+        intent.putExtra(SEND_SHIPPING_PRIORITY, textShippingPriority);
+        intent.putExtra(SEND_SENDER_FIRSTNAME, textSenderFirstname);
+        intent.putExtra(SEND_SENDER_LASTNAME, textSenderLastname);
+        intent.putExtra(SEND_SENDER_ADDRESS, textSenderAddress);
+        intent.putExtra(SEND_SENDER_NPA, textSenderNpa);
+        intent.putExtra(SEND_SENDER_CITY, textSenderCity);
+        intent.putExtra(SEND_RECIPIENT_FIRSTNAME, textRecipientFirstname);
+        intent.putExtra(SEND_RECIPIENT_LASTNAME, textRecipientLastname);
+        intent.putExtra(SEND_RECIPIENT_ADDRESS, textRecipientAddress);
+        intent.putExtra(SEND_RECIPIENT_NPA, textRecipientNpa);
+        intent.putExtra(SEND_RECIPIENT_CITY, textRecipientCity);
+
+        startActivity(intent);
     }
 
     /**

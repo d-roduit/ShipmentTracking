@@ -12,6 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shipmenttrackingapp">
         <activity
+            android:name=".ClientTrackPackageActivity"
+            android:parentActivityName=".ClientMainActivity" />
+        <activity android:name=".ClientPackageSentActivity" />
+        <activity
+            android:name=".ClientPackageConfirmationActivity"
+            android:parentActivityName=".ClientSendPackageActivity" />
+        <activity
             android:name=".ClientSendPackageActivity"
             android:parentActivityName=".ClientMainActivity" />
         <activity

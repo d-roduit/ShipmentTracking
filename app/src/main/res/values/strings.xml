@@ -20,10 +20,13 @@
     <string name="questions_answers_nav_title">Q&amp;A</string>
 
     <!--  ClientSendPackage -->
+    <string name="client_send_package_activity_title">Package information</string>
+    <string name="client_confirmation_package_activity_title">Package confirmation</string>
+    <string name="client_package_sent_activity_title">Shipping number</string>
     <string name="client_send_package_title">Fill in your package information</string>
     <string name="weight">Weight</string>
     <string name="shipping_priority">Shipping priority</string>
-    <string name="client_send_package_contact_information">Your contact information :</string>
+    <string name="client_send_package_contact_information">Sender information :</string>
     <string name="firstname">Firstname</string>
     <string name="lastname">Lastname</string>
     <string name="location_error">Unable to retrieve location.\nPlease retry.</string>
@@ -33,12 +36,22 @@
     <string name="address">Address</string>
     <string name="npa">NPA</string>
     <string name="city">City</string>
-    <string name="client_send_package_recipient_contact_information">Recipient contact information :</string>
+    <string name="client_send_package_recipient_contact_information">Recipient information :</string>
     <string name="button_next">Next</string>
+    <string name="client_send_package_information">Package information :</string>
+    <string name="client_package_confirmation_title">Package confirmation</string>
+    <string name="button_send">Send</string>
     <string-array name="shipping_priority_items">
         <item>A</item>
         <item>B</item>
     </string-array>
+    <string name="input_error">Mandatory</string>
+    <string name="package_sent_title1">Your package has been sent !</string>
+    <string name="package_sent_title2">Here is your shipping number :</string>
+    <string name="button_finish">Finish</string>
+    <string name="package_sent_description1">This number allows you to track your package via our tracking service.</string>
+    <string name="package_sent_description2">Keep it preciously !</string>
+    <string name="shipping_number_copied_toast">Shipping number copied</string>
 
     <!--  AboutUs -->
     <string name="about_us_description">Shipment-tracking is a mobile application that allows you to send and track the delivery of a package with ease.
@@ -68,4 +81,9 @@
     <string name="preference_language_category_title">Language</string>
     <string name="preference_language_dropdown_title">Change language</string>
 
+    <!-- ClientTrackPackage-->
+    <string name="client_track_package_activity_title">Track your package</string>
+    <string name="track_package_title">Enter your shipping number</string>
+    <string name="shipping_number">Shipping number</string>
+    <string name="button_track">Track</string>
 </resources>
