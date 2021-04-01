@@ -20,7 +20,8 @@
             android:parentActivityName=".ClientSendPackageActivity" />
         <activity
             android:name=".ClientSendPackageActivity"
-            android:parentActivityName=".ClientMainActivity" />
+            android:parentActivityName=".ClientMainActivity"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".QuestionsAnswersActivity"
             android:theme="@style/Theme.Shipmenttrackingapp.NoActionBar" />

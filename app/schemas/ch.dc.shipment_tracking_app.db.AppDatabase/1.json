@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "69100aa2be6ecb91e23ce5bc00496069",
+    "identityHash": "9077bf5165294b4d2e03452d7cd7df69",
     "entities": [
       {
         "tableName": "items",
@@ -112,8 +112,8 @@
         "foreignKeys": []
       },
       {
-        "tableName": "Shipment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `shipping_number` INTEGER NOT NULL, `status` TEXT, FOREIGN KEY(`shipping_number`) REFERENCES `items`(`shipping_number`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "tableName": "shipments",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `shipping_number` INTEGER NOT NULL, `status` INTEGER NOT NULL, `date` INTEGER, `npa` TEXT, `city` TEXT, FOREIGN KEY(`shipping_number`) REFERENCES `items`(`shipping_number`) ON UPDATE CASCADE ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -130,6 +130,24 @@
           {
             "fieldPath": "status",
             "columnName": "status",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "npa",
+            "columnName": "npa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
             "affinity": "TEXT",
             "notNull": false
           }
@@ -142,12 +160,12 @@
         },
         "indices": [
           {
-            "name": "index_Shipment_shipping_number",
+            "name": "index_shipments_shipping_number",
             "unique": false,
             "columnNames": [
               "shipping_number"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_Shipment_shipping_number` ON `${TABLE_NAME}` (`shipping_number`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_shipments_shipping_number` ON `${TABLE_NAME}` (`shipping_number`)"
           }
         ],
         "foreignKeys": [
@@ -168,7 +186,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '69100aa2be6ecb91e23ce5bc00496069')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9077bf5165294b4d2e03452d7cd7df69')"
     ]
   }
 }
