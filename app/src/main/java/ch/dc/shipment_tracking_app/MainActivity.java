@@ -15,7 +15,9 @@ public class MainActivity extends BaseActivity {
         attachNavigationMenu();
 
         CardView cardViewClient = findViewById(R.id.main_client_card);
-        cardViewClient.setOnClickListener(v -> redirectActivity(this, ClientMainActivity.class));
-    }
+        CardView cardViewPostEmployee = findViewById(R.id.main_post_employee_card);
 
+        cardViewClient.setOnClickListener(v -> redirectActivity(this, ClientMainActivity.class));
+        cardViewPostEmployee.setOnClickListener(v -> redirectActivity(this, PostEmployeeShippingNumberActivity.class));
+    }
 }

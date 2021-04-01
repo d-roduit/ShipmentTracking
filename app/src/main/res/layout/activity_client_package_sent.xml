@@ -63,6 +63,8 @@
         android:text="@string/package_sent_description1"
         android:textSize="18sp"
         android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
         android:layout_marginHorizontal="30dp"/>
 
     <TextView
@@ -70,6 +72,8 @@
         android:layout_height="wrap_content"
         android:text="@string/package_sent_description2"
         android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
         android:layout_marginHorizontal="30dp"/>
 
     <Button

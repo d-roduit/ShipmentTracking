@@ -1,7 +1,18 @@
 <resources>
+    <!-- General -->
     <string name="app_name">Suivi des expéditions</string>
     <string name="navigation_drawer_open">Ouvrir le volet de navigation</string>
     <string name="navigation_drawer_close">Fermer le volet de navigation</string>
+    <string name="npa">NPA</string>
+    <string name="city">Ville</string>
+    <string name="button_update">Mettre à jour</string>
+    <string name="button_next">Suivant</string>
+    <string name="shipping_number">Numéro d\'envoi</string>
+
+    <!-- TrackingStatus enum -->
+    <string name="tracking_status_deposited">Dépôt</string>
+    <string name="tracking_status_in_transit">En transit</string>
+    <string name="tracking_status_delivered">Livré</string>
 
     <!--  Main  -->
     <string name="home_client">Je suis un client</string>
@@ -34,10 +45,7 @@
     <string name="invalid_lat_long_used">Coordonnées utilisées invalides</string>
     <string name="use_location_button">Utiliser ma location</string>
     <string name="address">Adresse</string>
-    <string name="npa">NPA</string>
-    <string name="city">Ville</string>
     <string name="client_send_package_recipient_contact_information">Coordonnées du destinataire :</string>
-    <string name="button_next">Suivant</string>
     <string name="client_send_package_information">Informations du paquet :</string>
     <string name="client_package_confirmation_title">Confirmation du paquet</string>
     <string name="button_send">Envoyer</string>
@@ -53,11 +61,28 @@
     <string name="package_sent_description2">Gardez-le précieusement !</string>
     <string name="shipping_number_copied_toast">Numéro d\'envoi copié</string>
 
-    <!--  Settings -->
-    <string name="preference_language_category_title">Langue</string>
-    <string name="preference_language_dropdown_title">Choisir la langue</string>
-    <string name="preference_language_english">English</string>
-    <string name="preference_language_french">Français</string>
+    <!-- PostalEmployeeShippingNumber -->
+    <string name="post_employee_shipping_number_title">Entrer le numéro d\'envoi</string>
+
+    <!-- PostalEmployeeMain -->
+    <string name="post_employee_main_tracking_update_card_title">Mise à jour du suivi</string>
+    <string name="post_employee_main_tracking_update_card_description">Rapprochez le colis du destinataire en ajoutant une nouvelle étape de suivi </string>
+    <string name="post_employee_main_tracking_update_card_image_description">Icône de mise à jour de suivi </string>
+    <string name="post_employee_main_manage_packages_card_title">Gérer les colis</string>
+    <string name="post_employee_main_manage_packages_card_description">Un grand pouvoir implique de grandes responsabilités. Gérez en toute sécurité les colis et leurs statuts</string>
+    <string name="post_employee_main_manage_packages_card_image_description">Icône Gérer les packages</string>
+
+    <!-- PostalEmployeeUpdateTracking -->
+    <string name="post_employee_update_tracking_title">Mettre à jour l\'état du suivi</string>
+    <string name="post_employee_update_tracking_status_dropdown">Statut</string>
+    <string name="post_employee_update_tracking_notification_message">Statut de suivi du paquet mis à jour</string>
+
+    <!--  AboutUs -->
+    <string name="about_us_description">Shipment-tracking est une application qui vous permet d\'envoyer et suivre l\'acheminement d\'un colis en tout simplicité.
+        \nCe service est un produit de la compagnie DC Shipment et a été développé pour être aussi intuitifs et faciles d\'utilisation que possible pour le plus grand nombre.
+        \n\nPrenez autant de plaisir à utiliser l\'application que ce qu\'on a eu à la développer !</string>
+    <string name="app_publisher">Publiée by DC Shipment</string>
+    <string name="app_version">Version 1.0</string>
 
     <!--  QuestionsAnswers -->
     <string name="questionsanswers_category_generalities">Généralité</string>
@@ -76,17 +101,15 @@
     <string name="questionsanswers_realtime_package_location_question">Est-ce que je peux savoir où est mon colis en temps réel ?</string>
     <string name="questionsanswers_realtime_package_location_answer">Oui. Nous avons mis en place un service de tracking des colis qui vous permet de suivre en temps réel votre colis tout au long de son acheminement. Vous trouvez ce service sur la page d\'accueil cliente de l\'application. Il vous suffit d\'entrer le numéro d\'envoie du colis qui vous a été transmis lors de l\'enregistrement de votre colis pour consulter les informations sur l\'acheminement. Le tracking du colis est uniquement disponible sur le territoir national.</string>
 
-    <!--  AboutUs -->
-    <string name="about_us_description">Shipment-tracking est une application qui vous permet d\'envoyer et suivre l\'acheminement d\'un colis en tout simplicité.
-        \nCe service est un produit de la compagnie DC Shipment et a été développé pour être aussi intuitifs et faciles d\'utilisation que possible pour le plus grand nombre.
-        \n\nPrenez autant de plaisir à utiliser l\'application que ce qu\'on a eu à la développer !</string>
-    <string name="app_publisher">Publiée by DC Shipment</string>
-    <string name="app_version">Version 1.0</string>
+    <!--  Settings -->
+    <string name="preference_language_category_title">Langue</string>
+    <string name="preference_language_dropdown_title">Choisir la langue</string>
+    <string name="preference_language_english">English</string>
+    <string name="preference_language_french">Français</string>
 
     <!-- ClientTrackPackage-->
     <string name="client_track_package_activity_title">Suivez votre paquet</string>
     <string name="track_package_title">Entrez votre numéro d\'envoi</string>
-    <string name="shipping_number">Numéro d\'envoi</string>
     <string name="button_track">Suivre</string>
 
 </resources>

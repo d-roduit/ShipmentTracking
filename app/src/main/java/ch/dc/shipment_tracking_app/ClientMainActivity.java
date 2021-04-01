@@ -17,7 +17,6 @@ public class ClientMainActivity extends BaseActivity {
 
         cardViewSendPackage.setOnClickListener(v -> redirectActivity(this, ClientSendPackageActivity.class));
         cardViewTrackPackage.setOnClickListener(v -> redirectActivity(this, ClientTrackPackageActivity.class));
-
     }
 
 }
