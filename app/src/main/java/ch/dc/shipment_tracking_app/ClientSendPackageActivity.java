@@ -1,13 +1,10 @@
 package ch.dc.shipment_tracking_app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -17,11 +14,8 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import ch.dc.shipment_tracking_app.location.LocationManageable;
@@ -101,6 +95,7 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
                 this, R.layout.dropdown_item, shipping_priority_items
         );
         dropDownText.setAdapter(adapter);
+//        dropDownText.setText(adapter.getItem(1), false);
 
         // Initialize the location manager.
         locationManager = new LocationManager(this, this);
@@ -109,10 +104,8 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
         requestPermissionLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestPermission(), isGranted -> {
                     if (isGranted) {
-                        System.out.println("PERMISSION WAS GRANTED !");
                         locationManager.startLocationUpdates();
                     } else {
-                        System.out.println("PERMISSION WAS **NOT** GRANTED !");
                         Toast.makeText(
                                 this,
                                 R.string.location_permission_denied,
@@ -128,52 +121,18 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
         updateValuesFromBundle(savedInstanceState);
 
         //Button next listener
-        nextButton.setOnClickListener(v -> confirmInput());
-    }
+        nextButton.setOnClickListener(v -> {
+            boolean areInputsValid = InputValidator.validateInputs(
+                    inputWeight, inputShippingPriority, inputSenderFirstname, inputSenderLastname,
+                    inputSenderAddress, inputSenderNpa, inputSenderCity, inputRecipientFirstname,
+                    inputRecipientLastname, inputRecipientAddress, inputRecipientNpa,
+                    inputRecipientCity
+            );
 
-    /**
-     * Makes the validation of input fields. Check if the inputs are empty or not.
-     *
-     * @param input
-     *          The input that has to be validated.
-     * @return
-     *          A boolean. True if there are no error, false otherwise.
-     */
-    private boolean validateField(TextInputLayout input) {
-        String textInput = input.getEditText().getText().toString().trim();
-
-        if(textInput.isEmpty()) {
-            String error = getString(R.string.input_error);
-            input.setErrorEnabled(true);
-            input.setError(error);
-            return false;
-        } else {
-            input.setErrorEnabled(false);
-            input.setError(null);
-            return true;
-        }
-    }
-
-    /**
-     * Confirms that every input fields are validate.
-     * If it's the case, send the package information.
-     */
-    private void confirmInput() {
-        if (!validateField(inputWeight)
-                | !validateField(inputShippingPriority)
-                | !validateField(inputSenderFirstname)
-                | !validateField(inputSenderLastname)
-                | !validateField(inputSenderAddress)
-                | !validateField(inputSenderNpa)
-                | !validateField(inputSenderCity)
-                | !validateField(inputRecipientFirstname)
-                | !validateField(inputRecipientLastname)
-                | !validateField(inputRecipientAddress)
-                | !validateField(inputRecipientNpa)
-                | !validateField(inputRecipientCity)) {
-            return;
-        }
-        sendPackageInformation();
+            if (areInputsValid) {
+                sendPackageInformation();
+            }
+        });
     }
 
     /**

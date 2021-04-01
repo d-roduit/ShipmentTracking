@@ -1,7 +1,19 @@
 <resources>
+    <!-- General -->
     <string name="app_name">Shipment Tracking</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="npa">NPA</string>
+    <string name="city">City</string>
+    <string name="button_update">Update</string>
+    <string name="button_next">Next</string>
+    <string name="shipping_number">Shipping number</string>
+
+
+    <!-- TrackingStatus enum -->
+    <string name="tracking_status_deposited">Deposited</string>
+    <string name="tracking_status_in_transit">In transit</string>
+    <string name="tracking_status_delivered">Delivered</string>
 
     <!--  Main  -->
     <string name="home_client">I\'m a client</string>
@@ -34,10 +46,7 @@
     <string name="invalid_lat_long_used">Invalid coordinates used</string>
     <string name="use_location_button">Use my location</string>
     <string name="address">Address</string>
-    <string name="npa">NPA</string>
-    <string name="city">City</string>
     <string name="client_send_package_recipient_contact_information">Recipient information :</string>
-    <string name="button_next">Next</string>
     <string name="client_send_package_information">Package information :</string>
     <string name="client_package_confirmation_title">Package confirmation</string>
     <string name="button_send">Send</string>
@@ -52,6 +61,27 @@
     <string name="package_sent_description1">This number allows you to track your package via our tracking service.</string>
     <string name="package_sent_description2">Keep it preciously !</string>
     <string name="shipping_number_copied_toast">Shipping number copied</string>
+
+    <!-- PostalEmployeeShippingNumber -->
+    <string name="post_employee_shipping_number_title">Enter the shipping number</string>
+
+    <!-- PostalEmployeeMain -->
+    <string name="post_employee_main_tracking_update_card_title">Tracking update</string>
+    <string name="post_employee_main_tracking_update_card_description">Bring the package closer to the recipient by adding a new tracking step</string>
+    <string name="post_employee_main_tracking_update_card_image_description">Tracking update icon</string>
+    <string name="post_employee_main_manage_packages_card_title">Manage packages</string>
+    <string name="post_employee_main_manage_packages_card_description">With great power comes great responsibility. Safely manage packages and their status</string>
+    <string name="post_employee_main_manage_packages_card_image_description">Manage packages icon</string>
+
+    <!-- PostalEmployeeUpdateTracking -->
+    <string name="post_employee_update_tracking_title">Update tracking status</string>
+    <string name="post_employee_update_tracking_status_dropdown">Status</string>
+    <string-array name="post_employee_update_tracking_status_list">
+        <item>@string/tracking_status_deposited</item>
+        <item>@string/tracking_status_in_transit</item>
+        <item>@string/tracking_status_delivered</item>
+    </string-array>
+    <string name="post_employee_update_tracking_notification_message">Tracking status updated</string>
 
     <!--  AboutUs -->
     <string name="about_us_description">Shipment-tracking is a mobile application that allows you to send and track the delivery of a package with ease.
@@ -84,6 +114,5 @@
     <!-- ClientTrackPackage-->
     <string name="client_track_package_activity_title">Track your package</string>
     <string name="track_package_title">Enter your shipping number</string>
-    <string name="shipping_number">Shipping number</string>
     <string name="button_track">Track</string>
 </resources>

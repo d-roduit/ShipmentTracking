@@ -12,7 +12,6 @@
         android:orientation="vertical"
         android:paddingHorizontal="20dp">
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,23 +80,6 @@
             />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_sender_firstname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/firstname"
-            android:layout_marginVertical="5dp"
-            app:boxCornerRadiusTopStart="5dp"
-            app:boxCornerRadiusTopEnd="5dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editText_senderFirstname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_sender_lastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -114,36 +96,62 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_sender_firstname"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="end">
+            android:hint="@string/firstname"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp">
 
-            <ProgressBar
-                android:id="@+id/progressbar_location"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:visibility="invisible"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_senderFirstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 android:id="@+id/textview_unable_retrieve_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:text="@string/location_error"
                 android:textColor="@color/red_error"
+                android:width="180dp"
+                android:maxWidth="180dp"
                 android:visibility="gone"/>
 
+            <ProgressBar
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/button_use_location"
+                android:id="@+id/progressbar_location"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="invisible" />
+
             <Button
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/button_use_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="@string/use_location_button" />
+                android:text="@string/use_location_button"
+                android:width="180dp"
+                android:maxWidth="180dp" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_sender_address"

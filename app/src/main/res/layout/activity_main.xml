@@ -16,13 +16,13 @@
             layout="@layout/toolbar" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/main_client_card"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
             app:cardCornerRadius="4dp"
             app:cardBackgroundColor="#dbdbdb"
-            android:layout_marginTop="100dp"
-            android:id="@+id/main_client_card">
+            android:layout_marginTop="100dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,8 +32,9 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_margin="25dp"
-                    android:src="@drawable/ic_home" />
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/ic_client" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -49,6 +50,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/main_post_employee_card"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
@@ -64,8 +66,9 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_margin="25dp"
-                    android:src="@drawable/ic_home" />
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/ic_post_employee" />
 
                 <TextView
                     android:layout_width="match_parent"
