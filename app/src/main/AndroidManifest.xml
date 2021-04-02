@@ -43,10 +43,10 @@
             android:parentActivityName=".PostEmployeeMainActivity" />
         <activity
             android:name=".PostEmployeeUpdateTrackingActivity"
-            android:parentActivityName=".PostEmployeeShippingNumberActivity" />
+            android:parentActivityName=".PostEmployeeMainActivity" />
         <activity
-            android:name=".PostEmployeeManagePackagesActivity"
-            android:parentActivityName=".PostEmployeeShippingNumberActivity" />
+            android:name=".PostEmployeeManagePackageActivity"
+            android:parentActivityName=".PostEmployeeMainActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.Shipmenttrackingapp.NoActionBar">

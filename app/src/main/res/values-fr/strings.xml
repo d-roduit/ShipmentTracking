@@ -8,6 +8,8 @@
     <string name="button_update">Mettre à jour</string>
     <string name="button_next">Suivant</string>
     <string name="shipping_number">Numéro d\'envoi</string>
+    <string name="post_employee_update_tracking_status_dropdown">Statut</string>
+    <string name="button_save">Sauvegarder</string>
 
     <!-- TrackingStatus enum -->
     <string name="tracking_status_deposited">Dépôt</string>
@@ -37,7 +39,7 @@
     <string name="client_send_package_title">Remplissez les informations sur votre colis</string>
     <string name="weight">Poids</string>
     <string name="shipping_priority">Priorité d\'expédition</string>
-    <string name="client_send_package_contact_information">Vos coordonnées :</string>
+    <string name="client_send_package_contact_information">Coordonnées de l\'expéditeur :</string>
     <string name="firstname">Prénom</string>
     <string name="lastname">Nom</string>
     <string name="location_error">Impossible de récupérer l\'emplacement.\nVeuillez réessayer.</string>
@@ -65,17 +67,28 @@
     <string name="post_employee_shipping_number_title">Entrer le numéro d\'envoi</string>
 
     <!-- PostalEmployeeMain -->
+    <string name="post_employee_main_title">Colis No. %s</string>
     <string name="post_employee_main_tracking_update_card_title">Mise à jour du suivi</string>
     <string name="post_employee_main_tracking_update_card_description">Rapprochez le colis du destinataire en ajoutant une nouvelle étape de suivi </string>
     <string name="post_employee_main_tracking_update_card_image_description">Icône de mise à jour de suivi </string>
-    <string name="post_employee_main_manage_packages_card_title">Gérer les colis</string>
-    <string name="post_employee_main_manage_packages_card_description">Un grand pouvoir implique de grandes responsabilités. Gérez en toute sécurité les colis et leurs statuts</string>
-    <string name="post_employee_main_manage_packages_card_image_description">Icône Gérer les packages</string>
+    <string name="post_employee_main_manage_package_card_title">Gérer le colis</string>
+    <string name="post_employee_main_manage_package_card_description">Un grand pouvoir implique de grandes responsabilités. Gérez en toute sécurité les colis et leurs statuts</string>
+    <string name="post_employee_main_manage_package_card_image_description">Icône Gérer les packages</string>
 
     <!-- PostalEmployeeUpdateTracking -->
     <string name="post_employee_update_tracking_title">Mettre à jour l\'état du suivi</string>
-    <string name="post_employee_update_tracking_status_dropdown">Statut</string>
     <string name="post_employee_update_tracking_notification_message">Statut de suivi du paquet mis à jour</string>
+
+    <!-- PostalEmployeeManagePackage -->
+    <string name="post_employee_manage_package_package_information_title">Information du colis</string>
+    <string name="post_employee_manage_package_package_statuses_title">Suivi du colis</string>
+    <string name="post_employee_manage_package_button_delete_package">Supprimer le colis</string>
+    <string name="post_employee_manage_package_dialog_title">Supprimer le colis</string>
+    <string name="post_employee_manage_package_dialog_message">Êtes-vous sûr de vouloir supprimer le colis ?</string>
+    <string name="post_employee_manage_package_dialog_button_ok">Oui</string>
+    <string name="post_employee_manage_package_dialog_button_cancel">Annuler</string>
+    <string name="post_employee_manage_package_snackbar_message_package_info_saved">Informations du colis sauvegardées</string>
+    <string name="post_employee_manage_package_snackbar_message_package_deleted">Colis supprimé</string>
 
     <!--  AboutUs -->
     <string name="about_us_description">Shipment-tracking est une application qui vous permet d\'envoyer et suivre l\'acheminement d\'un colis en tout simplicité.
