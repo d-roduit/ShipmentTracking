@@ -2,33 +2,48 @@ package ch.dc.shipment_tracking_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PostEmployeeMainActivity extends BaseActivity {
+
+    private TextView packageNumberTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_employee_main);
 
+        packageNumberTextView = findViewById(R.id.post_employee_main_title);
         CardView cardViewTrackingUpdate = findViewById(R.id.post_employee_main_tracking_update_card);
-        CardView cardViewManagePackages = findViewById(R.id.post_employee_main_manage_packages_card);
+        CardView cardViewManagePackage = findViewById(R.id.post_employee_main_manage_package_card);
 
+        packageNumberTextView.setText(getString(R.string.post_employee_main_title, "32543"));
         cardViewTrackingUpdate.setOnClickListener(v -> redirectActivity(this, PostEmployeeUpdateTrackingActivity.class));
-        cardViewManagePackages.setOnClickListener(v -> redirectActivity(this, PostEmployeeManagePackagesActivity.class));
+        cardViewManagePackage.setOnClickListener(v -> redirectActivity(this, PostEmployeeManagePackageActivity.class));
 
         Intent intent = getIntent();
-        String notificationMessage = intent.getStringExtra(PostEmployeeUpdateTrackingActivity.SNACKBAR_TRACKING_UPDATED);
+        List<String> snackbarMessages = new ArrayList<>();
+        snackbarMessages.add(intent.getStringExtra(PostEmployeeUpdateTrackingActivity.SNACKBAR_TRACKING_UPDATED));
+        snackbarMessages.add(intent.getStringExtra(PostEmployeeManagePackageActivity.SNACKBAR_PACKAGE_INFO_SAVED));
+        snackbarMessages.add(intent.getStringExtra(PostEmployeeManagePackageActivity.SNACKBAR_PACKAGE_DELETED));
 
-        if (notificationMessage != null) {
-            Snackbar.make(findViewById(R.id.post_employee_main_coordinatorLayout),
-                    notificationMessage,
-                    Snackbar.LENGTH_LONG
-            ).show();
+        for (String snackbarMessage: snackbarMessages) {
+            if (snackbarMessage != null) {
+                Snackbar.make(findViewById(R.id.post_employee_main_coordinatorLayout),
+                        snackbarMessage,
+                        Snackbar.LENGTH_LONG
+                ).show();
+                break;
+            }
         }
+
     }
 
 }

@@ -13,14 +13,24 @@
         android:orientation="vertical"
         tools:context=".PostEmployeeMainActivity">
 
+        <TextView
+            android:id="@+id/post_employee_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_employee_main_title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_margin="60dp" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/post_employee_main_tracking_update_card"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
             app:cardCornerRadius="4dp"
-            app:cardBackgroundColor="#dbdbdb"
-            android:layout_marginTop="100dp">
+            app:cardBackgroundColor="#dbdbdb">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,7 +68,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/post_employee_main_manage_packages_card"
+            android:id="@+id/post_employee_main_manage_package_card"
             android:layout_width="300dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
@@ -76,12 +86,12 @@
                     android:layout_height="65dp"
                     android:layout_marginTop="22dp"
                     android:src="@drawable/ic_manage_packages"
-                    android:contentDescription="@string/post_employee_main_manage_packages_card_image_description" />
+                    android:contentDescription="@string/post_employee_main_manage_package_card_image_description" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/post_employee_main_manage_packages_card_title"
+                    android:text="@string/post_employee_main_manage_package_card_title"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
@@ -91,7 +101,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/post_employee_main_manage_packages_card_description"
+                    android:text="@string/post_employee_main_manage_package_card_description"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:textAlignment="center"

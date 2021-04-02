@@ -8,6 +8,13 @@
     <string name="button_update">Update</string>
     <string name="button_next">Next</string>
     <string name="shipping_number">Shipping number</string>
+    <string name="post_employee_update_tracking_status_dropdown">Status</string>
+    <string-array name="post_employee_update_tracking_status_list">
+        <item>@string/tracking_status_deposited</item>
+        <item>@string/tracking_status_in_transit</item>
+        <item>@string/tracking_status_delivered</item>
+    </string-array>
+    <string name="button_save">Save</string>
 
 
     <!-- TrackingStatus enum -->
@@ -66,22 +73,28 @@
     <string name="post_employee_shipping_number_title">Enter the shipping number</string>
 
     <!-- PostalEmployeeMain -->
+    <string name="post_employee_main_title">Package No. %s</string>
     <string name="post_employee_main_tracking_update_card_title">Tracking update</string>
     <string name="post_employee_main_tracking_update_card_description">Bring the package closer to the recipient by adding a new tracking step</string>
     <string name="post_employee_main_tracking_update_card_image_description">Tracking update icon</string>
-    <string name="post_employee_main_manage_packages_card_title">Manage packages</string>
-    <string name="post_employee_main_manage_packages_card_description">With great power comes great responsibility. Safely manage packages and their status</string>
-    <string name="post_employee_main_manage_packages_card_image_description">Manage packages icon</string>
+    <string name="post_employee_main_manage_package_card_title">Manage the package</string>
+    <string name="post_employee_main_manage_package_card_description">With great power comes great responsibility. Safely manage packages and their status</string>
+    <string name="post_employee_main_manage_package_card_image_description">Manage the package icon</string>
 
     <!-- PostalEmployeeUpdateTracking -->
     <string name="post_employee_update_tracking_title">Update tracking status</string>
-    <string name="post_employee_update_tracking_status_dropdown">Status</string>
-    <string-array name="post_employee_update_tracking_status_list">
-        <item>@string/tracking_status_deposited</item>
-        <item>@string/tracking_status_in_transit</item>
-        <item>@string/tracking_status_delivered</item>
-    </string-array>
     <string name="post_employee_update_tracking_notification_message">Tracking status updated</string>
+
+    <!-- PostalEmployeeManagePackage -->
+    <string name="post_employee_manage_package_package_information_title">Package information</string>
+    <string name="post_employee_manage_package_package_statuses_title">Package tracking</string>
+    <string name="post_employee_manage_package_button_delete_package">Delete package</string>
+    <string name="post_employee_manage_package_dialog_title">Delete package</string>
+    <string name="post_employee_manage_package_dialog_message">Are you sure to delete the package ?</string>
+    <string name="post_employee_manage_package_dialog_button_ok">Yes</string>
+    <string name="post_employee_manage_package_dialog_button_cancel">Cancel</string>
+    <string name="post_employee_manage_package_snackbar_message_package_info_saved">Package information saved</string>
+    <string name="post_employee_manage_package_snackbar_message_package_deleted">Package deleted</string>
 
     <!--  AboutUs -->
     <string name="about_us_description">Shipment-tracking is a mobile application that allows you to send and track the delivery of a package with ease.

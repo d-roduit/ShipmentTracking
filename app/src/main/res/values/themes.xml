@@ -25,4 +25,9 @@
         <item name="android:background">?android:attr/listDivider</item>
     </style>
 
+    <style name="Theme.Shipmenttrackingapp.Button.Delete" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/red_error</item>
+    </style>
+
 </resources>

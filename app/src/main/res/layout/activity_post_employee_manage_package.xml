@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostEmployeeManagePackageActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
+
+        <!-- Package information -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_employee_manage_package_package_information_title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_margin="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_send_package_information"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/weight"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:suffixText="grams">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/post_employee_manage_package_editText_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_shipping_priority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/shipping_priority"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/post_employee_manage_package_shipping_priority_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_send_package_contact_information"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_sender_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastname"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/post_employee_manage_package_editText_senderLastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_sender_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/firstname"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/post_employee_manage_package_editText_senderFirstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_sender_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/post_employee_manage_package_editText_senderAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/post_employee_manage_package_input_sender_npa"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/npa"
+                android:layout_marginVertical="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/post_employee_manage_package_editText_senderNpa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/post_employee_manage_package_input_sender_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/city"
+                android:layout_marginStart="20dp"
+                android:layout_marginVertical="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/post_employee_manage_package_editText_senderCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_send_package_recipient_contact_information"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_recipient_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastname"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/post_employee_manage_package_editText_recipientLastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_recipient_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/firstname"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/post_employee_manage_package_editText_recipientFirstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_recipient_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/post_employee_manage_package_editText_recipientAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/post_employee_manage_package_input_recipient_npa"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/npa"
+                android:layout_marginVertical="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/post_employee_manage_package_editText_recipientNpa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/post_employee_manage_package_input_recipient_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/city"
+                android:layout_marginStart="20dp"
+                android:layout_marginVertical="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/post_employee_manage_package_editText_recipientCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Package statuses -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_employee_manage_package_package_statuses_title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="35dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/post_employee_manage_package_status_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@string/tracking_status_in_transit"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/post_employee_manage_package_status_1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="10:12 - 25 Feb 2020"
+                android:textSize="15sp"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:srcCompat="@drawable/ic_delete"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_status_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/post_employee_update_tracking_status_dropdown"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/post_employee_manage_package_status_list_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/post_employee_manage_package_input_npa_1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/npa"
+                android:layout_marginVertical="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/post_employee_manage_package_input_city_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/city"
+                android:layout_marginStart="20dp"
+                android:layout_marginVertical="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_keyboard_arrow_up" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/post_employee_manage_package_status_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@string/tracking_status_deposited"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/post_employee_manage_package_status_2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="10:12 - 25 Feb 2020"
+                android:textSize="15sp"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:srcCompat="@drawable/ic_delete"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/post_employee_manage_package_input_status_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/post_employee_update_tracking_status_dropdown"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/post_employee_manage_package_status_list_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/post_employee_manage_package_input_npa_2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/npa"
+                android:layout_marginVertical="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/post_employee_manage_package_input_city_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/city"
+                android:layout_marginStart="20dp"
+                android:layout_marginVertical="5dp"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/post_employee_manage_package_button_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="40dp"
+            style="@style/Theme.Shipmenttrackingapp.Button.Delete"
+            android:text="@string/post_employee_manage_package_button_delete_package" />
+
+    </LinearLayout>
+
+</ScrollView>
