@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shipmenttrackingapp">
+        <activity android:name=".ClientTrackPackageInformationActivity"></activity>
         <activity
             android:name=".ClientTrackPackageActivity"
             android:parentActivityName=".ClientMainActivity" />
@@ -20,6 +21,7 @@
             android:parentActivityName=".ClientSendPackageActivity" />
         <activity
             android:name=".ClientSendPackageActivity"
+            android:launchMode="singleTask"
             android:parentActivityName=".ClientMainActivity" />
         <activity
             android:name=".QuestionsAnswersActivity"

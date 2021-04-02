@@ -2,6 +2,7 @@ package ch.dc.shipment_tracking_app;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,10 +24,16 @@ public class ClientPackageSentActivity extends BaseActivity {
 
         setTitle(getString(R.string.client_package_sent_activity_title));
 
+        Intent intent = getIntent();
+
         finishButton = findViewById(R.id.button_finish);
         shippingNumberToCopy = findViewById(R.id.shipping_number_to_copy);
         copyButton = findViewById(R.id.button_copy);
         clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+
+        int shippingNumber = intent.getIntExtra(ClientPackageConfirmationActivity.SEND_SHIPPING_NUMBER, 1);
+
+        shippingNumberToCopy.setText("" + shippingNumber);
 
         //Copy the shipping number in clipboard
         copyButton.setOnClickListener(v -> {

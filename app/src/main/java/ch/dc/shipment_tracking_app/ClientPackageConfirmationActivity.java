@@ -1,6 +1,5 @@
 package ch.dc.shipment_tracking_app;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,23 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModelProvider;
+
+import ch.dc.shipment_tracking_app.db.entity.Item;
+import ch.dc.shipment_tracking_app.viewmodel.ItemViewModel;
+
 public class ClientPackageConfirmationActivity extends BaseActivity {
 
-    //Views
-    private TextView textViewWeight;
-    private TextView textViewShippingPriority;
-    private TextView textViewSenderFirstname;
-    private TextView textViewSenderLastname;
-    private TextView textViewSenderAddress;
-    private TextView textViewSenderNpa;
-    private TextView textViewSenderCity;
-    private TextView textViewRecipientFirstname;
-    private TextView textViewRecipientLastname;
-    private TextView textViewRecipientAddress;
-    private TextView textViewRecipientNpa;
-    private TextView textViewRecipientCity;
-    private Button sendPackageButton;
+    public static final String SEND_SHIPPING_NUMBER = "SEND_SHIPPING_NUMBER";
 
+    private ItemViewModel itemViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +27,26 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
 
         Intent intent = getIntent();
 
+        //ViewModel
+        itemViewModel = new ViewModelProvider
+                .AndroidViewModelFactory(getApplication())
+                .create(ItemViewModel.class);
+
         //Initialize the views.
-        textViewWeight = findViewById(R.id.package_confirmation_weight);
-        textViewShippingPriority = findViewById(R.id.package_confirmation_shipping_priority);
-        textViewSenderFirstname = findViewById(R.id.package_confirmation_sender_firstname);
-        textViewSenderLastname = findViewById(R.id.package_confirmation_sender_lastname);
-        textViewSenderAddress = findViewById(R.id.package_confirmation_sender_address);
-        textViewSenderNpa = findViewById(R.id.package_confirmation_sender_npa);
-        textViewSenderCity = findViewById(R.id.package_confirmation_sender_city);
-        textViewRecipientFirstname = findViewById(R.id.package_confirmation_recipient_firstname);
-        textViewRecipientLastname = findViewById(R.id.package_confirmation_recipient_lastname);
-        textViewRecipientAddress = findViewById(R.id.package_confirmation_recipient_address);
-        textViewRecipientNpa = findViewById(R.id.package_confirmation_recipient_npa);
-        textViewRecipientCity = findViewById(R.id.package_confirmation_recipient_city);
-        sendPackageButton = findViewById(R.id.button_send_package);
+        TextView textViewWeight = findViewById(R.id.package_confirmation_weight);
+        TextView textViewShippingPriority = findViewById(R.id.package_confirmation_shipping_priority);
+        TextView textViewSenderFirstname = findViewById(R.id.package_confirmation_sender_firstname);
+        TextView textViewSenderLastname = findViewById(R.id.package_confirmation_sender_lastname);
+        TextView textViewSenderAddress = findViewById(R.id.package_confirmation_sender_address);
+        TextView textViewSenderNpa = findViewById(R.id.package_confirmation_sender_npa);
+        TextView textViewSenderCity = findViewById(R.id.package_confirmation_sender_city);
+        TextView textViewRecipientFirstname = findViewById(R.id.package_confirmation_recipient_firstname);
+        TextView textViewRecipientLastname = findViewById(R.id.package_confirmation_recipient_lastname);
+        TextView textViewRecipientAddress = findViewById(R.id.package_confirmation_recipient_address);
+        TextView textViewRecipientNpa = findViewById(R.id.package_confirmation_recipient_npa);
+        TextView textViewRecipientCity = findViewById(R.id.package_confirmation_recipient_city);
+        Button sendPackageButton = findViewById(R.id.button_send_package);
+
 
         //Get the value of each input field.
         double weight = intent.getDoubleExtra(ClientSendPackageActivity.SEND_WEIGHT, 0.00);
@@ -78,7 +76,19 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         textViewRecipientNpa.setText(recipientNpa);
         textViewRecipientCity.setText(recipientCity);
 
-        sendPackageButton.setOnClickListener(v -> redirectActivity(this, ClientPackageSentActivity.class));
+        //sendPackageButton.setOnClickListener(v -> redirectActivity(this, ClientPackageSentActivity.class));
+        sendPackageButton.setOnClickListener(v -> {
+            Intent intent1 = new Intent(this, ClientPackageSentActivity.class);
+
+            Item item = new Item(shippingPriority, weight, senderFirstname, senderLastname,
+                    senderAddress, senderNpa, senderCity, recipientFirstname,
+                    recipientLastname, recipientAddress, recipientNpa, recipientCity);
+            itemViewModel.insert(item);
+
+            intent1.putExtra(SEND_SHIPPING_NUMBER, item.getShippingNumber());
+
+            startActivity(intent1);
+        });
 
     }
 
