@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9077bf5165294b4d2e03452d7cd7df69",
+    "identityHash": "f4f92471e26eea4ae7d21622f9ffc713",
     "entities": [
       {
         "tableName": "items",
@@ -161,11 +161,11 @@
         "indices": [
           {
             "name": "index_shipments_shipping_number",
-            "unique": false,
+            "unique": true,
             "columnNames": [
               "shipping_number"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_shipments_shipping_number` ON `${TABLE_NAME}` (`shipping_number`)"
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_shipments_shipping_number` ON `${TABLE_NAME}` (`shipping_number`)"
           }
         ],
         "foreignKeys": [
@@ -186,7 +186,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9077bf5165294b4d2e03452d7cd7df69')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f4f92471e26eea4ae7d21622f9ffc713')"
     ]
   }
 }

@@ -5,6 +5,10 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Random;
+
 /**
  * Item entity that represents the Item table. The Item contains all the package information.
  */
@@ -128,7 +132,26 @@ public class Item {
         this.recipientNPA = recipientNPA;
         this.recipientCity = recipientCity;
 
-        setShippingNumber(1);
+        setShippingNumber(generateUniqueShippingNumber());
+    }
+
+    /**
+     * Method to generate a unique random number of 7 digits for the shipping number.
+     *
+     * @return a 7 digits int
+     */
+    private int generateUniqueShippingNumber() {
+        Random random = new Random();
+        int randomNumber = 1000 + random.nextInt(9000);
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        long currentTime = timestamp.getTime();
+        int lastThreeDigits = (int) (currentTime % 1000);
+
+        String string = Integer.toString(randomNumber) + Integer.toString(lastThreeDigits);
+
+        return Integer.parseInt(string);
+
     }
 
     /**

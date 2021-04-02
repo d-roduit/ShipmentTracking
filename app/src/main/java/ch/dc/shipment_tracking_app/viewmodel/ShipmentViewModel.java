@@ -1,7 +1,6 @@
 package ch.dc.shipment_tracking_app.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -23,21 +22,15 @@ public class ShipmentViewModel extends AndroidViewModel {
     private ShipmentRepository shipmentRepository;
 
     /**
-     * The application context
-     */
-    private final Context applicationContext;
-
-    /**
      * LiveData list of all Shipments
      */
     private LiveData<List<Shipment>> allShipments;
 
 
-    public ShipmentViewModel(@NonNull Application application, ShipmentRepository shipmentRepository) {
+    public ShipmentViewModel(@NonNull Application application) {
         super(application);
-        this.shipmentRepository = shipmentRepository;
-        applicationContext = application.getApplicationContext();
-        allShipments = shipmentRepository.getAllShipments(applicationContext);
+        shipmentRepository = new ShipmentRepository(application);
+        allShipments = shipmentRepository.getAllShipments();
     }
 
     /**
@@ -46,7 +39,7 @@ public class ShipmentViewModel extends AndroidViewModel {
      * @param shipment the Shipment to insert
      */
     public void insert(Shipment shipment) {
-        shipmentRepository.insert(shipment, applicationContext);
+        shipmentRepository.insert(shipment);
     }
 
     /**
@@ -55,7 +48,7 @@ public class ShipmentViewModel extends AndroidViewModel {
      * @param shipment the Shipment to delete
      */
     public void delete(Shipment shipment) {
-        shipmentRepository.delete(shipment, applicationContext);
+        shipmentRepository.delete(shipment);
     }
 
     /**
@@ -64,7 +57,7 @@ public class ShipmentViewModel extends AndroidViewModel {
      * @param shipment the Shipment to update
      */
     public void update(Shipment shipment) {
-        shipmentRepository.update(shipment, applicationContext);
+        shipmentRepository.update(shipment);
     }
 
     /**

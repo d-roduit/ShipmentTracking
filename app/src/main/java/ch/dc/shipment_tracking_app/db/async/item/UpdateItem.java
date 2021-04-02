@@ -1,9 +1,8 @@
 package ch.dc.shipment_tracking_app.db.async.item;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
-import ch.dc.shipment_tracking_app.db.AppDatabase;
+import ch.dc.shipment_tracking_app.db.dataAccessObject.ItemDao;
 import ch.dc.shipment_tracking_app.db.entity.Item;
 
 /**
@@ -12,29 +11,23 @@ import ch.dc.shipment_tracking_app.db.entity.Item;
 public class UpdateItem extends AsyncTask<Item, Void, Void> {
 
     /**
-     * The App database
+     * ItemDao
      */
-    private AppDatabase database;
+    private ItemDao itemDao;
 
     /**
      * UpdateItem constructor
      *
-     * @param context the context
+     * @param itemDao the ItemDao
      */
-    public UpdateItem(Context context) {
-        database = AppDatabase.getInstance(context);
+    public UpdateItem(ItemDao itemDao) {
+        this.itemDao = itemDao;
     }
 
 
     @Override
     protected Void doInBackground(Item... items) {
-        try{
-            for(Item item : items) {
-                database.itemDao().update(item);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        itemDao.update(items[0]);
 
         return null;
     }

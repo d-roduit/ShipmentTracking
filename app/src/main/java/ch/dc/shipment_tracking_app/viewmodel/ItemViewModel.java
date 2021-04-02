@@ -1,13 +1,10 @@
 package ch.dc.shipment_tracking_app.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
-import java.util.List;
 
 import ch.dc.shipment_tracking_app.db.entity.Item;
 import ch.dc.shipment_tracking_app.db.repository.ItemRepository;
@@ -23,21 +20,13 @@ public class ItemViewModel extends AndroidViewModel {
     private ItemRepository itemRepository;
 
     /**
-     * The application context
-     */
-    private final Context applicationContext;
-
-
-    /**
      * ItemViewModel constructor
      *
      * @param application the application
-     * @param itemRepository the itemRepository
      */
-    public ItemViewModel(@NonNull Application application, ItemRepository itemRepository) {
+    public ItemViewModel(@NonNull Application application) {
         super(application);
-        this.itemRepository = itemRepository;
-        applicationContext = application.getApplicationContext();
+        itemRepository = new ItemRepository(application);
     }
 
 
@@ -47,7 +36,7 @@ public class ItemViewModel extends AndroidViewModel {
      * @param item the Item to insert
      */
     public void insert(Item item) {
-        itemRepository.insert(item, applicationContext);
+        itemRepository.insert(item);
     }
 
     /**
@@ -56,7 +45,7 @@ public class ItemViewModel extends AndroidViewModel {
      * @param item the Item to delete
      */
     public void delete(Item item) {
-        itemRepository.delete(item, applicationContext);
+        itemRepository.delete(item);
     }
 
     /**
@@ -65,12 +54,12 @@ public class ItemViewModel extends AndroidViewModel {
      * @param item the Item to update
      */
     public void update(Item item) {
-        itemRepository.update(item, applicationContext);
+        itemRepository.update(item);
     }
 
 
     public LiveData<Item> getItemByShippingNumber(int shippingNumber) {
-        return itemRepository.getItemByShippingNumber(shippingNumber, applicationContext);
+        return itemRepository.getItemByShippingNumber(shippingNumber);
     }
 
 }

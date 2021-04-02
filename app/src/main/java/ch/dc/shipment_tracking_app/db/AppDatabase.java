@@ -92,7 +92,7 @@ public abstract class AppDatabase extends RoomDatabase {
             , "Rue des Champs 9", "1920", "Martigny", "Daniel",
                     "Roduit", "Rue quelque part", "1800", "JspOu"));
 
-            shipmentDao.insert(new Shipment(1, "1920", "Martigny"));
+            shipmentDao.insert(new Shipment(1111111, 1, "1920", "Martigny"));
             return null;
         }
     }

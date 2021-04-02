@@ -1,5 +1,6 @@
 package ch.dc.shipment_tracking_app.db.repository;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
@@ -10,6 +11,7 @@ import ch.dc.shipment_tracking_app.db.AppDatabase;
 import ch.dc.shipment_tracking_app.db.async.shipment.DeleteShipment;
 import ch.dc.shipment_tracking_app.db.async.shipment.InsertShipment;
 import ch.dc.shipment_tracking_app.db.async.shipment.UpdateShipment;
+import ch.dc.shipment_tracking_app.db.dataAccessObject.ShipmentDao;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
 
 /**
@@ -18,68 +20,60 @@ import ch.dc.shipment_tracking_app.db.entity.Shipment;
 public class ShipmentRepository {
 
     /**
-     * ShipmentRepository static instance
+     * ShipmentDao
      */
-    private static ShipmentRepository instance;
+    private ShipmentDao shipmentDao;
 
     /**
-     * ShipmentRepository private constructor
+     * LiveData list of all Shipments
      */
-    private ShipmentRepository() {}
+    private LiveData<List<Shipment>> allShipments;
 
     /**
-     * Method to get an instance of ShipmentRepository
-     * @return the ShipmentRepository instance
+     * ShipmentRepository constructor
+     *
+     * @param application the application
      */
-    public static ShipmentRepository getInstance() {
-        if(instance == null) {
-            synchronized (ShipmentRepository.class) {
-                if(instance == null) {
-                    instance = new ShipmentRepository();
-                }
-            }
-        }
-        return instance;
+    public ShipmentRepository(Application application) {
+        AppDatabase database = AppDatabase.getInstance(application);
+        shipmentDao = database.shipmentDao();
+        allShipments = shipmentDao.getAllShipments();
     }
 
     /**
      * Method to get all Shipments
      *
-     * @param context the context
      * @return a LiveData list of Shipment
      */
-    public LiveData<List<Shipment>> getAllShipments(Context context) {
-        return AppDatabase.getInstance(context).shipmentDao().getAllShipments();
+    public LiveData<List<Shipment>> getAllShipments() {
+        return allShipments;
     }
 
     /**
      * Method to insert a Shipment in the database
      *
      * @param shipment the Shipment to insert
-     * @param context the context
      */
-    public void insert(Shipment shipment, Context context) {
-        new InsertShipment(context).execute(shipment);
+    public void insert(Shipment shipment) {
+        new InsertShipment(shipmentDao).execute(shipment);
     }
 
     /**
      * Method to delete a Shipment
      *
      * @param shipment the Shipment to delete
-     * @param context the context
      */
-    public void delete(Shipment shipment, Context context) {
-        new DeleteShipment(context).execute(shipment);
+    public void delete(Shipment shipment) {
+        new DeleteShipment(shipmentDao).execute(shipment);
     }
 
     /**
      * Method to update a Shipment
      *
      * @param shipment the Shipment to update
-     * @param context the context
      */
-    public void update(Shipment shipment, Context context) {
-        new UpdateShipment(context).execute(shipment);
+    public void update(Shipment shipment) {
+        new UpdateShipment(shipmentDao).execute(shipment);
     }
 
 }

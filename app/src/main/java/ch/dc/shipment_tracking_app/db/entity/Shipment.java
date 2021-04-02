@@ -21,7 +21,7 @@ import java.util.Date;
                 onUpdate = ForeignKey.CASCADE
         )
 }, indices = {
-        @Index("shipping_number")
+        @Index(value = "shipping_number", unique = true)
 })
 public class Shipment {
 
@@ -61,19 +61,19 @@ public class Shipment {
     /**
      * Shipment constructor
      *
+     * @param shippingNumber the shipping number
      * @param status the status
      * @param npa the npa
      * @param city the city
      */
-    public Shipment(int status, String npa, String city) {
+    public Shipment(int shippingNumber, int status, String npa, String city) {
+        this.shippingNumber = shippingNumber;
         this.status = status;
         this.npa = npa;
         this.city = city;
 
         Date currentDate = new Date();
         setDate(currentDate);
-
-        setShippingNumber(1);
     }
 
 
