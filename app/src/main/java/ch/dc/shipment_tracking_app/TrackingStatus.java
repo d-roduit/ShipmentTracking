@@ -1,32 +1,36 @@
 package ch.dc.shipment_tracking_app;
 
-import androidx.annotation.StringRes;
+import android.content.Context;
 
 /**
  * Enumeration of tracking status
  */
 public enum TrackingStatus {
-    DEPOSITED(R.string.tracking_status_deposited),
-    IN_TRANSIT(R.string.tracking_status_in_transit),
-    DELIVERED(R.string.tracking_status_delivered);
+    DEPOSITED(0),
+    IN_TRANSIT(1),
+    DELIVERED(2);
 
-    private final int stringId;
+    private final int statusListPosition;
 
-    TrackingStatus (int stringId) {
-        this.stringId = stringId;
+    TrackingStatus (int statusListPosition) {
+        this.statusListPosition = statusListPosition;
     }
 
-    @StringRes
-    public int getStringId() {
-        return stringId;
+    public int getStatusListPosition() {
+        return statusListPosition;
     }
 
-    public static TrackingStatus fromStringId(int stringId) throws IllegalArgumentException {
+    public String getStringStatus(Context context) {
+        String[] trackingStatusList = context.getResources().getStringArray(R.array.post_employee_update_tracking_status_list);
+        return trackingStatusList[statusListPosition];
+    }
+
+    public static TrackingStatus fromStatusListPosition(int statusListPosition) throws IllegalArgumentException {
         for (TrackingStatus trackingStatus: TrackingStatus.values()) {
-            if (trackingStatus.stringId == stringId) {
+            if (trackingStatus.statusListPosition == statusListPosition) {
                 return trackingStatus;
             }
         }
-        throw new IllegalArgumentException("No TrackingStatus constant for stringId " + stringId + " found");
+        throw new IllegalArgumentException("No TrackingStatus constant for statusListPosition " + statusListPosition + " found");
     }
 }

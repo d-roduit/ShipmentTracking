@@ -31,12 +31,16 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
     private LinearLayout expandableViewPackage;
     private LinearLayout expandableViewSender;
     private LinearLayout expandableViewRecipient;
+    private LinearLayout expandableViewStatus;
     private Button arrowButtonPackage;
     private Button arrowButtonSender;
     private Button arrowButtonRecipient;
+    private Button arrowButtonStatus;
+    private Button finishButton;
     private CardView packageCardview;
     private CardView senderCardview;
     private CardView recipientCardview;
+    private CardView statusCardview;
     private TextView textViewWeight;
     private TextView textViewShippingPriority;
     private TextView textViewSenderFirstname;
@@ -80,12 +84,16 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
         expandableViewPackage = findViewById(R.id.track_package_expandableView_package);
         expandableViewSender = findViewById(R.id.track_package_expandableView_sender);
         expandableViewRecipient = findViewById(R.id.track_package_expandableView_recipient);
+        expandableViewStatus = findViewById(R.id.track_package_expandableView_status);
         arrowButtonPackage = findViewById(R.id.button_expandCard_arrow_down_package);
         arrowButtonSender = findViewById(R.id.button_expandCard_arrow_down_sender);
         arrowButtonRecipient = findViewById(R.id.button_expandCard_arrow_down_recipient);
+        arrowButtonStatus = findViewById(R.id.button_expandCard_arrow_down_status);
+        finishButton = findViewById(R.id.track_package_button_finish);
         packageCardview = findViewById(R.id.cardview_package_information);
         senderCardview = findViewById(R.id.cardview_sender_information);
         recipientCardview = findViewById(R.id.cardview_recipient_information);
+        statusCardview = findViewById(R.id.cardview_status);
         textViewWeight = findViewById(R.id.track_package_weight);
         textViewShippingPriority = findViewById(R.id.track_package_shipping_priority);
         textViewSenderFirstname = findViewById(R.id.track_package_sender_firstname);
@@ -135,6 +143,10 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
                 expandCard(senderCardview, expandableViewSender, arrowButtonSender));
         arrowButtonRecipient.setOnClickListener(v ->
                 expandCard(recipientCardview, expandableViewRecipient, arrowButtonRecipient));
+        arrowButtonStatus.setOnClickListener(v ->
+                expandCard(statusCardview, expandableViewStatus, arrowButtonStatus));
+
+        finishButton.setOnClickListener(v -> redirectActivity(this, ClientMainActivity.class));
     }
 
     private void expandCard(CardView cardView, View expandableView, Button button) {

@@ -21,7 +21,7 @@ import java.util.Date;
                 onUpdate = ForeignKey.CASCADE
         )
 }, indices = {
-        @Index(value = "shipping_number", unique = true)
+        @Index(value = "shipping_number")
 })
 public class Shipment {
 

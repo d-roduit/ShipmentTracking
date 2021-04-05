@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingVertical="30dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_package_information"
@@ -53,32 +54,31 @@
 
                 </RelativeLayout>
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/weight"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/track_package_weight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
                 <LinearLayout
                     android:id="@+id/track_package_expandableView_package"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weight"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -148,32 +148,31 @@
 
                 </RelativeLayout>
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/firstname"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/track_package_sender_firstname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
                 <LinearLayout
                     android:id="@+id/track_package_expandableView_sender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/firstname"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_sender_firstname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -298,32 +297,31 @@
 
                 </RelativeLayout>
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/firstname"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/track_package_recipient_firstname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
                 <LinearLayout
                     android:id="@+id/track_package_expandableView_recipient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/firstname"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_recipient_firstname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -448,16 +446,6 @@
 
                 </RelativeLayout>
 
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_track_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:listitem="@layout/shipment_item">
-
-
-                </androidx.recyclerview.widget.RecyclerView>
-
                 <LinearLayout
                     android:id="@+id/track_package_expandableView_status"
                     android:layout_width="match_parent"
@@ -465,6 +453,11 @@
                     android:orientation="vertical"
                     android:visibility="gone">
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_track_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/shipment_item" />
 
 
                 </LinearLayout>
@@ -472,6 +465,14 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/track_package_button_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/button_finish"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 

@@ -90,7 +90,7 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
 
         // Create the shipment
         Shipment shipment = new Shipment(item.getShippingNumber(),
-                TrackingStatus.DEPOSITED.getStringId(), item.getSenderNpa(), item.getSenderCity());
+                TrackingStatus.DEPOSITED.getStatusListPosition(), item.getSenderNpa(), item.getSenderCity());
 
         sendPackageButton.setOnClickListener(v -> sendPackage(item, shipment));
     }
