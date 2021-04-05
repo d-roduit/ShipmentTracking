@@ -127,5 +127,6 @@
     <string name="button_track">Suivre</string>
     <string name="client_track_package_information_activity_title">Votre colis</string>
     <string name="package_status">Etat du colis :</string>
+    <string name="client_track_package_no_shipping_number_found_error_message">Aucun colis trouvé pour ce numéro d\'envoi.\nVeuillez réessayer.</string>
 
 </resources>

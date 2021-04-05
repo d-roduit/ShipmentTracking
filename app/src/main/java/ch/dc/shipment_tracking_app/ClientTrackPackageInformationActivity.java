@@ -1,13 +1,5 @@
 package ch.dc.shipment_tracking_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -16,6 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -52,7 +50,6 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
     private TextView textViewRecipientNpa;
     private TextView textViewRecipientCity;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +67,6 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
         shipmentViewModel = new ViewModelProvider
                 .AndroidViewModelFactory(getApplication())
                 .create(ShipmentViewModel.class);
-
-
 
         //RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycler_view_track_status);
@@ -141,7 +136,6 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
         arrowButtonRecipient.setOnClickListener(v ->
                 expandCard(recipientCardview, expandableViewRecipient, arrowButtonRecipient));
     }
-
 
     private void expandCard(CardView cardView, View expandableView, Button button) {
         if(expandableView.getVisibility() == View.GONE) {

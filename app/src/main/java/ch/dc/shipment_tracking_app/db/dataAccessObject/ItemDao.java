@@ -46,4 +46,12 @@ public interface ItemDao {
      */
     @Query("SELECT * FROM items WHERE shipping_number = :shippingNumber")
     LiveData<Item> getItemByShippingNumber(int shippingNumber);
+
+    /**
+     * Method to count the number of occurrences of a shipping number
+     * @param shippingNumber A shipping number
+     * @return The number of occurrences
+     */
+    @Query("SELECT COUNT(*) FROM items WHERE shipping_number = :shippingNumber")
+    int countShippingNumber(int shippingNumber);
 }
