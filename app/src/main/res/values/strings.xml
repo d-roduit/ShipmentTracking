@@ -128,4 +128,6 @@
     <string name="client_track_package_activity_title">Track your package</string>
     <string name="track_package_title">Enter your shipping number</string>
     <string name="button_track">Track</string>
+    <string name="client_track_package_information_activity_title">Your package</string>
+    <string name="package_status">Package status :</string>
 </resources>

@@ -39,11 +39,12 @@ public interface ShipmentDao {
     void update(Shipment shipment);
 
     /**
-     * Method to get all Shipments
-     * @return a LiveData list of all Shipments
+     * Method to get Shipments by a shipping number
+     * @param shippingNumber the shipping number
+     * @return a livedata list of Shipments
      */
-    @Query("SELECT * FROM shipments ORDER BY date DESC")
-    LiveData<List<Shipment>> getAllShipments();
+    @Query("SELECT * FROM shipments WHERE shipping_number = :shippingNumber ORDER BY date DESC")
+    LiveData<List<Shipment>> getShipmentByShippingNumber(int shippingNumber);
 
 
 }

@@ -21,16 +21,11 @@ public class ShipmentViewModel extends AndroidViewModel {
      */
     private ShipmentRepository shipmentRepository;
 
-    /**
-     * LiveData list of all Shipments
-     */
-    private LiveData<List<Shipment>> allShipments;
 
 
     public ShipmentViewModel(@NonNull Application application) {
         super(application);
         shipmentRepository = new ShipmentRepository(application);
-        allShipments = shipmentRepository.getAllShipments();
     }
 
     /**
@@ -61,12 +56,12 @@ public class ShipmentViewModel extends AndroidViewModel {
     }
 
     /**
-     * Method to get all Shipments
-     *
-     * @return the LiveData list of all Shipments
+     * Method to get Shipments by a shipping number
+     * @param shippingNumber the shipping number
+     * @return a livedata list of Shipments
      */
-    public LiveData<List<Shipment>> getAllShipments() {
-        return  allShipments;
+    public LiveData<List<Shipment>> getShipmentByShippingNumber(int shippingNumber) {
+        return  shipmentRepository.getShipmentByShippingNumber(shippingNumber);
     }
 
 }
