@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 import ch.dc.shipment_tracking_app.R;
+import ch.dc.shipment_tracking_app.TrackingStatus;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
 
 /**
@@ -65,7 +67,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         String strHour = formatter.format(date);
 
         //get the status string
-        String status = context.getString(currentShipment.getStatus());
+        TrackingStatus trackingStatus = TrackingStatus.fromStatusListPosition(currentShipment.getStatus());
+        String status = trackingStatus.getStringStatus(context);
 
         //set texts into our views
         holder.textViewDate.setText(strDate);
@@ -73,6 +76,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         holder.textViewStatus.setText(status);
         holder.textViewNpa.setText(currentShipment.getNpa());
         holder.textViewCity.setText(currentShipment.getCity());
+
+        if(position == shipments.size()-1) {
+            holder.imageViewArrow.setVisibility(View.GONE);
+        }
 
     }
 
@@ -106,6 +113,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         private TextView textViewStatus;
         private TextView textViewNpa;
         private TextView textViewCity;
+        private ImageView imageViewArrow;
 
 
         public RecyclerHolder(@NonNull View itemView) {
@@ -116,6 +124,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             textViewStatus = itemView.findViewById(R.id.status_status);
             textViewNpa = itemView.findViewById(R.id.status_npa);
             textViewCity = itemView.findViewById(R.id.status_city);
+            imageViewArrow = itemView.findViewById(R.id.status_arrow);
         }
     }
 

@@ -20,6 +20,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_gravity="center"
+            android:textAlignment="center"
             android:layout_margin="20dp"/>
 
         <TextView
@@ -229,23 +230,6 @@
             />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_recipient_lastname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/lastname"
-            android:layout_marginVertical="5dp"
-            app:boxCornerRadiusTopStart="5dp"
-            app:boxCornerRadiusTopEnd="5dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editText_recipientLastname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_recipient_firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -256,6 +240,23 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_recipientFirstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_recipient_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastname"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_recipientLastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"

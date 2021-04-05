@@ -10,9 +10,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
+
+import ch.dc.shipment_tracking_app.viewmodel.ShipmentViewModel;
 
 public class PostEmployeeManagePackageActivity extends BaseActivity {
 
@@ -52,6 +55,7 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
 
         snackbarIntent = new Intent(this, PostEmployeeMainActivity.class);
 
+        //Views
         packageWeightTextInputLayout = findViewById(R.id.post_employee_manage_package_input_weight);
         shippingPriorityTextInputLayout = findViewById(R.id.post_employee_manage_package_input_shipping_priority);
         shippingPriorityDropDown = findViewById(R.id.post_employee_manage_package_shipping_priority_list);
