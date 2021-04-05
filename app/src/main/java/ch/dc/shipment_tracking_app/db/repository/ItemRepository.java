@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import ch.dc.shipment_tracking_app.db.AppDatabase;
 import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
+import ch.dc.shipment_tracking_app.db.async.item.CountShippingNumber;
 import ch.dc.shipment_tracking_app.db.async.item.DeleteItem;
 import ch.dc.shipment_tracking_app.db.async.item.InsertItem;
 import ch.dc.shipment_tracking_app.db.async.item.UpdateItem;
@@ -67,6 +68,14 @@ public class ItemRepository {
      */
     public void update(Item item, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
         new UpdateItem(itemDao, onPostAsyncQueryExecuted).execute(item);
+    }
+
+    /**
+     * Method to count the number of occurrences of a shipping number
+     * @param shippingNumber A shipping number
+     */
+    public void countShippingNumber(int shippingNumber, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
+        new CountShippingNumber(itemDao, onPostAsyncQueryExecuted).execute(shippingNumber);
     }
 
 }

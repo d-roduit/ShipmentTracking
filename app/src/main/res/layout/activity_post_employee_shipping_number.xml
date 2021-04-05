@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/shipping_number"
-        android:layout_margin="30dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
         app:boxCornerRadiusTopStart="5dp"
         app:boxCornerRadiusTopEnd="5dp">
 
@@ -35,10 +36,23 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/post_employee_shipping_number_no_shipping_number_found_error_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/client_track_package_no_shipping_number_found_error_message"
+        android:textSize="16sp"
+        android:textColor="@color/red_error"
+        android:textAlignment="center"
+        android:paddingHorizontal="30dp"
+        android:visibility="gone"/>
+
     <Button
         android:id="@+id/post_employee_shipping_number_next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/button_next"
         android:layout_gravity="center" />
 

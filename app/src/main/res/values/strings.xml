@@ -130,4 +130,6 @@
     <string name="button_track">Track</string>
     <string name="client_track_package_information_activity_title">Your package</string>
     <string name="package_status">Package status :</string>
+    <string name="client_track_package_no_shipping_number_found_error_message">No package found for this shipping number.\nPlease retry.</string>
+
 </resources>
