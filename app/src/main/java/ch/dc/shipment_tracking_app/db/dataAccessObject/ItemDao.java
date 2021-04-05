@@ -26,16 +26,18 @@ public interface ItemDao {
     /**
      * Method to delete an Item
      * @param item the Item to delete
+     * @return The number of rows affected by this query
      */
     @Delete
-    void delete(Item item);
+    int delete(Item item);
 
     /**
      * Method to update an Item
      * @param item the Item to update
+     * @return The number of rows affected by this query
      */
     @Update
-    void update(Item item);
+    int update(Item item);
 
     /**
      * Method to get an Item by its shipping number

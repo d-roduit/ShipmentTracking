@@ -15,8 +15,8 @@ public class ClientMainActivity extends BaseActivity {
         CardView cardViewSendPackage = findViewById(R.id.client_main_sendPackage_card);
         CardView cardViewTrackPackage = findViewById(R.id.client_main_trackPackage_card);
 
-        cardViewSendPackage.setOnClickListener(v -> redirectActivity(this, ClientSendPackageActivity.class));
-        cardViewTrackPackage.setOnClickListener(v -> redirectActivity(this, ClientTrackPackageActivity.class));
+        cardViewSendPackage.setOnClickListener(v -> redirectActivity(ClientMainActivity.this, ClientSendPackageActivity.class));
+        cardViewTrackPackage.setOnClickListener(v -> redirectActivity(ClientMainActivity.this, ClientTrackPackageActivity.class));
     }
 
 }

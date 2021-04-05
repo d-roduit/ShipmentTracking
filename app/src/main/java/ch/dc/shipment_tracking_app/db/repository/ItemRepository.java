@@ -1,11 +1,11 @@
 package ch.dc.shipment_tracking_app.db.repository;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
 import ch.dc.shipment_tracking_app.db.AppDatabase;
+import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
 import ch.dc.shipment_tracking_app.db.async.item.DeleteItem;
 import ch.dc.shipment_tracking_app.db.async.item.InsertItem;
 import ch.dc.shipment_tracking_app.db.async.item.UpdateItem;
@@ -20,8 +20,7 @@ public class ItemRepository {
     /**
      * ItemDao
      */
-    private ItemDao itemDao;
-
+    private final ItemDao itemDao;
 
     /**
      * ItemRepository constructor
@@ -48,8 +47,8 @@ public class ItemRepository {
      *
      * @param item the Item to insert
      */
-    public void insert(Item item) {
-        new InsertItem(itemDao).execute(item);
+    public void insert(Item item, OnPostAsyncQueryExecuted<Void> onPostAsyncQueryExecuted) {
+        new InsertItem(itemDao, onPostAsyncQueryExecuted).execute(item);
     }
 
     /**
@@ -57,8 +56,8 @@ public class ItemRepository {
      *
      * @param item the Item to delete
      */
-    public void delete(Item item) {
-        new DeleteItem(itemDao).execute(item);
+    public void delete(Item item, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
+        new DeleteItem(itemDao, onPostAsyncQueryExecuted).execute(item);
     }
 
     /**
@@ -66,8 +65,8 @@ public class ItemRepository {
      *
      * @param item the Item to update
      */
-    public void update(Item item) {
-        new UpdateItem(itemDao).execute(item);
+    public void update(Item item, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
+        new UpdateItem(itemDao, onPostAsyncQueryExecuted).execute(item);
     }
 
 }

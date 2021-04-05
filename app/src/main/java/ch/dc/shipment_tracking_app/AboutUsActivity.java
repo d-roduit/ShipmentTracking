@@ -11,6 +11,6 @@ public class AboutUsActivity extends BaseActivity {
 
         setTitle(getString(R.string.about_us_nav_title));
 
-        attachNavigationMenu();
+        attachNavigationMenu(R.id.about_us_drawer_layout);
     }
 }

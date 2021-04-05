@@ -38,11 +38,11 @@
             android:name=".ClientMainActivity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".PostEmployeeMainActivity"
+            android:name=".PostEmployeeShippingNumberActivity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".PostEmployeeShippingNumberActivity"
-            android:parentActivityName=".PostEmployeeMainActivity" />
+            android:name=".PostEmployeeMainActivity"
+            android:parentActivityName=".PostEmployeeShippingNumberActivity" />
         <activity
             android:name=".PostEmployeeUpdateTrackingActivity"
             android:parentActivityName=".PostEmployeeMainActivity" />

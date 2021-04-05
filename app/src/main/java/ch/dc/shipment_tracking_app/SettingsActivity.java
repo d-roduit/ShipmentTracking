@@ -11,7 +11,7 @@ public class SettingsActivity extends BaseActivity {
 
         setTitle(getString(R.string.settings_nav_title));
 
-        attachNavigationMenu();
+        attachNavigationMenu(R.id.settings_drawer_layout);
 
         getSupportFragmentManager()
                 .beginTransaction()

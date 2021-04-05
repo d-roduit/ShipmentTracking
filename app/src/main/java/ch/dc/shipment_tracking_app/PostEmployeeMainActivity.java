@@ -25,8 +25,8 @@ public class PostEmployeeMainActivity extends BaseActivity {
         CardView cardViewManagePackage = findViewById(R.id.post_employee_main_manage_package_card);
 
         packageNumberTextView.setText(getString(R.string.post_employee_main_title, "32543"));
-        cardViewTrackingUpdate.setOnClickListener(v -> redirectActivity(this, PostEmployeeUpdateTrackingActivity.class));
-        cardViewManagePackage.setOnClickListener(v -> redirectActivity(this, PostEmployeeManagePackageActivity.class));
+        cardViewTrackingUpdate.setOnClickListener(v -> redirectActivity(PostEmployeeMainActivity.this, PostEmployeeUpdateTrackingActivity.class));
+        cardViewManagePackage.setOnClickListener(v -> redirectActivity(PostEmployeeMainActivity.this, PostEmployeeManagePackageActivity.class));
 
         Intent intent = getIntent();
         List<String> snackbarMessages = new ArrayList<>();

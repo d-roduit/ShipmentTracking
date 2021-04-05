@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
 import ch.dc.shipment_tracking_app.db.entity.Item;
 import ch.dc.shipment_tracking_app.db.repository.ItemRepository;
 
@@ -17,7 +18,7 @@ public class ItemViewModel extends AndroidViewModel {
     /**
      * The Item Repository
      */
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     /**
      * ItemViewModel constructor
@@ -29,14 +30,13 @@ public class ItemViewModel extends AndroidViewModel {
         itemRepository = new ItemRepository(application);
     }
 
-
     /**
      * Method to insert an Item
      *
      * @param item the Item to insert
      */
-    public void insert(Item item) {
-        itemRepository.insert(item);
+    public void insert(Item item, OnPostAsyncQueryExecuted<Void> onPostAsyncQueryExecuted) {
+        itemRepository.insert(item, onPostAsyncQueryExecuted);
     }
 
     /**
@@ -44,8 +44,8 @@ public class ItemViewModel extends AndroidViewModel {
      *
      * @param item the Item to delete
      */
-    public void delete(Item item) {
-        itemRepository.delete(item);
+    public void delete(Item item, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
+        itemRepository.delete(item, onPostAsyncQueryExecuted);
     }
 
     /**
@@ -53,8 +53,8 @@ public class ItemViewModel extends AndroidViewModel {
      *
      * @param item the Item to update
      */
-    public void update(Item item) {
-        itemRepository.update(item);
+    public void update(Item item, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
+        itemRepository.update(item, onPostAsyncQueryExecuted);
     }
 
 

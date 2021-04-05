@@ -1,7 +1,6 @@
 package ch.dc.shipment_tracking_app.db;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -38,17 +37,18 @@ public abstract class AppDatabase extends RoomDatabase {
      * @param context the App context
      * @return an instance of the AppDatabase
      */
-    public static synchronized AppDatabase getInstance(Context context) {
-        if(instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(),
-                    AppDatabase.class, DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
-                    .build();
-
-            System.out.println("Database created");
+    public static AppDatabase getInstance(Context context) {
+        if (instance == null) {
+            synchronized (AppDatabase.class) {
+                if (instance == null) {
+                    instance = Room.databaseBuilder(context.getApplicationContext(),
+                            AppDatabase.class, DATABASE_NAME)
+                            .fallbackToDestructiveMigration()
+                            .addCallback(roomCallback)
+                            .build();
+                }
+            }
         }
-        System.out.println("Database already created");
         return instance;
     }
 
@@ -58,11 +58,9 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDatabaseAsyncTask(instance).execute();
+        super.onCreate(db);
         }
     };
-
 
     /**
      * Method to get the itemDao
@@ -76,24 +74,4 @@ public abstract class AppDatabase extends RoomDatabase {
      */
     public abstract ShipmentDao shipmentDao();
 
-
-    private static class PopulateDatabaseAsyncTask extends AsyncTask<Void, Void, Void> {
-        private ItemDao itemDao;
-        private ShipmentDao shipmentDao;
-
-        private PopulateDatabaseAsyncTask(AppDatabase db) {
-            itemDao = db.itemDao();
-            shipmentDao = db.shipmentDao();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            itemDao.insert(new Item('A', 200.50, "Cathy", "Gay"
-            , "Rue des Champs 9", "1920", "Martigny", "Daniel",
-                    "Roduit", "Rue quelque part", "1800", "JspOu"));
-
-            shipmentDao.insert(new Shipment(1111111, 1, "1920", "Martigny"));
-            return null;
-        }
-    }
 }

@@ -11,7 +11,7 @@ public class QuestionsAnswersActivity extends BaseActivity {
 
         setTitle(getString(R.string.questions_answers_nav_title));
 
-        attachNavigationMenu();
+        attachNavigationMenu(R.id.questions_answers_drawer_layout);
     }
 
 }

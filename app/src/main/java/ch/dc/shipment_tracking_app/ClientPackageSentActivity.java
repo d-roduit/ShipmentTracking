@@ -45,6 +45,6 @@ public class ClientPackageSentActivity extends BaseActivity {
                     Toast.LENGTH_SHORT).show();
         });
 
-        finishButton.setOnClickListener(v -> redirectActivity(this, ClientMainActivity.class));
+        finishButton.setOnClickListener(v -> redirectActivity(ClientPackageSentActivity.this, ClientMainActivity.class));
     }
 }

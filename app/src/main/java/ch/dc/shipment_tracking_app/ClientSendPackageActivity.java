@@ -95,7 +95,6 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
                 this, R.layout.dropdown_item, shipping_priority_items
         );
         dropDownText.setAdapter(adapter);
-//        dropDownText.setText(adapter.getItem(1), false);
 
         // Initialize the location manager.
         locationManager = new LocationManager(this, this);
@@ -109,7 +108,7 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
                         Toast.makeText(
                                 this,
                                 R.string.location_permission_denied,
-                                Toast.LENGTH_SHORT
+                                Toast.LENGTH_LONG
                         ).show();
                     }
                 });
@@ -139,7 +138,7 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
      * Sends the package information through an Intent.
      */
     private void sendPackageInformation() {
-        Intent intent = new Intent(this, ClientPackageConfirmationActivity.class);
+        Intent intent = new Intent(ClientSendPackageActivity.this, ClientPackageConfirmationActivity.class);
 
         double textWeight = Double.parseDouble(inputWeight.getEditText().getText().toString());
         char textShippingPriority = dropDownText.getText().toString().charAt(0);
