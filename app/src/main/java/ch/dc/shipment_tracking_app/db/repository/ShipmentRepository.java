@@ -24,10 +24,6 @@ public class ShipmentRepository {
      */
     private ShipmentDao shipmentDao;
 
-    /**
-     * LiveData list of all Shipments
-     */
-    private LiveData<List<Shipment>> allShipments;
 
     /**
      * ShipmentRepository constructor
@@ -37,16 +33,15 @@ public class ShipmentRepository {
     public ShipmentRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
         shipmentDao = database.shipmentDao();
-        allShipments = shipmentDao.getAllShipments();
     }
 
     /**
-     * Method to get all Shipments
-     *
-     * @return a LiveData list of Shipment
+     * Method to get Shipments by a shipping number
+     * @param shippingNumber the shipping number
+     * @return a livedata list of Shipments
      */
-    public LiveData<List<Shipment>> getAllShipments() {
-        return allShipments;
+    public LiveData<List<Shipment>> getShipmentByShippingNumber(int shippingNumber) {
+        return shipmentDao.getShipmentByShippingNumber(shippingNumber);
     }
 
     /**

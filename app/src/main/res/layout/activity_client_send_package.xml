@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:text="@string/client_send_package_information"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
@@ -74,27 +75,13 @@
             android:layout_height="wrap_content"
             android:text="@string/client_send_package_contact_information"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_sender_lastname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/lastname"
-            android:layout_marginVertical="5dp"
-            app:boxCornerRadiusTopStart="5dp"
-            app:boxCornerRadiusTopEnd="5dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editText_senderLastname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_sender_firstname"
@@ -107,6 +94,23 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_senderFirstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_sender_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastname"
+            android:layout_marginVertical="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_senderLastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -218,6 +222,7 @@
             android:layout_height="wrap_content"
             android:text="@string/client_send_package_recipient_contact_information"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"

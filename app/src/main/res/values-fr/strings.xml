@@ -8,7 +8,6 @@
     <string name="button_update">Mettre à jour</string>
     <string name="button_next">Suivant</string>
     <string name="shipping_number">Numéro d\'envoi</string>
-    <string name="post_employee_update_tracking_status_dropdown">Statut</string>
     <string name="button_save">Sauvegarder</string>
 
     <!-- TrackingStatus enum -->
@@ -33,8 +32,8 @@
     <string name="questions_answers_nav_title">FAQ</string>
 
     <!--  ClientSendPackage -->
-    <string name="client_send_package_activity_title">Informations du paquet</string>
-    <string name="client_confirmation_package_activity_title">Confirmation du paquet</string>
+    <string name="client_send_package_activity_title">Informations du colis</string>
+    <string name="client_confirmation_package_activity_title">Confirmation du colis</string>
     <string name="client_package_sent_activity_title">Numéro d\'envoi</string>
     <string name="client_send_package_title">Remplissez les informations sur votre colis</string>
     <string name="weight">Poids</string>
@@ -48,8 +47,8 @@
     <string name="use_location_button">Utiliser ma location</string>
     <string name="address">Adresse</string>
     <string name="client_send_package_recipient_contact_information">Coordonnées du destinataire :</string>
-    <string name="client_send_package_information">Informations du paquet :</string>
-    <string name="client_package_confirmation_title">Confirmation du paquet</string>
+    <string name="client_send_package_information">Informations du colis :</string>
+    <string name="client_package_confirmation_title">Confirmation du colis</string>
     <string name="button_send">Envoyer</string>
     <string-array name="shipping_priority_items">
         <item>A</item>
@@ -59,7 +58,7 @@
     <string name="package_sent_title1">Votre paquet a été envoyé !</string>
     <string name="package_sent_title2">Voici votre numéro d\'envoi :</string>
     <string name="button_finish">Terminer</string>
-    <string name="package_sent_description1">Ce numéro vous permet de suivre votre paquet via notre service.</string>
+    <string name="package_sent_description1">Ce numéro vous permet de suivre votre colis via notre service.</string>
     <string name="package_sent_description2">Gardez-le précieusement !</string>
     <string name="shipping_number_copied_toast">Numéro d\'envoi copié</string>
 
@@ -78,6 +77,8 @@
     <!-- PostalEmployeeUpdateTracking -->
     <string name="post_employee_update_tracking_title">Mettre à jour l\'état du suivi</string>
     <string name="post_employee_update_tracking_notification_message">Statut de suivi du paquet mis à jour</string>
+    <string name="post_employee_update_tracking_status_dropdown">Statut</string>
+
 
     <!-- PostalEmployeeManagePackage -->
     <string name="post_employee_manage_package_package_information_title">Information du colis</string>
@@ -121,8 +122,10 @@
     <string name="preference_language_french">Français</string>
 
     <!-- ClientTrackPackage-->
-    <string name="client_track_package_activity_title">Suivez votre paquet</string>
+    <string name="client_track_package_activity_title">Suivez votre colis</string>
     <string name="track_package_title">Entrez votre numéro d\'envoi</string>
     <string name="button_track">Suivre</string>
+    <string name="client_track_package_information_activity_title">Votre colis</string>
+    <string name="package_status">Etat du colis :</string>
 
 </resources>

@@ -11,105 +11,60 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardview_package_information"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/CardView.Light"
-        android:layout_margin="8dp">
-
-
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_package_information"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            style="@style/CardView.Light"
+            android:layout_margin="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/client_send_package_information"
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/weight"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="6dp"
-
-                style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-            <TextView
-                android:id="@+id/track_package_weight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginBottom="16dp"/>
-
-            <View style="@style/Divider"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/shipping_priority"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="6dp"
-
-                style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-            <TextView
-                android:id="@+id/track_package_shipping_priority"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginBottom="16dp"/>
-
-            <View style="@style/Divider"/>
-
-            <Button
-                android:id="@+id/button_expandCard_arrow_down"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/ic_arrow_down"
-                android:layout_gravity="end"
-                android:layout_marginTop="20dp"/>
 
             <LinearLayout
-                android:id="@+id/package_information_expandableView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/client_send_package_information"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <Button
+                        android:id="@+id/button_expandCard_arrow_down_package"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/ic_arrow_down"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_centerVertical="true"/>
+
+                </RelativeLayout>
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/client_send_package_contact_information"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/firstname"
+                    android:text="@string/weight"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="6dp"
 
                     style="@style/TextAppearance.MaterialComponents.Overline"/>
 
                 <TextView
-                    android:id="@+id/package_confirmation_sender_firstname"
+                    android:id="@+id/track_package_weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -118,192 +73,405 @@
 
                 <View style="@style/Divider"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/track_package_expandableView_package"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lastname"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shipping_priority"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
 
-                <TextView
-                    android:id="@+id/package_confirmation_sender_lastname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
 
-                <View style="@style/Divider"/>
+                    <TextView
+                        android:id="@+id/track_package_shipping_priority"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/address"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
+                    <View style="@style/Divider"/>
 
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/package_confirmation_sender_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/npa"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/package_confirmation_sender_npa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/city"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/package_confirmation_sender_city"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/client_send_package_recipient_contact_information"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/firstname"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/package_confirmation_recipient_firstname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lastname"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/package_confirmation_recipient_lastname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/address"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/package_confirmation_recipient_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/npa"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/package_confirmation_recipient_npa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/city"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="6dp"
-
-                    style="@style/TextAppearance.MaterialComponents.Overline"/>
-
-                <TextView
-                    android:id="@+id/package_confirmation_recipient_city"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
+                </LinearLayout>
 
             </LinearLayout>
 
+        </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_sender_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CardView.Light"
+            android:layout_margin="8dp">
 
 
-    </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/client_send_package_contact_information"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <Button
+                        android:id="@+id/button_expandCard_arrow_down_sender"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/ic_arrow_down"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_centerVertical="true"/>
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/firstname"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="6dp"
+
+                    style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                <TextView
+                    android:id="@+id/track_package_sender_firstname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <View style="@style/Divider"/>
+
+                <LinearLayout
+                    android:id="@+id/track_package_expandableView_sender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lastname"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_sender_lastname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/address"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_sender_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/npa"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_sender_npa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/city"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_sender_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_recipient_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CardView.Light"
+            android:layout_margin="8dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/client_send_package_recipient_contact_information"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <Button
+                        android:id="@+id/button_expandCard_arrow_down_recipient"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/ic_arrow_down"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_centerVertical="true"/>
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/firstname"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="6dp"
+
+                    style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                <TextView
+                    android:id="@+id/track_package_recipient_firstname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <View style="@style/Divider"/>
+
+                <LinearLayout
+                    android:id="@+id/track_package_expandableView_recipient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lastname"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_recipient_lastname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/address"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_recipient_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/npa"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_recipient_npa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/city"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="6dp"
+
+                        style="@style/TextAppearance.MaterialComponents.Overline"/>
+
+                    <TextView
+                        android:id="@+id/track_package_recipient_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <View style="@style/Divider"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CardView.Light"
+            android:layout_margin="8dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/package_status"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <Button
+                        android:id="@+id/button_expandCard_arrow_down_status"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/ic_arrow_down"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_centerVertical="true"/>
+
+                </RelativeLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_track_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/shipment_item">
+
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <LinearLayout
+                    android:id="@+id/track_package_expandableView_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 

@@ -3,20 +3,22 @@ package ch.dc.shipment_tracking_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProvider;
 
 import ch.dc.shipment_tracking_app.db.entity.Item;
+import ch.dc.shipment_tracking_app.db.entity.Shipment;
 import ch.dc.shipment_tracking_app.viewmodel.ItemViewModel;
+import ch.dc.shipment_tracking_app.viewmodel.ShipmentViewModel;
 
 public class ClientPackageConfirmationActivity extends BaseActivity {
 
     public static final String SEND_SHIPPING_NUMBER = "SEND_SHIPPING_NUMBER";
 
     private ItemViewModel itemViewModel;
+    private ShipmentViewModel shipmentViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +29,14 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
 
         Intent intent = getIntent();
 
-        //ViewModel
+        //ViewModels
         itemViewModel = new ViewModelProvider
                 .AndroidViewModelFactory(getApplication())
                 .create(ItemViewModel.class);
+
+        shipmentViewModel = new ViewModelProvider
+                .AndroidViewModelFactory(getApplication())
+                .create(ShipmentViewModel.class);
 
         //Initialize the views.
         TextView textViewWeight = findViewById(R.id.package_confirmation_weight);
@@ -76,14 +82,22 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         textViewRecipientNpa.setText(recipientNpa);
         textViewRecipientCity.setText(recipientCity);
 
-        //sendPackageButton.setOnClickListener(v -> redirectActivity(this, ClientPackageSentActivity.class));
         sendPackageButton.setOnClickListener(v -> {
             Intent intent1 = new Intent(this, ClientPackageSentActivity.class);
 
+            //Create the Item
             Item item = new Item(shippingPriority, weight, senderFirstname, senderLastname,
                     senderAddress, senderNpa, senderCity, recipientFirstname,
                     recipientLastname, recipientAddress, recipientNpa, recipientCity);
             itemViewModel.insert(item);
+
+            //Create the Shipment only if the item was created
+            if(item != null) {
+                Shipment shipment = new Shipment(item.getShippingNumber(),
+                        TrackingStatus.DEPOSITED.getStringId(), item.getSenderNpa(), item.getSenderCity());
+
+                shipmentViewModel.insert(shipment);
+            }
 
             intent1.putExtra(SEND_SHIPPING_NUMBER, item.getShippingNumber());
 
