@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -75,7 +77,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             }
         }
 
-        drawer.closeDrawer(GravityCompat.START);
+        if (drawer != null) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+
         return true;
     }
 
@@ -85,11 +90,13 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
      */
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        if (drawer != null) {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+                return;
+            }
         }
+        super.onBackPressed();
     }
 
     /**
@@ -98,20 +105,28 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
      * the navigation drawer.
      *
      */
-    public void attachNavigationMenu() {
-        //Make our toolbar as the action bar.
+    public void attachNavigationMenu(@IdRes int drawerId) {
+        // Make our toolbar as the action bar.
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer_layout);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        if (navigationView != null) {
+            navigationView.setNavigationItemSelectedListener(this);
+        }
+
+        drawer = findViewById(drawerId);
 
         //Add the menu button on the app bar and moves it dynamically when the drawer opens or closes.
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+
+        if (drawer != null) {
+            drawer.addDrawerListener(toggle);
+        }
+
         toggle.syncState();
     }
 

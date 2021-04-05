@@ -27,16 +27,18 @@ public interface ShipmentDao {
     /**
      * Method to delete a Shipment
      * @param shipment the Shipment to delete
+     * @return The number of rows affected by this query
      */
     @Delete
-    void delete(Shipment shipment);
+    int delete(Shipment shipment);
 
     /**
      * Method to update a Shipment
      * @param shipment the Shipment to update
+     * @return The number of rows affected by this query
      */
     @Update
-    void update(Shipment shipment);
+    int update(Shipment shipment);
 
     /**
      * Method to get Shipments by a shipping number

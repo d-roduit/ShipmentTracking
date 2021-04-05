@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
 import ch.dc.shipment_tracking_app.db.repository.ShipmentRepository;
 
@@ -19,8 +20,7 @@ public class ShipmentViewModel extends AndroidViewModel {
     /**
      * The Shipment Repository
      */
-    private ShipmentRepository shipmentRepository;
-
+    private final ShipmentRepository shipmentRepository;
 
 
     public ShipmentViewModel(@NonNull Application application) {
@@ -33,8 +33,8 @@ public class ShipmentViewModel extends AndroidViewModel {
      *
      * @param shipment the Shipment to insert
      */
-    public void insert(Shipment shipment) {
-        shipmentRepository.insert(shipment);
+    public void insert(Shipment shipment, OnPostAsyncQueryExecuted<Void> onPostAsyncQueryExecuted) {
+        shipmentRepository.insert(shipment, onPostAsyncQueryExecuted);
     }
 
     /**
@@ -42,8 +42,8 @@ public class ShipmentViewModel extends AndroidViewModel {
      *
      * @param shipment the Shipment to delete
      */
-    public void delete(Shipment shipment) {
-        shipmentRepository.delete(shipment);
+    public void delete(Shipment shipment, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
+        shipmentRepository.delete(shipment, onPostAsyncQueryExecuted);
     }
 
     /**
@@ -51,8 +51,8 @@ public class ShipmentViewModel extends AndroidViewModel {
      *
      * @param shipment the Shipment to update
      */
-    public void update(Shipment shipment) {
-        shipmentRepository.update(shipment);
+    public void update(Shipment shipment, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
+        shipmentRepository.update(shipment, onPostAsyncQueryExecuted);
     }
 
     /**

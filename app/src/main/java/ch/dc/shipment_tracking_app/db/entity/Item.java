@@ -144,14 +144,12 @@ public class Item {
         Random random = new Random();
         int randomNumber = 1000 + random.nextInt(9000);
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        long currentTime = timestamp.getTime();
+        long currentTime = System.currentTimeMillis();
         int lastThreeDigits = (int) (currentTime % 1000);
 
-        String string = Integer.toString(randomNumber) + Integer.toString(lastThreeDigits);
+        String string = Integer.toString(randomNumber) + lastThreeDigits;
 
         return Integer.parseInt(string);
-
     }
 
     /**

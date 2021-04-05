@@ -1,13 +1,13 @@
 package ch.dc.shipment_tracking_app.db.repository;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
 import ch.dc.shipment_tracking_app.db.AppDatabase;
+import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
 import ch.dc.shipment_tracking_app.db.async.shipment.DeleteShipment;
 import ch.dc.shipment_tracking_app.db.async.shipment.InsertShipment;
 import ch.dc.shipment_tracking_app.db.async.shipment.UpdateShipment;
@@ -22,8 +22,7 @@ public class ShipmentRepository {
     /**
      * ShipmentDao
      */
-    private ShipmentDao shipmentDao;
-
+    private final ShipmentDao shipmentDao;
 
     /**
      * ShipmentRepository constructor
@@ -49,8 +48,8 @@ public class ShipmentRepository {
      *
      * @param shipment the Shipment to insert
      */
-    public void insert(Shipment shipment) {
-        new InsertShipment(shipmentDao).execute(shipment);
+    public void insert(Shipment shipment, OnPostAsyncQueryExecuted<Void> onPostAsyncQueryExecuted) {
+        new InsertShipment(shipmentDao, onPostAsyncQueryExecuted).execute(shipment);
     }
 
     /**
@@ -58,8 +57,8 @@ public class ShipmentRepository {
      *
      * @param shipment the Shipment to delete
      */
-    public void delete(Shipment shipment) {
-        new DeleteShipment(shipmentDao).execute(shipment);
+    public void delete(Shipment shipment, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
+        new DeleteShipment(shipmentDao, onPostAsyncQueryExecuted).execute(shipment);
     }
 
     /**
@@ -67,8 +66,8 @@ public class ShipmentRepository {
      *
      * @param shipment the Shipment to update
      */
-    public void update(Shipment shipment) {
-        new UpdateShipment(shipmentDao).execute(shipment);
+    public void update(Shipment shipment, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
+        new UpdateShipment(shipmentDao, onPostAsyncQueryExecuted).execute(shipment);
     }
 
 }
