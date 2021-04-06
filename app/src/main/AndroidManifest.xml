@@ -23,7 +23,6 @@
             android:parentActivityName=".ClientSendPackageActivity" />
         <activity
             android:name=".ClientSendPackageActivity"
-            android:launchMode="singleTask"
             android:parentActivityName=".ClientMainActivity" />
         <activity
             android:name=".QuestionsAnswersActivity"

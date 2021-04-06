@@ -44,6 +44,7 @@
     <string name="client_package_sent_activity_title">Shipping number</string>
     <string name="client_send_package_title">Fill in your package information</string>
     <string name="weight">Weight</string>
+    <string name="weight_suffix">grams</string>
     <string name="shipping_priority">Shipping priority</string>
     <string name="client_send_package_contact_information">Sender information :</string>
     <string name="firstname">Firstname</string>

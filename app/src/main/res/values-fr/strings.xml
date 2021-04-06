@@ -37,6 +37,7 @@
     <string name="client_package_sent_activity_title">Numéro d\'envoi</string>
     <string name="client_send_package_title">Remplissez les informations sur votre colis</string>
     <string name="weight">Poids</string>
+    <string name="weight_suffix">grammes</string>
     <string name="shipping_priority">Priorité d\'expédition</string>
     <string name="client_send_package_contact_information">Coordonnées de l\'expéditeur :</string>
     <string name="firstname">Prénom</string>
