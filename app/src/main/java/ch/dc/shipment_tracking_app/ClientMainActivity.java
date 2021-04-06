@@ -2,6 +2,8 @@ package ch.dc.shipment_tracking_app;
 
 
 import androidx.cardview.widget.CardView;
+import androidx.preference.PreferenceManager;
+
 import android.os.Bundle;
 
 
@@ -17,6 +19,8 @@ public class ClientMainActivity extends BaseActivity {
 
         cardViewSendPackage.setOnClickListener(v -> redirectActivity(ClientMainActivity.this, ClientSendPackageActivity.class));
         cardViewTrackPackage.setOnClickListener(v -> redirectActivity(ClientMainActivity.this, ClientTrackPackageActivity.class));
+
+        ClientPackageConfirmationActivity.removeDataFromSharedPreferences(PreferenceManager.getDefaultSharedPreferences(this));
     }
 
 }
