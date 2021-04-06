@@ -2,11 +2,13 @@ package ch.dc.shipment_tracking_app;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 
 import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
 import ch.dc.shipment_tracking_app.db.entity.Item;
@@ -27,8 +29,6 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         setContentView(R.layout.activity_client_package_confirmation);
 
         setTitle(getString(R.string.client_confirmation_package_activity_title));
-
-        Intent intent = getIntent();
 
         //ViewModels
         itemViewModel = new ViewModelProvider
@@ -56,18 +56,34 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
 
 
         //Get the value of each input field.
-        double weight = intent.getDoubleExtra(ClientSendPackageActivity.SEND_WEIGHT, 0.00);
-        char shippingPriority = intent.getCharExtra(ClientSendPackageActivity.SEND_SHIPPING_PRIORITY, 'B');
-        String senderFirstname = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_FIRSTNAME);
-        String senderLastname = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_LASTNAME);
-        String senderAddress = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_ADDRESS);
-        String senderNpa = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_NPA);
-        String senderCity = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_CITY);
-        String recipientFirstname = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_FIRSTNAME);
-        String recipientLastname = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_LASTNAME);
-        String recipientAddress = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_ADDRESS);
-        String recipientNpa = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_NPA);
-        String recipientCity = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_CITY);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        double weight = Double.longBitsToDouble(sharedPreferences.getLong(ClientSendPackageActivity.SEND_WEIGHT, Double.doubleToLongBits(0.00)));
+        char shippingPriority = sharedPreferences.getString(ClientSendPackageActivity.SEND_SHIPPING_PRIORITY, "B").charAt(0);
+        String senderFirstname = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_FIRSTNAME, "");
+        String senderLastname = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_LASTNAME, "");
+        String senderAddress = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_ADDRESS, "");
+        String senderNpa = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_NPA, "");
+        String senderCity = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_CITY, "");
+        String recipientFirstname = sharedPreferences.getString(ClientSendPackageActivity.SEND_RECIPIENT_FIRSTNAME, "");
+        String recipientLastname = sharedPreferences.getString(ClientSendPackageActivity.SEND_RECIPIENT_LASTNAME, "");
+        String recipientAddress = sharedPreferences.getString(ClientSendPackageActivity.SEND_RECIPIENT_ADDRESS, "");
+        String recipientNpa = sharedPreferences.getString(ClientSendPackageActivity.SEND_RECIPIENT_NPA, "");
+        String recipientCity = sharedPreferences.getString(ClientSendPackageActivity.SEND_RECIPIENT_CITY, "");
+
+
+//        double weight = intent.getDoubleExtra(ClientSendPackageActivity.SEND_WEIGHT, 0.00);
+//        char shippingPriority = intent.getCharExtra(ClientSendPackageActivity.SEND_SHIPPING_PRIORITY, 'B');
+//        String senderFirstname = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_FIRSTNAME);
+//        String senderLastname = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_LASTNAME);
+//        String senderAddress = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_ADDRESS);
+//        String senderNpa = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_NPA);
+//        String senderCity = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_CITY);
+//        String recipientFirstname = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_FIRSTNAME);
+//        String recipientLastname = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_LASTNAME);
+//        String recipientAddress = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_ADDRESS);
+//        String recipientNpa = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_NPA);
+//        String recipientCity = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_CITY);
 
         //Set the TextViews text with the corresponding value.
         textViewWeight.setText("" + weight);
@@ -104,7 +120,25 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
 
         intent.putExtra(SEND_SHIPPING_NUMBER, item.getShippingNumber());
 
+        removeDataFromSharedPreferences(PreferenceManager.getDefaultSharedPreferences(this));
+
         startActivity(intent);
     }
 
+    public static void removeDataFromSharedPreferences(SharedPreferences sharedPreferences) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(ClientSendPackageActivity.SEND_WEIGHT);
+        editor.remove(ClientSendPackageActivity.SEND_SHIPPING_PRIORITY);
+        editor.remove(ClientSendPackageActivity.SEND_SENDER_FIRSTNAME);
+        editor.remove(ClientSendPackageActivity.SEND_SENDER_LASTNAME);
+        editor.remove(ClientSendPackageActivity.SEND_SENDER_ADDRESS);
+        editor.remove(ClientSendPackageActivity.SEND_SENDER_NPA);
+        editor.remove(ClientSendPackageActivity.SEND_SENDER_CITY);
+        editor.remove(ClientSendPackageActivity.SEND_RECIPIENT_FIRSTNAME);
+        editor.remove(ClientSendPackageActivity.SEND_RECIPIENT_LASTNAME);
+        editor.remove(ClientSendPackageActivity.SEND_RECIPIENT_ADDRESS);
+        editor.remove(ClientSendPackageActivity.SEND_RECIPIENT_NPA);
+        editor.remove(ClientSendPackageActivity.SEND_RECIPIENT_CITY);
+        editor.apply();
+    }
 }
