@@ -1,7 +1,8 @@
 package ch.dc.shipment_tracking_app;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -16,7 +17,7 @@ import ch.dc.shipment_tracking_app.viewmodel.ItemViewModel;
 
 public class PostEmployeeShippingNumberActivity extends BaseActivity {
 
-    public static final String SEND_SHIPPING_NUMBER = "SEND_SHIPPING_NUMBER";
+    public static final String SAVED_SHIPPING_NUMBER = "SAVED_SHIPPING_NUMBER";
 
     private ItemViewModel itemViewModel;
 
@@ -71,13 +72,13 @@ public class PostEmployeeShippingNumberActivity extends BaseActivity {
                 noShippingNumberFoundTextView.setVisibility(View.VISIBLE);
                 return;
             }
-            redirectToPostEmployeeMainActivity(shippingNumber);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PostEmployeeShippingNumberActivity.this);
+            sharedPreferences.edit().putInt(SAVED_SHIPPING_NUMBER, shippingNumber).apply();
+            redirectToPostEmployeeMainActivity();
         });
     }
 
-    private void redirectToPostEmployeeMainActivity(int shippingNumber) {
-        Intent intent = new Intent(PostEmployeeShippingNumberActivity.this, PostEmployeeMainActivity.class);
-        intent.putExtra(SEND_SHIPPING_NUMBER, shippingNumber);
-        startActivity(intent);
+    private void redirectToPostEmployeeMainActivity() {
+        redirectActivity(PostEmployeeShippingNumberActivity.this, PostEmployeeMainActivity.class);
     }
 }
