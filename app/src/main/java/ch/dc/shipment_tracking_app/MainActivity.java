@@ -36,7 +36,9 @@ public class MainActivity extends BaseActivity {
                 "Rue de l'ile 8", "3979", "Grône", "Cathy",
                 "Gay", "Rue du moulin rouge 10", "1920", "Martigny");
 
+        System.out.println("----------------------------------------------------");
         System.out.println("shippinNumber entered : " + item.getShippingNumber());
+        System.out.println("----------------------------------------------------");
 
         // Create the shipment
         Shipment shipment = new Shipment(item.getShippingNumber(),

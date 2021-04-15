@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
-import ch.dc.shipment_tracking_app.db.async.item.CountShippingNumber;
 import ch.dc.shipment_tracking_app.db.entity.Item;
 import ch.dc.shipment_tracking_app.db.repository.ItemRepository;
 

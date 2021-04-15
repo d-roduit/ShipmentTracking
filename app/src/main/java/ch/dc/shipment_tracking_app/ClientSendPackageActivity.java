@@ -1,6 +1,5 @@
 package ch.dc.shipment_tracking_app;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -18,7 +17,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceManager;
 
-import com.google.android.gms.common.api.Api;
 import com.google.android.material.textfield.TextInputLayout;
 
 import ch.dc.shipment_tracking_app.location.LocationManageable;

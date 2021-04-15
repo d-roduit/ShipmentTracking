@@ -87,8 +87,7 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                System.out.println("----------------------------ON TEXT CHANGED -----------------------------------");
-                currentShipment.setStatus(TrackingStatus.fromCharStatus(context, s.charAt(0)).getStatusListPosition());
+                currentShipment.setStatus(TrackingStatus.fromStringStatus(context, s.toString()).getStatusListPosition());
                 if (!changedShipments.contains(currentShipment)) {
                     changedShipments.add(currentShipment);
                 }
@@ -108,7 +107,6 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                System.out.println("----------------------------ON TEXT CHANGED -----------------------------------");
                 currentShipment.setCity(s.toString());
                 if (!changedShipments.contains(currentShipment)) {
                     changedShipments.add(currentShipment);
@@ -128,7 +126,6 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                System.out.println("----------------------------ON TEXT CHANGED -----------------------------------");
                 currentShipment.setNpa(s.toString());
                 if (!changedShipments.contains(currentShipment)) {
                     changedShipments.add(currentShipment);
@@ -140,6 +137,13 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
 
             }
         });
+
+        // Create dropdown adapter
+        String[] trackingStatusList = context.getResources().getStringArray(R.array.post_employee_update_tracking_status_list);
+        ArrayAdapter<String> trackingStatusAdapter = new ArrayAdapter<>(
+                context, R.layout.dropdown_item, trackingStatusList
+        );
+        holder.statusDropDown.setAdapter(trackingStatusAdapter);
 
         // Set texts into our views
         holder.textViewDate.setText(completeDate);
@@ -170,11 +174,6 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
      * @param shipments the list of shipments
      */
     public void setShipments(List<Shipment> shipments) {
-        if (shipments == null) {
-            System.out.println("shipments NULL");
-        } else {
-            System.out.println("shipments NOT NULL");
-        }
         updateShipments(shipments);
     }
 
@@ -191,6 +190,10 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
 
     public List<Shipment> getChangedShipments() {
         return changedShipments;
+    }
+
+    public void removeFromChangedShipment(Shipment shipment) {
+        changedShipments.remove(shipment);
     }
 
     public void setOnDeleteShipmentClickListener(OnDeleteShipmentClickListener onDeleteShipmentClickListener) {
@@ -222,13 +225,6 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
             textInputLayoutNpa = itemView.findViewById(R.id.post_employee_manage_package_input_npa);
             textInputLayoutCity = itemView.findViewById(R.id.post_employee_manage_package_input_city);
             imageViewArrow = itemView.findViewById(R.id.post_employee_manage_package_arrow);
-
-            // Create dropdown adapter
-            String[] trackingStatusList = context.getResources().getStringArray(R.array.post_employee_update_tracking_status_list);
-            ArrayAdapter<String> trackingStatusAdapter = new ArrayAdapter<>(
-                    context, R.layout.dropdown_item, trackingStatusList
-            );
-            statusDropDown.setAdapter(trackingStatusAdapter);
 
             imageViewDelete.setOnClickListener(v -> {
                 int position = getAdapterPosition();

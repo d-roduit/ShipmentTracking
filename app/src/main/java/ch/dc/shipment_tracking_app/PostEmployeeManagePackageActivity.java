@@ -97,11 +97,8 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
         // Initialize the RecyclerView
         RecyclerView manageRecyclerView = findViewById(R.id.post_employee_manage_package_recycler_view);
         manageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        manageRecyclerView.setHasFixedSize(true);
+        manageRecyclerView.setHasFixedSize(false);
         manageRecyclerView.setAdapter(manageRecyclerAdapter);
-        manageRecyclerAdapter.getItemCount();
-        manageRecyclerView.getChildCount();
-        RecyclerView.ViewHolder dasd = manageRecyclerView.findViewHolderForLayoutPosition(0);
 
         // Initialize the viewModels
         itemViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ItemViewModel.class);
@@ -118,7 +115,6 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
 
         LiveData<List<Shipment>> itemShipmentsLiveData = shipmentViewModel.getShipmentByShippingNumber(shippingNumber);
         if (itemShipmentsLiveData != null) {
-            System.out.println("------------------ itemShipmentsLiveData != null ------------------");
             itemShipmentsLiveData.observe(this, shipments -> manageRecyclerAdapter.setShipments(shipments));
         }
 
@@ -189,6 +185,7 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
         if (shipment != null) {
             DialogInterface.OnClickListener onPositiveButtonClickListener = (dialog, which) -> {
                 shipmentViewModel.delete(shipment, null);
+                manageRecyclerAdapter.removeFromChangedShipment(shipment);
             };
 
             String status = TrackingStatus.fromStatusListPosition(shipment.getStatus()).getStringStatus(this);
@@ -239,6 +236,7 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
             itemViewModel.update(updatedItem, null);
 
             for (Shipment updatedShipment: updatedShipments) {
+                System.out.println(updatedShipment);
                 shipmentViewModel.update(updatedShipment, null);
             }
 
