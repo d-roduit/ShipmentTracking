@@ -2,12 +2,9 @@ package ch.dc.shipment_tracking_app.db.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Random;
 
 /**
