@@ -4,6 +4,8 @@ import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 public class InputValidator {
 
     /**
@@ -37,7 +39,19 @@ public class InputValidator {
      * @return True if all the inputs are valid. False otherwise.
      */
     public static boolean validateInputs(TextInputLayout... textInputLayouts) {
+        boolean areAllInputsOk = true;
 
+        for (TextInputLayout textInputLayout: textInputLayouts) {
+            boolean isInputValid = validateInput(textInputLayout);
+            if (areAllInputsOk && !isInputValid) {
+                areAllInputsOk = false;
+            }
+        }
+
+        return areAllInputsOk;
+    }
+
+    public static boolean validateInputs(List<TextInputLayout> textInputLayouts) {
         boolean areAllInputsOk = true;
 
         for (TextInputLayout textInputLayout: textInputLayouts) {

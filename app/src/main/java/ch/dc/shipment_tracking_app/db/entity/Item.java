@@ -2,6 +2,7 @@ package ch.dc.shipment_tracking_app.db.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -119,6 +120,7 @@ public class Item {
                 String senderLastname, String senderAddress, String senderNpa,
                 String senderCity, String recipientFirstname, String recipientLastname,
                 String recipientAddress, String recipientNPA, String recipientCity) {
+        this.shippingNumber = generateUniqueShippingNumber();
         this.shippingPriority = shippingPriority;
         this.weight = weight;
         this.senderFirstname = senderFirstname;
@@ -131,8 +133,6 @@ public class Item {
         this.recipientAddress = recipientAddress;
         this.recipientNPA = recipientNPA;
         this.recipientCity = recipientCity;
-
-        setShippingNumber(generateUniqueShippingNumber());
     }
 
     /**
@@ -140,7 +140,7 @@ public class Item {
      *
      * @return a 7 digits int
      */
-    private int generateUniqueShippingNumber() {
+    private static int generateUniqueShippingNumber() {
         Random random = new Random();
         int randomNumber = 1000 + random.nextInt(9000);
 

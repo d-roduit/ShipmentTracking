@@ -31,7 +31,6 @@ public class PostEmployeeMainActivity extends BaseActivity {
         // Get shipping number from sharedPreferences
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         shippingNumber = sharedPreferences.getInt(PostEmployeeShippingNumberActivity.SAVED_SHIPPING_NUMBER, 0);
-        System.out.println(getClass().getSimpleName() + " | shippingNumber from Preferences : " + shippingNumber);
 
         packageNumberTextView.setText(getString(R.string.post_employee_main_title, String.valueOf(shippingNumber)));
 
@@ -47,7 +46,6 @@ public class PostEmployeeMainActivity extends BaseActivity {
         List<String> snackbarMessages = new ArrayList<>();
         snackbarMessages.add(intent.getStringExtra(PostEmployeeUpdateTrackingActivity.SNACKBAR_TRACKING_UPDATED));
         snackbarMessages.add(intent.getStringExtra(PostEmployeeManagePackageActivity.SNACKBAR_PACKAGE_INFO_SAVED));
-        snackbarMessages.add(intent.getStringExtra(PostEmployeeManagePackageActivity.SNACKBAR_PACKAGE_DELETED));
 
         for (String snackbarMessage: snackbarMessages) {
             if (snackbarMessage != null) {

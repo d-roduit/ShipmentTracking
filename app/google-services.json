@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "449333910843",
+    "project_id": "shipment-tracking-ee589",
+    "storage_bucket": "shipment-tracking-ee589.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449333910843:android:b999eacf4203194223ab1e",
+        "android_client_info": {
+          "package_name": "ch.dc.shipment_tracking_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449333910843-fulv6sduin934po9omt6979omu8bvd6r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNUPiOHhi-Kv36lpKwkkBzhWWOKFZMxl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449333910843-fulv6sduin934po9omt6979omu8bvd6r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
