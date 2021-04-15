@@ -1,5 +1,6 @@
 package ch.dc.shipment_tracking_app;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import ch.dc.shipment_tracking_app.viewmodel.ItemViewModel;
@@ -55,7 +57,6 @@ public class PostEmployeeShippingNumberActivity extends BaseActivity {
             }
         });
 
-
         nextButton.setOnClickListener(v -> {
             boolean isShippingNumberValid = InputValidator.validateInputs(shippingNumberTextInputLayout);
 
@@ -64,6 +65,15 @@ public class PostEmployeeShippingNumberActivity extends BaseActivity {
                 managePackageIfExists(shippingNumber);
             }
         });
+
+        Intent intent = getIntent();
+        if (intent.hasExtra(PostEmployeeManagePackageActivity.SNACKBAR_PACKAGE_DELETED)) {
+            String snackbarMessage = intent.getStringExtra(PostEmployeeManagePackageActivity.SNACKBAR_PACKAGE_DELETED);
+            Snackbar.make(findViewById(R.id.post_employee_shipping_number_coordinatorLayout),
+                    snackbarMessage,
+                    Snackbar.LENGTH_LONG
+            ).show();
+        }
     }
 
     private void managePackageIfExists(int shippingNumber) {

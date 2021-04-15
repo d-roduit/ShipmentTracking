@@ -7,6 +7,7 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Shipment entity that represents the Shipment table.
@@ -171,5 +172,23 @@ public class Shipment {
      */
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Shipment shipment = (Shipment) o;
+        return id == shipment.id &&
+                shippingNumber == shipment.shippingNumber &&
+                status == shipment.status &&
+                date.equals(shipment.date) &&
+                npa.equals(shipment.npa) &&
+                city.equals(shipment.city);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, shippingNumber, status, date, npa, city);
     }
 }

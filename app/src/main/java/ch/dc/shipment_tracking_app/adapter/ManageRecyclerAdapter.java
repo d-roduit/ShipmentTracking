@@ -1,6 +1,8 @@
 package ch.dc.shipment_tracking_app.adapter;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,16 +26,15 @@ import ch.dc.shipment_tracking_app.R;
 import ch.dc.shipment_tracking_app.TrackingStatus;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
 
-public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAdapter.RecyclerHolder>{
-
+public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAdapter.RecyclerHolder> {
 
     private List<Shipment> shipments = new ArrayList<>();
-    Context context;
-    private final onDeleteShipmentClickListener listener;
+    private final Context context;
+    private OnDeleteShipmentClickListener onDeleteShipmentClickListener;
+    private final List<Shipment> changedShipments = new ArrayList<>();
 
-    public ManageRecyclerAdapter(Context context, onDeleteShipmentClickListener listener) {
+    public ManageRecyclerAdapter(Context context) {
         this.context = context;
-        this.listener = listener;
     }
 
     /**
@@ -47,9 +49,9 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
     public ManageRecyclerAdapter.RecyclerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.shipment_item_manage, parent, false);
-
         return new ManageRecyclerAdapter.RecyclerHolder(itemView);
     }
+
 
     /**
      * Takes care of taking the data from the single Shipment into the views of our RecyclerHolder.
@@ -61,38 +63,92 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
     public void onBindViewHolder(@NonNull ManageRecyclerAdapter.RecyclerHolder holder, int position) {
         Shipment currentShipment = shipments.get(position);
 
-        holder.bind(currentShipment, listener);
-
-        //make the date into a string
+        // Make the date into a string
         Date date = currentShipment.getDate();
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
         String strDate = formatter.format(date);
 
-        //make the hour into a string
+        // Make the hour into a string
         formatter = new SimpleDateFormat("HH:mm");
         String strHour = formatter.format(date);
 
         String completeDate = strHour + " - " + strDate;
 
-        //get the status string
+        // Get the status string
         TrackingStatus trackingStatus = TrackingStatus.fromStatusListPosition(currentShipment.getStatus());
         String status = trackingStatus.getStringStatus(context);
 
-        // Create dropdown adapter
-//        String[] trackingStatusList = context.getResources().getStringArray(R.array.post_employee_update_tracking_status_list);
-//        ArrayAdapter<String> trackingStatusAdapter = new ArrayAdapter<>(
-//                context, R.layout.dropdown_item, trackingStatusList
-//        );
+        // Add text watcher listener
+        holder.textInputLayoutStatus.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        //set texts into our views
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                System.out.println("----------------------------ON TEXT CHANGED -----------------------------------");
+                currentShipment.setStatus(TrackingStatus.fromCharStatus(context, s.charAt(0)).getStatusListPosition());
+                if (!changedShipments.contains(currentShipment)) {
+                    changedShipments.add(currentShipment);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        holder.textInputLayoutCity.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                System.out.println("----------------------------ON TEXT CHANGED -----------------------------------");
+                currentShipment.setCity(s.toString());
+                if (!changedShipments.contains(currentShipment)) {
+                    changedShipments.add(currentShipment);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.textInputLayoutNpa.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                System.out.println("----------------------------ON TEXT CHANGED -----------------------------------");
+                currentShipment.setNpa(s.toString());
+                if (!changedShipments.contains(currentShipment)) {
+                    changedShipments.add(currentShipment);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        // Set texts into our views
         holder.textViewDate.setText(completeDate);
         holder.textViewStatus.setText(status);
-//        holder.statusDropDown.setAdapter(trackingStatusAdapter);
         holder.statusDropDown.setText(status, false);
         holder.textInputLayoutNpa.getEditText().setText(currentShipment.getNpa());
         holder.textInputLayoutCity.getEditText().setText(currentShipment.getCity());
 
-        if (position == shipments.size()-1) {
+        if (position == shipments.size() - 1) {
             holder.imageViewArrow.setVisibility(View.GONE);
         }
     }
@@ -114,23 +170,46 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
      * @param shipments the list of shipments
      */
     public void setShipments(List<Shipment> shipments) {
-        this.shipments = shipments;
-        notifyDataSetChanged();
+        if (shipments == null) {
+            System.out.println("shipments NULL");
+        } else {
+            System.out.println("shipments NOT NULL");
+        }
+        updateShipments(shipments);
+    }
+
+    /**
+     * Make the diff between two shipment lists to add/remove only the updated items in the RecyclerView
+     * @param newShipments A list of new shipments
+     */
+    public void updateShipments(List<Shipment> newShipments) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new ShipmentDiffCallback(this.shipments, newShipments));
+        this.shipments.clear();
+        this.shipments.addAll(newShipments);
+        diffResult.dispatchUpdatesTo(this);
+    }
+
+    public List<Shipment> getChangedShipments() {
+        return changedShipments;
+    }
+
+    public void setOnDeleteShipmentClickListener(OnDeleteShipmentClickListener onDeleteShipmentClickListener) {
+        this.onDeleteShipmentClickListener = onDeleteShipmentClickListener;
     }
 
     /**
      * Holds our views in the recycler
      */
-    class RecyclerHolder extends RecyclerView.ViewHolder {
+    public class RecyclerHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageViewDelete;
-        private TextView textViewDate;
-        private TextView textViewStatus;
-        private TextInputLayout textInputLayoutStatus;
-        private AutoCompleteTextView statusDropDown;
-        private TextInputLayout textInputLayoutNpa;
-        private TextInputLayout textInputLayoutCity;
-        private ImageView imageViewArrow;
+        private final ImageView imageViewDelete;
+        private final TextView textViewDate;
+        private final TextView textViewStatus;
+        private final AutoCompleteTextView statusDropDown;
+        private final TextInputLayout textInputLayoutStatus;
+        private final TextInputLayout textInputLayoutNpa;
+        private final TextInputLayout textInputLayoutCity;
+        private final ImageView imageViewArrow;
 
         public RecyclerHolder(@NonNull View itemView) {
             super(itemView);
@@ -138,28 +217,29 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
             imageViewDelete = itemView.findViewById(R.id.post_employee_manage_package_delete_shipment_button);
             textViewDate = itemView.findViewById(R.id.post_employee_manage_package_date);
             textViewStatus = itemView.findViewById(R.id.post_employee_manage_package_status);
-            statusDropDown = itemView.findViewById(R.id.post_employee_manage_package_status_list);
             textInputLayoutStatus = itemView.findViewById(R.id.post_employee_manage_package_input_status);
+            statusDropDown = itemView.findViewById(R.id.post_employee_manage_package_status_list);
             textInputLayoutNpa = itemView.findViewById(R.id.post_employee_manage_package_input_npa);
             textInputLayoutCity = itemView.findViewById(R.id.post_employee_manage_package_input_city);
             imageViewArrow = itemView.findViewById(R.id.post_employee_manage_package_arrow);
 
+            // Create dropdown adapter
             String[] trackingStatusList = context.getResources().getStringArray(R.array.post_employee_update_tracking_status_list);
             ArrayAdapter<String> trackingStatusAdapter = new ArrayAdapter<>(
                     context, R.layout.dropdown_item, trackingStatusList
             );
-
             statusDropDown.setAdapter(trackingStatusAdapter);
 
-
-        }
-
-        public void bind(Shipment shipment, final onDeleteShipmentClickListener listener) {
-            imageViewDelete.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    listener.onItemClick(shipment);
+            imageViewDelete.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (onDeleteShipmentClickListener != null && position != RecyclerView.NO_POSITION) {
+                    onDeleteShipmentClickListener.onItemClick(shipments.get(position));
                 }
             });
         }
+    }
+
+    public interface OnDeleteShipmentClickListener {
+        void onItemClick(Shipment shipment);
     }
 }

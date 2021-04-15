@@ -90,12 +90,15 @@
     <string name="post_employee_manage_package_package_information_title">Package information</string>
     <string name="post_employee_manage_package_package_statuses_title">Package tracking</string>
     <string name="post_employee_manage_package_button_delete_package">Delete package</string>
-    <string name="post_employee_manage_package_dialog_title">Delete package</string>
-    <string name="post_employee_manage_package_dialog_message">Are you sure to delete the package ?</string>
+    <string name="post_employee_manage_package_delete_package_dialog_title">Delete package</string>
+    <string name="post_employee_manage_package_delete_package_dialog_message">Are you sure to delete the package ?</string>
+    <string name="post_employee_manage_package_delete_tracking_status_dialog_title">Delete %s</string>
+    <string name="post_employee_manage_package_delete_tracking_status_dialog_message">Are you sure to delete the %s status ?</string>
     <string name="post_employee_manage_package_dialog_button_ok">Yes</string>
     <string name="post_employee_manage_package_dialog_button_cancel">Cancel</string>
     <string name="post_employee_manage_package_snackbar_message_package_info_saved">Package information saved</string>
     <string name="post_employee_manage_package_snackbar_message_package_deleted">Package deleted</string>
+
 
     <!--  AboutUs -->
     <string name="about_us_description">Shipment-tracking is a mobile application that allows you to send and track the delivery of a package with ease.

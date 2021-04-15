@@ -85,8 +85,10 @@
     <string name="post_employee_manage_package_package_information_title">Information du colis</string>
     <string name="post_employee_manage_package_package_statuses_title">Suivi du colis</string>
     <string name="post_employee_manage_package_button_delete_package">Supprimer le colis</string>
-    <string name="post_employee_manage_package_dialog_title">Supprimer le colis</string>
-    <string name="post_employee_manage_package_dialog_message">Êtes-vous sûr de vouloir supprimer le colis ?</string>
+    <string name="post_employee_manage_package_delete_package_dialog_title">Supprimer le colis</string>
+    <string name="post_employee_manage_package_delete_package_dialog_message">Êtes-vous sûr de vouloir supprimer le colis ?</string>
+    <string name="post_employee_manage_package_delete_tracking_status_dialog_title">Supprimer %s</string>
+    <string name="post_employee_manage_package_delete_tracking_status_dialog_message">Êtes-vous sûr de vouloir supprimer le statut %s ?</string>
     <string name="post_employee_manage_package_dialog_button_ok">Oui</string>
     <string name="post_employee_manage_package_dialog_button_cancel">Annuler</string>
     <string name="post_employee_manage_package_snackbar_message_package_info_saved">Informations du colis sauvegardées</string>

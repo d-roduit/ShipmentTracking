@@ -33,4 +33,15 @@ public enum TrackingStatus {
         }
         throw new IllegalArgumentException("No TrackingStatus constant for statusListPosition " + statusListPosition + " found");
     }
+
+    public static TrackingStatus fromCharStatus(Context context, char charStatus) throws IllegalArgumentException {
+        String[] trackingStatusList = context.getResources().getStringArray(R.array.post_employee_update_tracking_status_list);
+
+        for (int i = 0; i < trackingStatusList.length; i++) {
+            if (trackingStatusList[i].charAt(0) == charStatus) {
+                return fromStatusListPosition(i);
+            }
+        }
+        throw new IllegalArgumentException("No TrackingStatus constant for char " + charStatus + " found");
+    }
 }

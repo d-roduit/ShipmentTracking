@@ -56,7 +56,6 @@ public class PostEmployeeUpdateTrackingActivity extends BaseActivity {
         // Get shipping number from sharedPreferences
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         int shippingNumber = sharedPreferences.getInt(PostEmployeeShippingNumberActivity.SAVED_SHIPPING_NUMBER, 0);
-        System.out.println(getClass().getSimpleName() + " | shippingNumber from Preferences : " + shippingNumber);
 
         // Get the status position
         statusDropDown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
