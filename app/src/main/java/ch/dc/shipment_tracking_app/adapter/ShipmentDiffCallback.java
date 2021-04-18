@@ -29,7 +29,7 @@ public class ShipmentDiffCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return oldShipments.get(oldItemPosition).getId() == newShipments.get(newItemPosition).getId();
+        return oldShipments.get(oldItemPosition).getId().equals(newShipments.get(newItemPosition).getId());
     }
 
     @Override
@@ -37,9 +37,9 @@ public class ShipmentDiffCallback extends DiffUtil.Callback {
         Shipment oldShipment = oldShipments.get(oldItemPosition);
         Shipment newShipment = newShipments.get(newItemPosition);
 
-        return oldShipment.getId() == newShipment.getId() &&
+        return oldShipment.getId().equals(newShipment.getId()) &&
                 oldShipment.getShippingNumber() == newShipment.getShippingNumber() &&
-                oldShipment.getDate().equals(newShipment.getDate());
+                oldShipment.getDate() == newShipment.getDate();
     }
 
     @Nullable

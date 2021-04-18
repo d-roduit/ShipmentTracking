@@ -139,7 +139,7 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         double weight = Double.longBitsToDouble(sharedPreferences.getLong(ClientSendPackageActivity.SEND_WEIGHT, Double.doubleToLongBits(0.0)));
-        char shippingPriority = sharedPreferences.getString(ClientSendPackageActivity.SEND_SHIPPING_PRIORITY, " ").charAt(0);
+        String shippingPriority = sharedPreferences.getString(ClientSendPackageActivity.SEND_SHIPPING_PRIORITY, " ");
         String senderFirstname = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_FIRSTNAME, "");
         String senderLastname = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_LASTNAME, "");
         String senderAddress = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_ADDRESS, "");
@@ -152,10 +152,10 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
         String recipientCity = sharedPreferences.getString(ClientSendPackageActivity.SEND_RECIPIENT_CITY, "");
 
         if(weight != 0.0) {
-            inputWeight.getEditText().setText("" + weight);
+            inputWeight.getEditText().setText(String.valueOf(weight));
         }
-        if(shippingPriority != ' ') {
-            dropDownText.setText("" + shippingPriority, false);
+        if(!shippingPriority.isEmpty()) {
+            dropDownText.setText(shippingPriority, false);
         }
         inputSenderFirstname.getEditText().setText(senderFirstname);
         inputSenderLastname.getEditText().setText(senderLastname);
@@ -174,7 +174,7 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
      */
     private void sendPackageInformation() {
         double textWeight = Double.parseDouble(inputWeight.getEditText().getText().toString());
-        char textShippingPriority = dropDownText.getText().toString().charAt(0);
+        String textShippingPriority = dropDownText.getText().toString();
         String textSenderFirstname = inputSenderFirstname.getEditText().getText().toString();
         String textSenderLastname = inputSenderLastname.getEditText().getText().toString();
         String textSenderAddress = inputSenderAddress.getEditText().getText().toString();
@@ -189,7 +189,7 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ClientSendPackageActivity.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putLong(SEND_WEIGHT, Double.doubleToLongBits(textWeight));
-        editor.putString(SEND_SHIPPING_PRIORITY, String.valueOf(textShippingPriority));
+        editor.putString(SEND_SHIPPING_PRIORITY, textShippingPriority);
         editor.putString(SEND_SENDER_FIRSTNAME, textSenderFirstname);
         editor.putString(SEND_SENDER_LASTNAME, textSenderLastname);
         editor.putString(SEND_SENDER_ADDRESS, textSenderAddress);
@@ -201,19 +201,6 @@ public class ClientSendPackageActivity extends BaseActivity implements LocationM
         editor.putString(SEND_RECIPIENT_NPA, textRecipientNpa);
         editor.putString(SEND_RECIPIENT_CITY, textRecipientCity);
         editor.apply();
-
-//        intent.putExtra(SEND_WEIGHT, textWeight);
-//        intent.putExtra(SEND_SHIPPING_PRIORITY, textShippingPriority);
-//        intent.putExtra(SEND_SENDER_FIRSTNAME, textSenderFirstname);
-//        intent.putExtra(SEND_SENDER_LASTNAME, textSenderLastname);
-//        intent.putExtra(SEND_SENDER_ADDRESS, textSenderAddress);
-//        intent.putExtra(SEND_SENDER_NPA, textSenderNpa);
-//        intent.putExtra(SEND_SENDER_CITY, textSenderCity);
-//        intent.putExtra(SEND_RECIPIENT_FIRSTNAME, textRecipientFirstname);
-//        intent.putExtra(SEND_RECIPIENT_LASTNAME, textRecipientLastname);
-//        intent.putExtra(SEND_RECIPIENT_ADDRESS, textRecipientAddress);
-//        intent.putExtra(SEND_RECIPIENT_NPA, textRecipientNpa);
-//        intent.putExtra(SEND_RECIPIENT_CITY, textRecipientCity);
 
         redirectActivity(this, ClientPackageConfirmationActivity.class);
     }

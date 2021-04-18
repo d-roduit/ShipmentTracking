@@ -96,18 +96,14 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
 
         // Initialize the RecyclerView
         RecyclerView manageRecyclerView = findViewById(R.id.post_employee_manage_package_recycler_view);
-        manageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        manageRecyclerView.setLayoutManager(linearLayoutManager);
         manageRecyclerView.setHasFixedSize(false);
         manageRecyclerView.setAdapter(manageRecyclerAdapter);
 
         // Initialize the viewModels
-//        itemViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ItemViewModel.class);
-//        shipmentViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ShipmentViewModel.class);
-        ItemViewModel.Factory itemFactory = new ItemViewModel.Factory(getApplication());
-        itemViewModel = new ViewModelProvider(this, itemFactory).get(ItemViewModel.class);
-
-        ShipmentViewModel.Factory shipmentFactory = new ShipmentViewModel.Factory(getApplication());
-        shipmentViewModel = new ViewModelProvider(this, shipmentFactory).get(ShipmentViewModel.class);
+        itemViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ItemViewModel.class);
+        shipmentViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ShipmentViewModel.class);
 
         // Fetch database data and fill in the views with the data
         LiveData<Item> itemLiveData = itemViewModel.getItemByShippingNumber(shippingNumber);
@@ -118,7 +114,7 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
             });
         }
 
-        LiveData<List<Shipment>> itemShipmentsLiveData = shipmentViewModel.getShipmentByShippingNumber(shippingNumber);
+        LiveData<List<Shipment>> itemShipmentsLiveData = shipmentViewModel.getShipmentsByShippingNumber(shippingNumber);
         if (itemShipmentsLiveData != null) {
             itemShipmentsLiveData.observe(this, shipments -> manageRecyclerAdapter.setShipments(shipments));
         }
@@ -163,18 +159,19 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
     private void deletePackageFromDB(Item item) {
         if (item != null) {
             DialogInterface.OnClickListener onPositiveButtonClickListener = (dialog, which) -> {
-                itemViewModel.delete(item, nbOfRowsAffected -> {
-                    // Remove shipping number from SharedPreferences
-                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PostEmployeeManagePackageActivity.this);
-                    sharedPreferences.edit().remove(PostEmployeeShippingNumberActivity.SAVED_SHIPPING_NUMBER).apply();
+                itemViewModel.delete(item);
 
-                    // Launch intent to redirect
-                    snackbarIntent = new Intent(this, PostEmployeeShippingNumberActivity.class);
-                    snackbarIntent.putExtra(SNACKBAR_PACKAGE_DELETED,
-                            getString(R.string.post_employee_manage_package_snackbar_message_package_deleted)
-                    );
-                    startActivity(snackbarIntent);
-                });
+                // Remove shipping number from SharedPreferences
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PostEmployeeManagePackageActivity.this);
+                sharedPreferences.edit().remove(PostEmployeeShippingNumberActivity.SAVED_SHIPPING_NUMBER).apply();
+
+                // Launch intent to redirect
+                snackbarIntent = new Intent(this, PostEmployeeShippingNumberActivity.class);
+                snackbarIntent.putExtra(SNACKBAR_PACKAGE_DELETED,
+                        getString(R.string.post_employee_manage_package_snackbar_message_package_deleted)
+                );
+
+                startActivity(snackbarIntent);
             };
 
             new MaterialAlertDialogBuilder(this)
@@ -189,7 +186,7 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
     private void deleteShipmentFromDB(Shipment shipment) {
         if (shipment != null) {
             DialogInterface.OnClickListener onPositiveButtonClickListener = (dialog, which) -> {
-                shipmentViewModel.delete(shipment, null);
+                shipmentViewModel.delete(shipment);
                 manageRecyclerAdapter.removeFromChangedShipment(shipment);
             };
 
@@ -218,7 +215,7 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
 
         if (arePackageInputsValid) {
             double packageWeight = Double.parseDouble(packageWeightTextInputLayout.getEditText().getText().toString());
-            char shippingPriority = shippingPriorityDropDown.getText().toString().charAt(0);
+            String shippingPriority = shippingPriorityDropDown.getText().toString();
             String senderLastname = senderLastnameTextInputLayout.getEditText().getText().toString();
             String senderFirstname = senderFirstnameTextInputLayout.getEditText().getText().toString();
             String senderAddress = senderAddressTextInputLayout.getEditText().getText().toString();
@@ -235,14 +232,13 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
                     recipientFirstname, recipientAddress, recipientNpa, recipientCity
             );
 
-            updatedItem.setId(item.getId());
             updatedItem.setShippingNumber(item.getShippingNumber());
 
-            itemViewModel.update(updatedItem, null);
+            itemViewModel.update(updatedItem);
 
             for (Shipment updatedShipment: updatedShipments) {
                 System.out.println(updatedShipment);
-                shipmentViewModel.update(updatedShipment, null);
+                shipmentViewModel.update(updatedShipment);
             }
 
             snackbarIntent = new Intent(this, PostEmployeeMainActivity.class);

@@ -5,15 +5,10 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
-import ch.dc.shipment_tracking_app.db.entity.Item;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
-import ch.dc.shipment_tracking_app.db.repository.ItemRepository;
 import ch.dc.shipment_tracking_app.db.repository.ShipmentRepository;
 
 /**
@@ -26,40 +21,19 @@ public class ShipmentViewModel extends AndroidViewModel {
      */
     private final ShipmentRepository shipmentRepository;
 
-    // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<Item> observableShipment;
-
-
-    public ShipmentViewModel(@NonNull Application application, ShipmentRepository shipmentRepository) {
+    public ShipmentViewModel(@NonNull Application application) {
         super(application);
 
-        this.shipmentRepository = shipmentRepository;
-
-        observableShipment = new MediatorLiveData<>();
-        // set by default null, until we get data from the database.
-        observableShipment.setValue(null);
+        this.shipmentRepository = ShipmentRepository.getInstance();
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * Method to get Shipments by a shipping number
+     * @param shippingNumber the shipping number
+     * @return a LiveData list of Shipments
      */
-    public static class Factory extends ViewModelProvider.NewInstanceFactory {
-
-        @NonNull
-        private final Application application;
-
-        private final ShipmentRepository repository;
-
-        public Factory(@NonNull Application application) {
-            this.application = application;
-            repository = ShipmentRepository.getInstance();
-        }
-
-        @Override
-        public <T extends ViewModel> T create(Class<T> modelClass) {
-            //noinspection unchecked
-            return (T) new ShipmentViewModel(application, repository);
-        }
+    public LiveData<List<Shipment>> getShipmentsByShippingNumber(int shippingNumber) {
+        return shipmentRepository.getShipmentsByShippingNumber(shippingNumber);
     }
 
     /**
@@ -88,14 +62,4 @@ public class ShipmentViewModel extends AndroidViewModel {
     public void update(Shipment shipment) {
         shipmentRepository.update(shipment);
     }
-
-    /**
-     * Method to get Shipments by a shipping number
-     * @param id the id
-     * @return a livedata list of Shipments
-     */
-    public LiveData<List<Shipment>> getShipmentByShippingNumber(String id) {
-        return  shipmentRepository.getShipmentByShippingNumber(id);
-    }
-
 }

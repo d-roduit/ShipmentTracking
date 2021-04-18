@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
@@ -29,12 +30,13 @@ public class ShipmentListLiveData extends LiveData<List<Shipment>> {
     @Override
     protected void onActive() {
         Log.d(TAG, "onActive");
-        reference.addValueEventListener(listener);
+        reference.orderByChild("date/time").addValueEventListener(listener);
     }
 
     @Override
     protected void onInactive() {
         Log.d(TAG, "onInactive");
+        reference.removeEventListener(listener);
     }
 
     private class MyValueEventListener implements ValueEventListener {
@@ -51,11 +53,26 @@ public class ShipmentListLiveData extends LiveData<List<Shipment>> {
 
     private List<Shipment> toShipmentList(DataSnapshot snapshot) {
         List<Shipment> shipments = new ArrayList<>();
+        String parentKey = snapshot.getKey();
+
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             Shipment shipment = childSnapshot.getValue(Shipment.class);
-            shipment.setId(childSnapshot.getKey());
+            String childKey = childSnapshot.getKey();
+
+            if (shipment != null) {
+                if (parentKey != null) {
+                    shipment.setShippingNumber(Integer.parseInt(parentKey));
+                }
+                if (childKey != null) {
+                    shipment.setId(childSnapshot.getKey());
+                }
+            }
             shipments.add(shipment);
         }
+
+        // Reverse shipments list because the Firebase Real Time Database
+        // only allows filtering in ASCENDING order
+        Collections.reverse(shipments);
         return shipments;
     }
 }

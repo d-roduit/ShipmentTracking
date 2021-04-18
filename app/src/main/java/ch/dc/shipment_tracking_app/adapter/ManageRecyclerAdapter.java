@@ -24,6 +24,7 @@ import java.util.List;
 
 import ch.dc.shipment_tracking_app.R;
 import ch.dc.shipment_tracking_app.TrackingStatus;
+import ch.dc.shipment_tracking_app.db.converter.Converters;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
 
 public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAdapter.RecyclerHolder> {
@@ -52,7 +53,6 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
         return new ManageRecyclerAdapter.RecyclerHolder(itemView);
     }
 
-
     /**
      * Takes care of taking the data from the single Shipment into the views of our RecyclerHolder.
      *
@@ -64,7 +64,7 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
         Shipment currentShipment = shipments.get(position);
 
         // Make the date into a string
-        Date date = currentShipment.getDate();
+        Date date = Converters.fromTimestamp(currentShipment.getDate());
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
         String strDate = formatter.format(date);
 
@@ -156,7 +156,6 @@ public class ManageRecyclerAdapter extends RecyclerView.Adapter<ManageRecyclerAd
             holder.imageViewArrow.setVisibility(View.GONE);
         }
     }
-
 
     /**
      * How many items we want to display in our recycler view.

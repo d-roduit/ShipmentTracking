@@ -80,21 +80,10 @@ public class PostEmployeeUpdateTrackingActivity extends BaseActivity {
 
                 //Insert the shipment
                 Shipment shipment = new Shipment(shippingNumber, status, npa, city);
-                shipmentViewModel.insert(shipment, null);
+                shipmentViewModel.insert(shipment);
 
                 startActivity(intent);
             }
         });
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if (item.getItemId() == android.R.id.home) {
-//            System.out.println("-------------------------- HOME PRESSED");
-//            onBackPressed();
-//            return true;
-//        }
-//        System.out.println("-------------------------- AUTRE PRESSED");
-//        return super.onOptionsItemSelected(item);
-//    }
 }

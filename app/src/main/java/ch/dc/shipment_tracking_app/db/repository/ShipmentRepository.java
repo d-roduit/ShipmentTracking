@@ -1,6 +1,5 @@
 package ch.dc.shipment_tracking_app.db.repository;
 
-
 import androidx.lifecycle.LiveData;
 
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +16,7 @@ import ch.dc.shipment_tracking_app.db.firebase.ShipmentListLiveData;
 public class ShipmentRepository {
 
     private static ShipmentRepository instance;
+    public final static String referenceName = "shipments";
 
     /**
      * ShipmentRepository constructor*
@@ -34,13 +34,12 @@ public class ShipmentRepository {
 
     /**
      * Method to get Shipments by a shipping number
-     * @return a livedata list of Shipments
+     * @return a liveData list of Shipments
      */
-    public LiveData<List<Shipment>> getShipmentByShippingNumber(final String id) {
+    public LiveData<List<Shipment>> getShipmentsByShippingNumber(final int shippingNumber) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("items")
-                .child(id)
-                .child("shipments");
+                .getReference(referenceName)
+                .child(String.valueOf(shippingNumber));
 
         return new ShipmentListLiveData(reference);
     }
@@ -51,10 +50,19 @@ public class ShipmentRepository {
      * @param shipment the Shipment to insert
      */
     public void insert(final Shipment shipment) {
-        String id = FirebaseDatabase.getInstance().getReference("shipments").push().getKey();
-        FirebaseDatabase.getInstance().getReference("shipments")
-                .child(id)
-                .setValue(shipment);
+        String id = FirebaseDatabase.getInstance()
+                .getReference(referenceName)
+                .child(String.valueOf(shipment.getShippingNumber()))
+                .push()
+                .getKey();
+
+        if (id != null) {
+            FirebaseDatabase.getInstance()
+                    .getReference(referenceName)
+                    .child(String.valueOf(shipment.getShippingNumber()))
+                    .child(id)
+                    .setValue(shipment);
+        }
     }
 
     /**
@@ -63,7 +71,9 @@ public class ShipmentRepository {
      * @param shipment the Shipment to delete
      */
     public void delete(final Shipment shipment) {
-        FirebaseDatabase.getInstance().getReference("shipments")
+        FirebaseDatabase.getInstance()
+                .getReference(referenceName)
+                .child(String.valueOf(shipment.getShippingNumber()))
                 .child(shipment.getId())
                 .removeValue();
     }
@@ -74,9 +84,10 @@ public class ShipmentRepository {
      * @param shipment the Shipment to update
      */
     public void update(Shipment shipment) {
-        FirebaseDatabase.getInstance().getReference("shipments")
+        FirebaseDatabase.getInstance()
+                .getReference(referenceName)
+                .child(String.valueOf(shipment.getShippingNumber()))
                 .child(shipment.getId())
                 .updateChildren(shipment.toMap());
     }
-
 }

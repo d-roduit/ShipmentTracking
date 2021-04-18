@@ -1,18 +1,12 @@
 package ch.dc.shipment_tracking_app.db.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Index;
-import androidx.room.PrimaryKey;
-
 import com.google.firebase.database.Exclude;
 
 import java.util.Date;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+
+import ch.dc.shipment_tracking_app.db.converter.Converters;
 
 
 /**
@@ -38,7 +32,7 @@ public class Shipment {
     /**
      * Date
      */
-    private Date date;
+    private long date = Converters.toTimestamp(new Date());
 
     /**
      * NPA
@@ -54,10 +48,7 @@ public class Shipment {
     /**
      * Shipment constructor
      */
-    public Shipment() {
-        Date currentDate = new Date();
-        setDate(currentDate);
-    }
+    public Shipment() { }
 
     public Shipment(int shippingNumber, int status, String npa, String city) {
         this.shippingNumber = shippingNumber;
@@ -87,6 +78,7 @@ public class Shipment {
      * Getter for shippingNumber
      * @return the shipping number
      */
+    @Exclude
     public int getShippingNumber() {
         return shippingNumber;
     }
@@ -119,16 +111,16 @@ public class Shipment {
      * Getter for date
      * @return the date
      */
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
     /**
      * Setter for date
-     * @param date the date
+     * @param timestamp the timestamp of the date
      */
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(long timestamp) {
+        this.date = timestamp;
     }
 
     /**

@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ch.dc.shipment_tracking_app.adapter.RecyclerAdapter;
-import ch.dc.shipment_tracking_app.db.entity.Item;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
 import ch.dc.shipment_tracking_app.viewmodel.ItemViewModel;
 import ch.dc.shipment_tracking_app.viewmodel.ShipmentViewModel;
@@ -63,19 +62,14 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
 
         Intent intent = getIntent();
 
-        //ViewModels
-//        itemViewModel = new ViewModelProvider
-//                .AndroidViewModelFactory(getApplication())
-//                .create(ItemViewModel.class);
-//
-//        shipmentViewModel = new ViewModelProvider
-//                .AndroidViewModelFactory(getApplication())
-//                .create(ShipmentViewModel.class);
-        ItemViewModel.Factory itemFactory = new ItemViewModel.Factory(getApplication());
-        itemViewModel = new ViewModelProvider(this, itemFactory).get(ItemViewModel.class);
+        // ViewModels
+        itemViewModel = new ViewModelProvider
+                .AndroidViewModelFactory(getApplication())
+                .create(ItemViewModel.class);
 
-        ShipmentViewModel.Factory shipmentFactory = new ShipmentViewModel.Factory(getApplication());
-        shipmentViewModel = new ViewModelProvider(this, shipmentFactory).get(ShipmentViewModel.class);
+        shipmentViewModel = new ViewModelProvider
+                .AndroidViewModelFactory(getApplication())
+                .create(ShipmentViewModel.class);
 
         //RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycler_view_track_status);
@@ -114,10 +108,10 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
 
         int shippingNumber = intent.getIntExtra(ClientTrackPackageActivity.SEND_SHIPPING_NUMBER, 1);
 
-        itemViewModel.getItemByShippingNumber().observe(this, item -> {
+        itemViewModel.getItemByShippingNumber(shippingNumber).observe(this, item -> {
             //Set the TextViews text with the corresponding value.
-            textViewWeight.setText("" + item.getWeight());
-            textViewShippingPriority.setText("" + item.getShippingPriority());
+            textViewWeight.setText(String.valueOf(item.getWeight()));
+            textViewShippingPriority.setText(item.getShippingPriority());
             textViewSenderFirstname.setText(item.getSenderFirstname());
             textViewSenderLastname.setText(item.getSenderLastname());
             textViewSenderAddress.setText(item.getSenderAddress());
@@ -131,13 +125,12 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
         });
 
 
-        shipmentViewModel.getShipmentByShippingNumber(shippingNumber).observe(this, new Observer<List<Shipment>>() {
+        shipmentViewModel.getShipmentsByShippingNumber(shippingNumber).observe(this, new Observer<List<Shipment>>() {
             @Override
             public void onChanged(List<Shipment> shipments) {
                 adapter.setShipments(shipments);
             }
         });
-
 
         arrowButtonPackage.setOnClickListener(v ->
                 expandCard(packageCardview, expandableViewPackage, arrowButtonPackage));

@@ -14,8 +14,7 @@ import ch.dc.shipment_tracking_app.db.entity.Item;
 
 public class ItemLiveData extends LiveData<Item> {
 
-
-    private static final String TAG = "ClientLiveData";
+    private static final String TAG = "ItemLiveData";
 
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
@@ -33,6 +32,7 @@ public class ItemLiveData extends LiveData<Item> {
     @Override
     protected void onInactive() {
         Log.d(TAG, "onInactive");
+        reference.removeEventListener(listener);
     }
 
     private class MyValueEventListener implements ValueEventListener {
@@ -40,7 +40,12 @@ public class ItemLiveData extends LiveData<Item> {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             if (dataSnapshot.exists()) {
                 Item item = dataSnapshot.getValue(Item.class);
-                item.setId(dataSnapshot.getKey());
+                if (item != null) {
+                    String key = dataSnapshot.getKey();
+                    if (key != null) {
+                        item.setShippingNumber(Integer.parseInt(key));
+                    }
+                }
                 setValue(item);
             }
         }
@@ -50,5 +55,4 @@ public class ItemLiveData extends LiveData<Item> {
             Log.e(TAG, "Can't listen to query " + reference, databaseError.toException());
         }
     }
-
 }

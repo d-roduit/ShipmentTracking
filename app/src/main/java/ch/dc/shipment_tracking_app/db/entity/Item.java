@@ -1,14 +1,7 @@
 package ch.dc.shipment_tracking_app.db.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Index;
-import androidx.room.PrimaryKey;
-
 import com.google.firebase.database.Exclude;
 
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -20,11 +13,6 @@ import java.util.Random;
 public class Item {
 
     /**
-     * Id
-     */
-    private String id;
-
-    /**
      * Shipping number
      */
     private int shippingNumber = generateUniqueShippingNumber();
@@ -32,7 +20,7 @@ public class Item {
     /**
      * Shipping priority
      */
-    private char shippingPriority;
+    private String shippingPriority;
 
     /**
      * Weight
@@ -93,10 +81,9 @@ public class Item {
     /**
      * Item constructor
      */
-    public Item() {
-    }
+    public Item() { }
 
-    public Item(char shippingPriority, double weight, String senderFirstname, String senderLastname,
+    public Item(String shippingPriority, double weight, String senderFirstname, String senderLastname,
                 String senderAddress, String senderNpa, String senderCity, String recipientFirstname,
                 String recipientLastname, String recipientAddress, String recipientNPA, String recipientCity) {
         this.shippingPriority = shippingPriority;
@@ -131,22 +118,10 @@ public class Item {
     }
 
     /**
-     * Getter for id
-     * @return id
-     */
-    @Exclude
-    public String getId() { return id; }
-
-    /**
-     * Setter for id
-     * @param id the item id
-     */
-    public void setId(String id) { this.id = id; }
-
-    /**
      * Getter for shippingNumber
      * @return the shipping number
      */
+    @Exclude
     public int getShippingNumber() { return shippingNumber; }
 
     /**
@@ -159,13 +134,13 @@ public class Item {
      * Getter for shippingPriority
      * @return the shipping priority
      */
-    public char getShippingPriority() { return shippingPriority; }
+    public String getShippingPriority() { return shippingPriority; }
 
     /**
      * Setter for shippingPriority
      * @param shippingPriority the shipping priority
      */
-    public void setShippingPriority(char shippingPriority) { this.shippingPriority = shippingPriority; }
+    public void setShippingPriority(String shippingPriority) { this.shippingPriority = shippingPriority; }
 
     /**
      * Getter for weight

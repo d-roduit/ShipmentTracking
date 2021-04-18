@@ -17,6 +17,7 @@ import java.util.List;
 
 import ch.dc.shipment_tracking_app.R;
 import ch.dc.shipment_tracking_app.TrackingStatus;
+import ch.dc.shipment_tracking_app.db.converter.Converters;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
 
 /**
@@ -58,7 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         Shipment currentShipment = shipments.get(position);
 
         //make the date into a string
-        Date date = currentShipment.getDate();
+        Date date = Converters.fromTimestamp(currentShipment.getDate());
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
         String strDate = formatter.format(date);
 
@@ -80,7 +81,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         if(position == shipments.size()-1) {
             holder.imageViewArrow.setVisibility(View.GONE);
         }
-
     }
 
     /**

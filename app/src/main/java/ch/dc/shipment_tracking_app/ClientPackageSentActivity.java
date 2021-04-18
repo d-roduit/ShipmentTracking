@@ -33,7 +33,7 @@ public class ClientPackageSentActivity extends BaseActivity {
 
         int shippingNumber = intent.getIntExtra(ClientPackageConfirmationActivity.SEND_SHIPPING_NUMBER, 1);
 
-        shippingNumberToCopy.setText("" + shippingNumber);
+        shippingNumberToCopy.setText(String.valueOf(shippingNumber));
 
         //Copy the shipping number in clipboard
         copyButton.setOnClickListener(v -> {

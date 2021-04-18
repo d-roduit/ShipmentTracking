@@ -30,19 +30,13 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         setTitle(getString(R.string.client_confirmation_package_activity_title));
 
         //ViewModels
-//        itemViewModel = new ViewModelProvider
-//                .AndroidViewModelFactory(getApplication())
-//                .create(ItemViewModel.class);
-//
-//        shipmentViewModel = new ViewModelProvider
-//                .AndroidViewModelFactory(getApplication())
-//                .create(ShipmentViewModel.class);
+        itemViewModel = new ViewModelProvider
+                .AndroidViewModelFactory(getApplication())
+                .create(ItemViewModel.class);
 
-        ItemViewModel.Factory itemFactory = new ItemViewModel.Factory(getApplication());
-        itemViewModel = new ViewModelProvider(this, itemFactory).get(ItemViewModel.class);
-
-        ShipmentViewModel.Factory shipmentFactory = new ShipmentViewModel.Factory(getApplication());
-        shipmentViewModel = new ViewModelProvider(this, shipmentFactory).get(ShipmentViewModel.class);
+        shipmentViewModel = new ViewModelProvider
+                .AndroidViewModelFactory(getApplication())
+                .create(ShipmentViewModel.class);
 
         //Initialize the views.
         TextView textViewWeight = findViewById(R.id.package_confirmation_weight);
@@ -59,12 +53,11 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         TextView textViewRecipientCity = findViewById(R.id.package_confirmation_recipient_city);
         Button sendPackageButton = findViewById(R.id.button_send_package);
 
-
         //Get the value of each input field.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         double weight = Double.longBitsToDouble(sharedPreferences.getLong(ClientSendPackageActivity.SEND_WEIGHT, Double.doubleToLongBits(0.00)));
-        char shippingPriority = sharedPreferences.getString(ClientSendPackageActivity.SEND_SHIPPING_PRIORITY, "B").charAt(0);
+        String shippingPriority = sharedPreferences.getString(ClientSendPackageActivity.SEND_SHIPPING_PRIORITY, "B");
         String senderFirstname = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_FIRSTNAME, "");
         String senderLastname = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_LASTNAME, "");
         String senderAddress = sharedPreferences.getString(ClientSendPackageActivity.SEND_SENDER_ADDRESS, "");
@@ -76,10 +69,9 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         String recipientNpa = sharedPreferences.getString(ClientSendPackageActivity.SEND_RECIPIENT_NPA, "");
         String recipientCity = sharedPreferences.getString(ClientSendPackageActivity.SEND_RECIPIENT_CITY, "");
 
-
         //Set the TextViews text with the corresponding value.
         textViewWeight.setText("" + weight);
-        textViewShippingPriority.setText("" + shippingPriority);
+        textViewShippingPriority.setText(shippingPriority);
         textViewSenderFirstname.setText(senderFirstname);
         textViewSenderLastname.setText(senderLastname);
         textViewSenderAddress.setText(senderAddress);
@@ -91,33 +83,16 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         textViewRecipientNpa.setText(recipientNpa);
         textViewRecipientCity.setText(recipientCity);
 
-        // Create the item
-//        Item item = new Item(shippingPriority, weight, senderFirstname, senderLastname,
-//                senderAddress, senderNpa, senderCity, recipientFirstname,
-//                recipientLastname, recipientAddress, recipientNpa, recipientCity);
-        Item item = new Item();
-        item.setShippingPriority(shippingPriority);
-        item.setWeight(weight);
-        item.setSenderFirstname(senderFirstname);
-        item.setSenderLastname(senderLastname);
-        item.setSenderAddress(senderAddress);
-        item.setSenderNpa(senderNpa);
-        item.setSenderCity(senderCity);
-        item.setRecipientFirstname(recipientFirstname);
-        item.setRecipientLastname(recipientLastname);
-        item.setRecipientAddress(recipientAddress);
-        item.setRecipientNPA(recipientNpa);
-        item.setRecipientCity(recipientCity);
+        Item item = new Item(
+                shippingPriority, weight, senderFirstname, senderLastname,
+                senderAddress, senderNpa, senderCity, recipientFirstname,
+                recipientLastname, recipientAddress, recipientNpa, recipientCity
+        );
 
-
-        // Create the shipment
-//        Shipment shipment = new Shipment(item.getShippingNumber(),
-//                TrackingStatus.DEPOSITED.getStatusListPosition(), item.getSenderNpa(), item.getSenderCity());
-        Shipment shipment = new Shipment();
-        shipment.setShippingNumber(item.getShippingNumber());
-        shipment.setStatus(TrackingStatus.DEPOSITED.getStatusListPosition());
-        shipment.setNpa(item.getSenderNpa());
-        shipment.setCity(item.getSenderCity());
+        Shipment shipment = new Shipment(
+                item.getShippingNumber(), TrackingStatus.DEPOSITED.getStatusListPosition(),
+                item.getSenderNpa(), item.getSenderCity()
+        );
 
         sendPackageButton.setOnClickListener(v -> sendPackage(item, shipment));
     }

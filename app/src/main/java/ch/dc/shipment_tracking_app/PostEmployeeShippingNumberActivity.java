@@ -32,7 +32,7 @@ public class PostEmployeeShippingNumberActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_employee_shipping_number);
 
-        itemViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ItemViewModel.class);
+        itemViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ItemViewModel.class);
 
         shippingNumberTextInputLayout = findViewById(R.id.post_employee_shipping_number_textInputLayout);
         noShippingNumberFoundTextView = findViewById(R.id.post_employee_shipping_number_no_shipping_number_found_error_text_view);
@@ -77,8 +77,8 @@ public class PostEmployeeShippingNumberActivity extends BaseActivity {
     }
 
     private void managePackageIfExists(int shippingNumber) {
-        itemViewModel.countShippingNumber(shippingNumber, numberOfOccurrences -> {
-            if (numberOfOccurrences == 0) {
+        itemViewModel.itemExist(shippingNumber, itemExist -> {
+            if (!itemExist) {
                 noShippingNumberFoundTextView.setVisibility(View.VISIBLE);
                 return;
             }

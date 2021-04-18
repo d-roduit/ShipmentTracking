@@ -18,6 +18,7 @@ import ch.dc.shipment_tracking_app.db.firebase.ItemLiveData;
 public class ItemRepository {
 
     private static ItemRepository instance;
+    public final static String referenceName = "items";
 
     /**
      * ItemRepository constructor
@@ -34,14 +35,14 @@ public class ItemRepository {
     }
 
     /**
-     * Method to get an Item by its id
+     * Method to get an Item by its shipping number
      *
-     * @param shippingNumber the string id
+     * @param shippingNumber the shipping number
      * @return the Item
      */
     public LiveData<Item> getItemByShippingNumber(final int shippingNumber) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("items")
+                .getReference(referenceName)
                 .child(String.valueOf(shippingNumber));
 
         return new ItemLiveData(reference);
@@ -53,7 +54,8 @@ public class ItemRepository {
      * @param item the Item to insert
      */
     public void insert(final Item item) {
-        FirebaseDatabase.getInstance().getReference("items")
+        FirebaseDatabase.getInstance()
+                .getReference(referenceName)
                 .child(String.valueOf(item.getShippingNumber()))
                 .setValue(item);
     }
@@ -64,8 +66,16 @@ public class ItemRepository {
      * @param item the Item to delete
      */
     public void delete(final Item item) {
-        FirebaseDatabase.getInstance().getReference("items")
-                .child(item.getId())
+        String shippingNumberKey = String.valueOf(item.getShippingNumber());
+
+        FirebaseDatabase.getInstance()
+                .getReference(referenceName)
+                .child(shippingNumberKey)
+                .removeValue();
+
+        FirebaseDatabase.getInstance()
+                .getReference(ShipmentRepository.referenceName)
+                .child(shippingNumberKey)
                 .removeValue();
     }
 
@@ -75,31 +85,39 @@ public class ItemRepository {
      * @param item the Item to update
      */
     public void update(final Item item) {
-        FirebaseDatabase.getInstance().getReference("items")
-                .child(item.getId())
+        FirebaseDatabase.getInstance()
+                .getReference(referenceName)
+                .child(String.valueOf(item.getShippingNumber()))
                 .updateChildren(item.toMap());
     }
 
     /**
-     * Method to count the number of occurrences of a shipping number
+     * Utility method to check if an item exist for the given shipping number
+     * @param shippingNumber A shipping number
+     * @param itemExistCallback A itemExistsCallback interface
      */
-    public void countShippingNumber(final Item item) {
-        //new CountShippingNumber(itemDao, onPostAsyncQueryExecuted).execute(shippingNumber);
-        DatabaseReference root = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference items = root.child("items");
-        items.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void itemExist(final int shippingNumber, ItemExistCallback itemExistCallback) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference(referenceName)
+                .child(String.valueOf(shippingNumber));
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child(item.getId()).exists()) {
-
-                }
+                itemExistCallback.onDataChange(snapshot.exists());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                System.out.println("itemExists query was cancelled : " + error.getMessage());
             }
         });
     }
 
+    /**
+     * Utility interface that provides a callback to the {@link #itemExist(int, ItemExistCallback)} method
+     */
+    public interface ItemExistCallback {
+        void onDataChange(boolean itemExist);
+    }
 }
