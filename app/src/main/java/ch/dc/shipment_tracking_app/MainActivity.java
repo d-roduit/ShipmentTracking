@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 
-import ch.dc.shipment_tracking_app.db.AppDatabase;
 import ch.dc.shipment_tracking_app.db.entity.Item;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
 import ch.dc.shipment_tracking_app.viewmodel.ItemViewModel;
@@ -26,7 +25,7 @@ public class MainActivity extends BaseActivity {
         cardViewClient.setOnClickListener(v -> redirectActivity(MainActivity.this, ClientMainActivity.class));
         cardViewPostEmployee.setOnClickListener(v -> redirectActivity(MainActivity.this, PostEmployeeShippingNumberActivity.class));
 
-        AppDatabase.getInstance(getApplication());
+        //AppDatabase.getInstance(getApplication());
 
         populateDatabase();
     }
@@ -49,5 +48,20 @@ public class MainActivity extends BaseActivity {
         itemViewModel.insert(item, response -> {
             shipmentViewModel.insert(shipment, null);
         });
+//        Item item = new Item('B', 126.0, "Daniel", "Roduit",
+//                "Rue de l'ile 8", "3979", "Grône", "Cathy",
+//                "Gay", "Rue du moulin rouge 10", "1920", "Martigny");
+//
+//        System.out.println("shippinNumber entered : " + item.getShippingNumber());
+//
+//        // Create the shipment
+//        Shipment shipment = new Shipment(item.getShippingNumber(),
+//                TrackingStatus.DEPOSITED.getStatusListPosition(), item.getSenderNpa(), item.getSenderCity());
+//
+//        ItemViewModel itemViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ItemViewModel.class);
+//        ShipmentViewModel shipmentViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ShipmentViewModel.class);
+//        itemViewModel.insert(item, response -> {
+//            shipmentViewModel.insert(shipment, null);
+//        });
     }
 }

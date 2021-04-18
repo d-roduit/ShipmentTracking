@@ -6,35 +6,28 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.Date;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 
 /**
  * Shipment entity that represents the Shipment table.
  */
-@Entity(tableName = "shipments",
-        foreignKeys = {
-        @ForeignKey(
-                entity = Item.class,
-                parentColumns = "shipping_number",
-                childColumns = "shipping_number",
-                onDelete = ForeignKey.CASCADE,
-                onUpdate = ForeignKey.CASCADE
-        )
-}, indices = {
-        @Index(value = "shipping_number")
-})
 public class Shipment {
 
     /**
      * Id
      */
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    private String id;
 
     /**
      * Shipping number
      */
-    @ColumnInfo(name = "shipping_number")
     private int shippingNumber;
 
     /**
@@ -60,28 +53,25 @@ public class Shipment {
 
     /**
      * Shipment constructor
-     *
-     * @param shippingNumber the shipping number
-     * @param status the status
-     * @param npa the npa
-     * @param city the city
      */
+    public Shipment() {
+        Date currentDate = new Date();
+        setDate(currentDate);
+    }
+
     public Shipment(int shippingNumber, int status, String npa, String city) {
         this.shippingNumber = shippingNumber;
         this.status = status;
         this.npa = npa;
         this.city = city;
-
-        Date currentDate = new Date();
-        setDate(currentDate);
     }
-
 
     /**
      * Getter for id
      * @return the id
      */
-    public int getId() {
+    @Exclude
+    public String getId() {
         return id;
     }
 
@@ -89,7 +79,7 @@ public class Shipment {
      * Setter for id
      * @param id the id
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -183,5 +173,15 @@ public class Shipment {
                 ", npa='" + npa + '\'' +
                 ", city='" + city + '\'' +
                 '}';
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("status", status);
+        result.put("npa", npa);
+        result.put("city", city);
+        result.put("date", date);
+        return result;
     }
 }

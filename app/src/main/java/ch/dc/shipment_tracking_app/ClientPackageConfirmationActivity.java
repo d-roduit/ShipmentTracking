@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
-import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
 import ch.dc.shipment_tracking_app.db.entity.Item;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
 import ch.dc.shipment_tracking_app.viewmodel.ItemViewModel;
@@ -31,13 +30,19 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         setTitle(getString(R.string.client_confirmation_package_activity_title));
 
         //ViewModels
-        itemViewModel = new ViewModelProvider
-                .AndroidViewModelFactory(getApplication())
-                .create(ItemViewModel.class);
+//        itemViewModel = new ViewModelProvider
+//                .AndroidViewModelFactory(getApplication())
+//                .create(ItemViewModel.class);
+//
+//        shipmentViewModel = new ViewModelProvider
+//                .AndroidViewModelFactory(getApplication())
+//                .create(ShipmentViewModel.class);
 
-        shipmentViewModel = new ViewModelProvider
-                .AndroidViewModelFactory(getApplication())
-                .create(ShipmentViewModel.class);
+        ItemViewModel.Factory itemFactory = new ItemViewModel.Factory(getApplication());
+        itemViewModel = new ViewModelProvider(this, itemFactory).get(ItemViewModel.class);
+
+        ShipmentViewModel.Factory shipmentFactory = new ShipmentViewModel.Factory(getApplication());
+        shipmentViewModel = new ViewModelProvider(this, shipmentFactory).get(ShipmentViewModel.class);
 
         //Initialize the views.
         TextView textViewWeight = findViewById(R.id.package_confirmation_weight);
@@ -72,19 +77,6 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         String recipientCity = sharedPreferences.getString(ClientSendPackageActivity.SEND_RECIPIENT_CITY, "");
 
 
-//        double weight = intent.getDoubleExtra(ClientSendPackageActivity.SEND_WEIGHT, 0.00);
-//        char shippingPriority = intent.getCharExtra(ClientSendPackageActivity.SEND_SHIPPING_PRIORITY, 'B');
-//        String senderFirstname = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_FIRSTNAME);
-//        String senderLastname = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_LASTNAME);
-//        String senderAddress = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_ADDRESS);
-//        String senderNpa = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_NPA);
-//        String senderCity = intent.getStringExtra(ClientSendPackageActivity.SEND_SENDER_CITY);
-//        String recipientFirstname = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_FIRSTNAME);
-//        String recipientLastname = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_LASTNAME);
-//        String recipientAddress = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_ADDRESS);
-//        String recipientNpa = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_NPA);
-//        String recipientCity = intent.getStringExtra(ClientSendPackageActivity.SEND_RECIPIENT_CITY);
-
         //Set the TextViews text with the corresponding value.
         textViewWeight.setText("" + weight);
         textViewShippingPriority.setText("" + shippingPriority);
@@ -100,13 +92,32 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
         textViewRecipientCity.setText(recipientCity);
 
         // Create the item
-        Item item = new Item(shippingPriority, weight, senderFirstname, senderLastname,
-                senderAddress, senderNpa, senderCity, recipientFirstname,
-                recipientLastname, recipientAddress, recipientNpa, recipientCity);
+//        Item item = new Item(shippingPriority, weight, senderFirstname, senderLastname,
+//                senderAddress, senderNpa, senderCity, recipientFirstname,
+//                recipientLastname, recipientAddress, recipientNpa, recipientCity);
+        Item item = new Item();
+        item.setShippingPriority(shippingPriority);
+        item.setWeight(weight);
+        item.setSenderFirstname(senderFirstname);
+        item.setSenderLastname(senderLastname);
+        item.setSenderAddress(senderAddress);
+        item.setSenderNpa(senderNpa);
+        item.setSenderCity(senderCity);
+        item.setRecipientFirstname(recipientFirstname);
+        item.setRecipientLastname(recipientLastname);
+        item.setRecipientAddress(recipientAddress);
+        item.setRecipientNPA(recipientNpa);
+        item.setRecipientCity(recipientCity);
+
 
         // Create the shipment
-        Shipment shipment = new Shipment(item.getShippingNumber(),
-                TrackingStatus.DEPOSITED.getStatusListPosition(), item.getSenderNpa(), item.getSenderCity());
+//        Shipment shipment = new Shipment(item.getShippingNumber(),
+//                TrackingStatus.DEPOSITED.getStatusListPosition(), item.getSenderNpa(), item.getSenderCity());
+        Shipment shipment = new Shipment();
+        shipment.setShippingNumber(item.getShippingNumber());
+        shipment.setStatus(TrackingStatus.DEPOSITED.getStatusListPosition());
+        shipment.setNpa(item.getSenderNpa());
+        shipment.setCity(item.getSenderCity());
 
         sendPackageButton.setOnClickListener(v -> sendPackage(item, shipment));
     }
@@ -114,9 +125,9 @@ public class ClientPackageConfirmationActivity extends BaseActivity {
     private void sendPackage(Item item, Shipment shipment) {
         Intent intent = new Intent(this, ClientPackageSentActivity.class);
 
-        itemViewModel.insert(item, response -> {
-            shipmentViewModel.insert(shipment, null);
-        });
+        itemViewModel.insert(item);
+
+        shipmentViewModel.insert(shipment);
 
         intent.putExtra(SEND_SHIPPING_NUMBER, item.getShippingNumber());
 

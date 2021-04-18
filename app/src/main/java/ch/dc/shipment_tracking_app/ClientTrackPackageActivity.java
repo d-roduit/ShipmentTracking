@@ -61,20 +61,20 @@ public class ClientTrackPackageActivity extends BaseActivity {
             boolean isInputValid = InputValidator.validateInputs(inputShippingNumber);
             if (isInputValid) {
                 int shippingNumber = Integer.parseInt(inputShippingNumber.getEditText().getText().toString());
-                trackPackageIfExists(shippingNumber);
+//                trackPackageIfExists(shippingNumber);
             }
         });
     }
 
-    private void trackPackageIfExists(int shippingNumber) {
-        itemViewModel.countShippingNumber(shippingNumber, numberOfOccurrences -> {
-            if (numberOfOccurrences == 0) {
-                noShippingNumberFoundTextView.setVisibility(View.VISIBLE);
-                return;
-            }
-            redirectToTrackingInformation(shippingNumber);
-        });
-    }
+//    private void trackPackageIfExists(int shippingNumber) {
+//        itemViewModel.countShippingNumber(shippingNumber, numberOfOccurrences -> {
+//            if (numberOfOccurrences == 0) {
+//                noShippingNumberFoundTextView.setVisibility(View.VISIBLE);
+//                return;
+//            }
+//            redirectToTrackingInformation(shippingNumber);
+//        });
+//    }
 
     private void redirectToTrackingInformation(int shippingNumber) {
         Intent intent = new Intent(ClientTrackPackageActivity.this, ClientTrackPackageInformationActivity.class);

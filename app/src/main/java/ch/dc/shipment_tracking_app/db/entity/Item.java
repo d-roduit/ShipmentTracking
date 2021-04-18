@@ -5,30 +5,33 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.database.Exclude;
+
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
  * Item entity that represents the Item table. The Item contains all the package information.
  */
-@Entity(tableName = "items", indices = {@Index(value = "shipping_number", unique = true)})
+
 public class Item {
 
     /**
      * Id
      */
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    private String id;
 
     /**
      * Shipping number
      */
-    @ColumnInfo(name = "shipping_number")
-    private int shippingNumber;
+    private int shippingNumber = generateUniqueShippingNumber();
 
     /**
      * Shipping priority
      */
-    @ColumnInfo(name = "shipping_priority")
     private char shippingPriority;
 
     /**
@@ -39,85 +42,63 @@ public class Item {
     /**
      * Sender firstname
      */
-    @ColumnInfo(name = "sender_firstname")
     private String senderFirstname;
 
     /**
      * Sender lastname
      */
-    @ColumnInfo(name = "sender_lastname")
     private String senderLastname;
 
     /**
      * Sender address
      */
-    @ColumnInfo(name = "sender_address")
     private String senderAddress;
 
     /**
      * Sender NPA
      */
-    @ColumnInfo(name = "sender_npa")
     private String senderNpa;
 
     /**
      * Sender city
      */
-    @ColumnInfo(name = "sender_city")
     private String senderCity;
 
     /**
      * Recipient firstname
      */
-    @ColumnInfo(name = "recipient_firstname")
     private String recipientFirstname;
 
     /**
      * Recipient lastname
      */
-    @ColumnInfo(name = "recipient_lastname")
     private String recipientLastname;
 
     /**
      * Recipient address
      */
-    @ColumnInfo(name = "recipient_address")
     private String recipientAddress;
 
     /**
      * Recipient NPA
      */
-    @ColumnInfo(name = "recipient_npa")
     private String recipientNPA;
 
     /**
      * Recipient city
      */
-    @ColumnInfo(name = "recipient_city")
     private String recipientCity;
 
 
     /**
      * Item constructor
-     *
-     * @param shippingPriority the shipping priority
-     * @param weight the weight
-     * @param senderFirstname the sender firstname
-     * @param senderLastname the sender lastname
-     * @param senderAddress the sender address
-     * @param senderNpa the sender npa
-     * @param senderCity the sender city
-     * @param recipientFirstname the recipient firstname
-     * @param recipientLastname the recipient lastname
-     * @param recipientAddress the recipient address
-     * @param recipientNPA the recipient npa
-     * @param recipientCity the recipient city
      */
-    public Item(char shippingPriority, double weight, String senderFirstname,
-                String senderLastname, String senderAddress, String senderNpa,
-                String senderCity, String recipientFirstname, String recipientLastname,
-                String recipientAddress, String recipientNPA, String recipientCity) {
-        this.shippingNumber = generateUniqueShippingNumber();
+    public Item() {
+    }
+
+    public Item(char shippingPriority, double weight, String senderFirstname, String senderLastname,
+                String senderAddress, String senderNpa, String senderCity, String recipientFirstname,
+                String recipientLastname, String recipientAddress, String recipientNPA, String recipientCity) {
         this.shippingPriority = shippingPriority;
         this.weight = weight;
         this.senderFirstname = senderFirstname;
@@ -153,13 +134,14 @@ public class Item {
      * Getter for id
      * @return id
      */
-    public int getId() { return id; }
+    @Exclude
+    public String getId() { return id; }
 
     /**
      * Setter for id
      * @param id the item id
      */
-    public void setId(int id) { this.id = id; }
+    public void setId(String id) { this.id = id; }
 
     /**
      * Getter for shippingNumber
@@ -315,4 +297,22 @@ public class Item {
      * @param recipientCity the recipient city
      */
     public void setRecipientCity(String recipientCity) { this.recipientCity = recipientCity; }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("weight", weight);
+        result.put("shippingPriority", shippingPriority);
+        result.put("senderFirstname", senderFirstname);
+        result.put("senderLastname", senderLastname);
+        result.put("senderAddress", senderAddress);
+        result.put("senderNpa", senderNpa);
+        result.put("senderCity", senderCity);
+        result.put("recipientFirstname", recipientFirstname);
+        result.put("recipientLastname", recipientLastname);
+        result.put("recipientAddress", recipientAddress);
+        result.put("recipientNpa", recipientNPA);
+        result.put("recipientCity", recipientCity);
+        return result;
+    }
 }

@@ -101,8 +101,13 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
         manageRecyclerView.setAdapter(manageRecyclerAdapter);
 
         // Initialize the viewModels
-        itemViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ItemViewModel.class);
-        shipmentViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ShipmentViewModel.class);
+//        itemViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ItemViewModel.class);
+//        shipmentViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(ShipmentViewModel.class);
+        ItemViewModel.Factory itemFactory = new ItemViewModel.Factory(getApplication());
+        itemViewModel = new ViewModelProvider(this, itemFactory).get(ItemViewModel.class);
+
+        ShipmentViewModel.Factory shipmentFactory = new ShipmentViewModel.Factory(getApplication());
+        shipmentViewModel = new ViewModelProvider(this, shipmentFactory).get(ShipmentViewModel.class);
 
         // Fetch database data and fill in the views with the data
         LiveData<Item> itemLiveData = itemViewModel.getItemByShippingNumber(shippingNumber);

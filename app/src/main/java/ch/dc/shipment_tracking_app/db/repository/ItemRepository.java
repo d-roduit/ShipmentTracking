@@ -1,46 +1,50 @@
 package ch.dc.shipment_tracking_app.db.repository;
 
-import android.app.Application;
-
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
-import ch.dc.shipment_tracking_app.db.AppDatabase;
-import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
-import ch.dc.shipment_tracking_app.db.async.item.CountShippingNumber;
-import ch.dc.shipment_tracking_app.db.async.item.DeleteItem;
-import ch.dc.shipment_tracking_app.db.async.item.InsertItem;
-import ch.dc.shipment_tracking_app.db.async.item.UpdateItem;
-import ch.dc.shipment_tracking_app.db.dataAccessObject.ItemDao;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import ch.dc.shipment_tracking_app.db.entity.Item;
+import ch.dc.shipment_tracking_app.db.firebase.ItemLiveData;
 
 /**
  * Item Repository.
  */
 public class ItemRepository {
 
-    /**
-     * ItemDao
-     */
-    private final ItemDao itemDao;
+    private static ItemRepository instance;
 
     /**
      * ItemRepository constructor
-     *
-     * @param application the application
      */
-    public ItemRepository(Application application) {
-        AppDatabase database = AppDatabase.getInstance(application);
-        itemDao = database.itemDao();
+    public static ItemRepository getInstance() {
+        if (instance == null) {
+            synchronized (ItemRepository.class) {
+                if (instance == null) {
+                    instance = new ItemRepository();
+                }
+            }
+        }
+        return instance;
     }
 
     /**
-     * Method to get an Item by its shippingNumber
+     * Method to get an Item by its id
      *
-     * @param shippingNumber the shipping number
+     * @param shippingNumber the string id
      * @return the Item
      */
-    public LiveData<Item> getItemByShippingNumber(int shippingNumber) {
-        return itemDao.getItemByShippingNumber(shippingNumber);
+    public LiveData<Item> getItemByShippingNumber(final int shippingNumber) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("items")
+                .child(String.valueOf(shippingNumber));
+
+        return new ItemLiveData(reference);
     }
 
     /**
@@ -48,8 +52,10 @@ public class ItemRepository {
      *
      * @param item the Item to insert
      */
-    public void insert(Item item, OnPostAsyncQueryExecuted<Void> onPostAsyncQueryExecuted) {
-        new InsertItem(itemDao, onPostAsyncQueryExecuted).execute(item);
+    public void insert(final Item item) {
+        FirebaseDatabase.getInstance().getReference("items")
+                .child(String.valueOf(item.getShippingNumber()))
+                .setValue(item);
     }
 
     /**
@@ -57,8 +63,10 @@ public class ItemRepository {
      *
      * @param item the Item to delete
      */
-    public void delete(Item item, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
-        new DeleteItem(itemDao, onPostAsyncQueryExecuted).execute(item);
+    public void delete(final Item item) {
+        FirebaseDatabase.getInstance().getReference("items")
+                .child(item.getId())
+                .removeValue();
     }
 
     /**
@@ -66,16 +74,32 @@ public class ItemRepository {
      *
      * @param item the Item to update
      */
-    public void update(Item item, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
-        new UpdateItem(itemDao, onPostAsyncQueryExecuted).execute(item);
+    public void update(final Item item) {
+        FirebaseDatabase.getInstance().getReference("items")
+                .child(item.getId())
+                .updateChildren(item.toMap());
     }
 
     /**
      * Method to count the number of occurrences of a shipping number
-     * @param shippingNumber A shipping number
      */
-    public void countShippingNumber(int shippingNumber, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
-        new CountShippingNumber(itemDao, onPostAsyncQueryExecuted).execute(shippingNumber);
+    public void countShippingNumber(final Item item) {
+        //new CountShippingNumber(itemDao, onPostAsyncQueryExecuted).execute(shippingNumber);
+        DatabaseReference root = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference items = root.child("items");
+        items.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(item.getId()).exists()) {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }

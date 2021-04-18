@@ -1,46 +1,48 @@
 package ch.dc.shipment_tracking_app.db.repository;
 
-import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
-import ch.dc.shipment_tracking_app.db.AppDatabase;
-import ch.dc.shipment_tracking_app.db.async.OnPostAsyncQueryExecuted;
-import ch.dc.shipment_tracking_app.db.async.shipment.DeleteShipment;
-import ch.dc.shipment_tracking_app.db.async.shipment.InsertShipment;
-import ch.dc.shipment_tracking_app.db.async.shipment.UpdateShipment;
-import ch.dc.shipment_tracking_app.db.dataAccessObject.ShipmentDao;
 import ch.dc.shipment_tracking_app.db.entity.Shipment;
+import ch.dc.shipment_tracking_app.db.firebase.ShipmentListLiveData;
 
 /**
  * Shipment Repository.
  */
 public class ShipmentRepository {
 
-    /**
-     * ShipmentDao
-     */
-    private final ShipmentDao shipmentDao;
+    private static ShipmentRepository instance;
 
     /**
-     * ShipmentRepository constructor
-     *
-     * @param application the application
+     * ShipmentRepository constructor*
      */
-    public ShipmentRepository(Application application) {
-        AppDatabase database = AppDatabase.getInstance(application);
-        shipmentDao = database.shipmentDao();
+    public static ShipmentRepository getInstance() {
+        if (instance == null) {
+            synchronized (ShipmentRepository.class) {
+                if (instance == null) {
+                    instance = new ShipmentRepository();
+                }
+            }
+        }
+        return instance;
     }
 
     /**
      * Method to get Shipments by a shipping number
-     * @param shippingNumber the shipping number
      * @return a livedata list of Shipments
      */
-    public LiveData<List<Shipment>> getShipmentByShippingNumber(int shippingNumber) {
-        return shipmentDao.getShipmentByShippingNumber(shippingNumber);
+    public LiveData<List<Shipment>> getShipmentByShippingNumber(final String id) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("items")
+                .child(id)
+                .child("shipments");
+
+        return new ShipmentListLiveData(reference);
     }
 
     /**
@@ -48,8 +50,11 @@ public class ShipmentRepository {
      *
      * @param shipment the Shipment to insert
      */
-    public void insert(Shipment shipment, OnPostAsyncQueryExecuted<Void> onPostAsyncQueryExecuted) {
-        new InsertShipment(shipmentDao, onPostAsyncQueryExecuted).execute(shipment);
+    public void insert(final Shipment shipment) {
+        String id = FirebaseDatabase.getInstance().getReference("shipments").push().getKey();
+        FirebaseDatabase.getInstance().getReference("shipments")
+                .child(id)
+                .setValue(shipment);
     }
 
     /**
@@ -57,8 +62,10 @@ public class ShipmentRepository {
      *
      * @param shipment the Shipment to delete
      */
-    public void delete(Shipment shipment, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
-        new DeleteShipment(shipmentDao, onPostAsyncQueryExecuted).execute(shipment);
+    public void delete(final Shipment shipment) {
+        FirebaseDatabase.getInstance().getReference("shipments")
+                .child(shipment.getId())
+                .removeValue();
     }
 
     /**
@@ -66,8 +73,10 @@ public class ShipmentRepository {
      *
      * @param shipment the Shipment to update
      */
-    public void update(Shipment shipment, OnPostAsyncQueryExecuted<Integer> onPostAsyncQueryExecuted) {
-        new UpdateShipment(shipmentDao, onPostAsyncQueryExecuted).execute(shipment);
+    public void update(Shipment shipment) {
+        FirebaseDatabase.getInstance().getReference("shipments")
+                .child(shipment.getId())
+                .updateChildren(shipment.toMap());
     }
 
 }
