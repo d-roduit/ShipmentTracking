@@ -31,7 +31,9 @@ public class ClientTrackPackageActivity extends BaseActivity {
 
         setTitle(getString(R.string.client_track_package_activity_title));
 
-        itemViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ItemViewModel.class);
+        itemViewModel = new ViewModelProvider
+                .AndroidViewModelFactory(getApplication())
+                .create(ItemViewModel.class);
 
         // Views
         inputShippingNumber = findViewById(R.id.input_shipping_number);
