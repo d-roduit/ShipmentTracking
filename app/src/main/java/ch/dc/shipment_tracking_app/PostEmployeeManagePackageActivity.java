@@ -262,7 +262,7 @@ public class PostEmployeeManagePackageActivity extends BaseActivity {
             recipientLastnameTextInputLayout.getEditText().setText(item.getRecipientLastname());
             recipientFirstnameTextInputLayout.getEditText().setText(item.getRecipientFirstname());
             recipientAddressTextInputLayout.getEditText().setText(item.getRecipientAddress());
-            recipientNpaTextInputLayout.getEditText().setText(item.getRecipientNPA());
+            recipientNpaTextInputLayout.getEditText().setText(item.getRecipientNpa());
             recipientCityTextInputLayout.getEditText().setText(item.getRecipientCity());
         }
     }

@@ -120,7 +120,7 @@ public class ClientTrackPackageInformationActivity extends BaseActivity {
             textViewRecipientFirstname.setText(item.getRecipientFirstname());
             textViewRecipientLastname.setText(item.getRecipientLastname());
             textViewRecipientAddress.setText(item.getRecipientAddress());
-            textViewRecipientNpa.setText(item.getRecipientNPA());
+            textViewRecipientNpa.setText(item.getRecipientNpa());
             textViewRecipientCity.setText(item.getRecipientCity());
         });
 

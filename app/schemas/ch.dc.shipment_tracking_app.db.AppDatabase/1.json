@@ -81,7 +81,7 @@
             "notNull": false
           },
           {
-            "fieldPath": "recipientNPA",
+            "fieldPath": "recipientNpa",
             "columnName": "recipient_npa",
             "affinity": "TEXT",
             "notNull": false

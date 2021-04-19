@@ -35,7 +35,7 @@ public class Shipment {
     private long date = Converters.toTimestamp(new Date());
 
     /**
-     * NPA
+     * Npa
      */
     private String npa;
 

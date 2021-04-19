@@ -43,7 +43,7 @@ public class Item {
     private String senderAddress;
 
     /**
-     * Sender NPA
+     * Sender Npa
      */
     private String senderNpa;
 
@@ -68,9 +68,9 @@ public class Item {
     private String recipientAddress;
 
     /**
-     * Recipient NPA
+     * Recipient Npa
      */
-    private String recipientNPA;
+    private String recipientNpa;
 
     /**
      * Recipient city
@@ -85,7 +85,7 @@ public class Item {
 
     public Item(String shippingPriority, double weight, String senderFirstname, String senderLastname,
                 String senderAddress, String senderNpa, String senderCity, String recipientFirstname,
-                String recipientLastname, String recipientAddress, String recipientNPA, String recipientCity) {
+                String recipientLastname, String recipientAddress, String recipientNpa, String recipientCity) {
         this.shippingPriority = shippingPriority;
         this.weight = weight;
         this.senderFirstname = senderFirstname;
@@ -96,7 +96,7 @@ public class Item {
         this.recipientFirstname = recipientFirstname;
         this.recipientLastname = recipientLastname;
         this.recipientAddress = recipientAddress;
-        this.recipientNPA = recipientNPA;
+        this.recipientNpa = recipientNpa;
         this.recipientCity = recipientCity;
     }
 
@@ -253,13 +253,13 @@ public class Item {
      * Getter for recipientNpa
      * @return the recipient npa
      */
-    public String getRecipientNPA() { return recipientNPA; }
+    public String getRecipientNpa() { return recipientNpa; }
 
     /**
      * Setter for recipientNpa
-     * @param recipientNPA the recipient npa
+     * @param recipientNpa the recipient npa
      */
-    public void setRecipientNPA(String recipientNPA) { this.recipientNPA = recipientNPA; }
+    public void setRecipientNpa(String recipientNpa) { this.recipientNpa = recipientNpa; }
 
     /**
      * Getter for recipientCity
@@ -286,7 +286,7 @@ public class Item {
         result.put("recipientFirstname", recipientFirstname);
         result.put("recipientLastname", recipientLastname);
         result.put("recipientAddress", recipientAddress);
-        result.put("recipientNpa", recipientNPA);
+        result.put("recipientNpa", recipientNpa);
         result.put("recipientCity", recipientCity);
         return result;
     }
