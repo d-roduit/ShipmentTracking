@@ -1,6 +1,6 @@
 <div align="center">
             <a href="https://github.com/d-roduit/shipment-tracking-app">
-               <img src="readme_pictures/dc_company_logo.png" align="center" height="150" alt="DC Company Logo">
+               <img src="readme_pictures/dc_company_logo.png" align="center" width="30%" alt="DC Company Logo">
    </a>
 
 #
@@ -13,7 +13,7 @@
 
 
 <div align="center">
-    <a href="https://github.com/d-roduit/shipment-tracking-app"><img src="readme_pictures/Shipment_Tracking_picture.png" align="center" height="400" alt="Demo screenshot"></a>
+    <a href="https://github.com/d-roduit/shipment-tracking-app"><img src="readme_pictures/Shipment_Tracking_picture.png" align="center" width="80%" alt="Demo screenshot"></a>
 </div>
 <br>
 
