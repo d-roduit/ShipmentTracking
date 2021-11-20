@@ -48,10 +48,11 @@ The technology used for this project rely entirely on Java.
 
 You will need to follow the steps below in order to run the application :
 
-1. Download the project files on your computer.
-2. Unzip the file downloaded.
-3. Open the project folder _(the unzipped folder)_ in Android Studio.
-4. Run the android application with Android Studio.
+1. Install [Android Studio](https://developer.android.com/studio)
+2. Download the project files in ZIP format to your computer.
+3. Unzip the downloaded file.
+4. Open the project folder _(the unzipped folder)_ in Android Studio.
+5. Run the android application with Android Studio.
 
 Once these four steps have been executed, you will be able to use the **Shipment-Tracking** application and to experience the life of a postman!
 
