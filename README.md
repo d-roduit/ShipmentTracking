@@ -6,7 +6,7 @@
 #
 
 <p align="center">
-    <strong>A native Android application that simulates a package tracking from both the client and postman sides</strong>
+    <strong>A native Android application that simulates a package tracking from both the client and postman sides 📦📯</strong>
 </p>
 
 </div>
@@ -26,8 +26,8 @@ The technology used for this project rely entirely on Java.
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
-2. [Authors](#authors)
-3. [Guides and resources](#guides-and-resources)
+2. [Guides and resources](#guides-and-resources)
+3. [Authors](#authors)
 4. [License](#license)
 
 
@@ -48,12 +48,18 @@ The technology used for this project rely entirely on Java.
 
 You will need to follow the steps below in order to run the application :
 
-1. Download the project files on your computer.
-2. Unzip the file downloaded.
-3. Open the project folder _(the unzipped folder)_ in Android Studio.
-4. Run the android application with Android Studio.
+1. Install [Android Studio](https://developer.android.com/studio)
+2. Download the project files in ZIP format to your computer.
+3. Unzip the downloaded file.
+4. Open the project folder _(the unzipped folder)_ in Android Studio.
+5. Run the android application with Android Studio.
 
 Once these four steps have been executed, you will be able to use the **Shipment-Tracking** application and to experience the life of a postman!
+
+## <a name="guides-and-resources"></a>Guides and resources
+
+* [Android Studio](https://developer.android.com/studio) - Android Studio
+* [Firebase Database](https://firebase.google.com/?hl=fr) - Firebase Database
 
 ## <a name="authors"></a>Authors
 
@@ -75,12 +81,6 @@ Once these four steps have been executed, you will be able to use the **Shipment
       </tr>
    </tbody>
 </table>
-
-## <a name="guides-and-resources"></a>Guides and resources
-
-* [Android Studio](https://developer.android.com/studio) - Android Studio
-* [Firebase Database](https://firebase.google.com/?hl=fr) - Firebase Database
-
 
 ## <a name="license"></a>License
 
